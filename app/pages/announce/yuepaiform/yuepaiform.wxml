@@ -1,0 +1,28 @@
+<!--pages/announce/yuepaiform/yuepaiform.wxml-->
+<view class="form-container">
+  <view class="form-first">
+    <input class='form-first-textarea' placeholder='输入约拍说明'></input>
+    <view class="form-first-bottom">
+      <view class="add-container"><image class="selectclass" src='../../../images/icon/select.png' mode='aspectFit'></image></view>
+    </view>
+  </view>
+  <view class="form-second">
+     <view class='form-column'><span class="form-row">地区</span><span class="form-right">请选择地区</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
+     <view class='form-column'><span class="form-row">要求</span><span class="form-right">接收所有人的约拍</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
+     <view class='form-column'><span class="form-row">费用</span><span class="form-right">希望互免</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
+     <view class='form-column1'>
+     <view class='addicon'><image class="smallicon" src='../../../images/icon/addicon.png' mode='aspectFit'></image>标签</view>
+     </view>
+  </view>
+  <view>
+  <view class='form-column2 {{showmore?"changebgc":"normal"}}' bindtap='showmore'><span >更多选项</span><image class='more-select' src='../../../images/icon/more-select.png' mode='aspectFit'></image></view>
+  </view>
+  <!-- 更多选项  -->
+<view class="{{showmore?'showmore':'hidemore'}}">
+<input placeholder="拍摄时间说明" class='input-style'/>
+<input placeholder="拍摄地点说明"class='input-style'/>
+</view>
+  <button class="form-button">发布</button>
+</view>
+<!-- <button bindtap="upImgClick ">上传图片</button>
+<image src='{{imgshow}}'></image>   -->

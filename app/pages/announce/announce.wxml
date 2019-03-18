@@ -1,0 +1,21 @@
+<!--pages/announce/announce.wxml-->
+<view>
+  <view class="content" bindtap='containertap' data-sort='约拍'>
+    <view class="first">
+      <image class="picture" src='../../images/icon/take_pictrue.png' mode='aspectFit'></image>
+    </view>
+    <view class="second">
+      <text class="title">发布约拍</text>
+      <view class="text_two">模特或摄影师可以通过发布约拍需求，找到适合的摄影师或模特一起创作</view>
+    </view>
+  </view>
+  <view class='content' bindtap='containertap' data-sort='作品'>
+      <view class="first">
+      <image class="picture" src='../../images/icon/photo.png' mode='aspectFit'></image>
+    </view>
+    <view class="second">
+      <text class="title">发布作品</text>
+      <view class="text_two">模特或摄影师可以通过上传自己的作品或照片，来提高自己的约拍吸引力</view>
+    </view>
+  </view>
+</view>

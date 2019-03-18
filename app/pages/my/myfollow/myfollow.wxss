@@ -1,0 +1,48 @@
+/* pages/my/myfollow/myfollow.wxss */
+.follow-col{
+  width: calc(100% - 40rpx);
+  padding: 25rpx 25rpx 15rpx 25rpx;
+  position: relative;
+  border-bottom:1rpx solid rgba(219, 213, 213, 0.39);
+}
+.myheadimg{
+  width:80rpx;
+  height:80rpx;
+  border-radius: 50%;
+}
+.name-row{
+  display: inline-block;
+  margin-left:40rpx;
+  font-size: 32rpx;
+  vertical-align: top;
+}
+.role-row{
+  color: rgb(192, 192, 192);
+  font-size: 26rpx;
+  margin-top:6rpx;
+}
+.city-row{
+  color: rgb(192, 192, 192);
+  font-size: 26rpx;
+  position: absolute;
+  left:245rpx;
+  bottom:25rpx;
+}
+.cancel-follow{
+  position: absolute;
+  bottom:35rpx;
+  right:40rpx;
+  font-size: 28rpx;
+  padding:8rpx;
+  color: rgb(192, 192, 192);
+  border:1rpx solid rgb(192, 192, 192);
+}
+.else-follow{
+  position: absolute;
+  bottom:35rpx;
+  right:40rpx;
+  font-size: 27rpx;
+  padding:6rpx 15rpx;
+  color: rgb(250, 129, 142);
+  border:1rpx solid rgb(250, 129, 142);
+}

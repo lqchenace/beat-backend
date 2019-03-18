@@ -1,0 +1,71 @@
+<!--pages/filterInfo/filterInfo.wxml-->
+<view>
+  <!-- 筛选条件 -->
+
+  <view class="sort_style">
+    <view class="sort_style_view" bindtap='openarea'>热门推荐</view>
+    <view class="sort_style_view" bindtap='openarea'>{{local}}
+      <image mode='aspectFit' src='../../images/icon/more.png' class="sort_more"></image>
+    </view>
+    <view class="sort_style_view" bindtap='opensort'>{{gender}}
+      <image mode='aspectFit' src='../../images/icon/more.png' class="sort_more"></image>
+    </view>
+  </view>
+  <!-- 模特或摄影师列表 -->
+  <view class='filterinfo'>
+    <view wx:for="{{modelInfo}}" class='single-style' wx:key="unique">
+      <view wx:for="{{item}}" wx:key="unique" class='info-de' bindtap='userhome' data-uid="{{item.uid}}" data-name="{{item.name}}">
+        <image src='{{publicurl}}{{item.beatUrl}}/{{item.img}}' class="filter-img" mode='aspectFill'></image>
+        <view class="filter-title">
+          <span class="title-span">{{item.name}}</span>
+          <image src='{{item.gender==1?"../../images/icon/boy.png":"../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+        </view>
+        <view class='info-bottom'>
+          <view>
+            <image src='../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
+            <span>{{item.city}}</span>
+          </view>
+          <span>约拍数：{{item.receiveBeat}}</span>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 弹出的地区选择层 -->
+
+<view wx:if="{{condition}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="confirmplace" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChange" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{countys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 弹出的类别选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

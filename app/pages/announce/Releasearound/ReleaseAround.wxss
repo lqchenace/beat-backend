@@ -1,0 +1,38 @@
+/* pages/announce/Releasearound/ReleaseAround.wxss */
+.announce_text{
+  display: inline-block;
+  width:100%;
+  color:rgb(240, 85, 112);
+  text-align: center;
+  margin-top:140rpx;
+  letter-spacing: 0.2rpx;
+  font-size: 1.2rem;
+}
+.anounce_con{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top:150rpx;
+}
+.taker_anounce{
+  width:31%;
+  height:230rpx;
+  border: 1px solid rgb(240, 85, 112);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.a_picture{
+  width: 100rpx;
+  height:100rpx;
+}
+.a_picture1{
+  width: 110rpx;
+  height:110rpx;
+}
+.re_text{
+  color:rgb(240, 85, 112);
+  font-size:29rpx;
+}

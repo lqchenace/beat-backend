@@ -1,0 +1,14 @@
+<!--pages/my/myfollow/myfollow.wxml-->
+<view>
+  <view wx:for="{{followlist}}" wx:key="unique" class='follow-col'>
+      <image  wx:if="{{item.avatarUrl==''}}" class="myheadimg" mode='aspectFill'  src='{{item.imgurl}}'></image>
+      <image  wx:else  class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.imgurl}}/{{item.avatarUrl[0]}}'></image>
+    <view class="name-row">
+      <view>{{item.name}}</view>
+      <view class='role-row'>{{item.role}}</view>
+    </view>
+    <text class="city-row">{{item.city}}</text>
+    <text wx:if="{{confollow}}" class="cancel-follow" data-id='{{item.id}}' bindtap='deleteandfollow'>取消关注</text>
+    <text wx:else class="else-follow" data-id='{{item.id}}' bindtap='deleteandfollow'>+关注</text>
+  </view>
+</view>

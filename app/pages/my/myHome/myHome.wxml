@@ -1,0 +1,79 @@
+<!--pages/my/myHome/myHome.wxml-->
+<view>
+
+  <view class="my-top">
+    <view class='mydetail-home'>
+      <image  wx:if="{{userInfo.avatarUrl==''}}" class="userinfo-avatar" mode='aspectFill'  src='{{userInfo.imgurl}}'></image>
+      <image  wx:else  class="userinfo-avatar" mode='aspectFill' src='{{publicurl}}{{userInfo.imgurl}}/{{userInfo.avatarUrl[0]}}'></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <!-- 第一行 -->
+  <view class='home-first'>
+    <view class='home-role'>{{userInfo.role}}</view>
+    <view class='home-role'>
+      <image src='../../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
+      <span>{{userInfo.city}}</span>
+    </view>
+    <view>{{userInfo.age==null?0:userInfo.age}}岁</view>
+  </view>
+  <!-- 编辑 -->
+  <view class='home-editor' bindtap='bindmyeditor'>
+    <text class="editor-text">编辑</text>
+  </view>
+
+  <view class='home-first else-flex'>
+    <view>约拍 {{beatnum}}</view>
+    <view>关注 {{follow}}</view>
+    <view>粉丝 {{fans}}</view>
+  </view>
+  <view class='epsicl'></view>
+
+  <view class='TabSwiper'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>约拍动态</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>作品相册</view>
+  </view>
+  <swiper current="{{currentData}}" class='swiper'style="min-height:600rpx" duration="300" bindchange="bindchange">
+    <swiper-item>
+      <view wx:if="{{theResult}}" class='swiper_con'>
+        <view class='yuepai-contain' wx:for="{{beatList}}" wx:key="unique" bindtap='detail' data-bid="{{item.bid}}">
+          <view class="second-yuepai">
+              <span class="yuemodel">{{item.behavior}}</span>·
+              <span class="yuefree">{{item.cost}}</span>
+          </view>
+          <view class="third-yuepai">{{item.command}}</view>
+            <view class="third-yuepai" wx:if="{{hide_firstline}}">{{item.command}}</view>
+            <scroll-view class="scroll-view_H" scroll-x="true">
+                  <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
+            </scroll-view>
+        </view>
+       </view> 
+    <view wx:else class="nonestyle">
+   <image  src='../../../images/icon/none.png' mode='aspectFit' class='noneimg'></image>
+   <view class='styletext'> 你还没有发布约拍信息哦</view>
+    </view>
+    
+    
+    </swiper-item>
+    <swiper-item>
+      <view wx:if="{{theResult1}}" class='swiper_con'>
+          <view class='yuepai-contain' wx:for="{{productList}}" wx:key="unique" bindtap='productdetail' data-id="{{item.pid}}">
+          <view class="second-yuepai">
+             <view class="photo-title">{{item.title}}</view>
+          </view>
+
+            <view class="third-yuepai" wx:if="{{hide_firstline}}">{{item.command}}</view>
+            <scroll-view class="scroll-view_H" scroll-x="true">
+                  <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
+            </scroll-view>
+        </view>
+      </view>
+     <view wx:else class="nonestyle">
+     <image  src='../../../images/icon/none.png' mode='aspectFit' class='noneimg'></image>
+     <view class='styletext'>你还没有发布相册哦</view>
+     </view>
+    </swiper-item>
+  </swiper>
+
+  </view>

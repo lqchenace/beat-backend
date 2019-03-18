@@ -1,0 +1,35 @@
+/* pages/newsCenter/newCenter.wxss */
+.news-holder{
+  width:100%;
+  height:1314rpx;
+  background-color: rgb(244,244,244);
+  border-top:16rpx solid rgb(244,244,244);
+}
+.form-column{
+  background-color: #fff;
+  margin-top:5rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  position: relative;
+}
+.form-row{
+  margin-left:30rpx;
+  font-size:32rpx;
+}
+.form-right{
+  float: right;
+  font-size: 32rpx;
+  margin-right:70rpx;
+  color:rgb(193, 193, 193);
+}
+.col-right{
+  width:25rpx;
+  height:25rpx;
+  position: absolute;
+  top:35rpx;
+  right:20rpx;
+}
+.middle-view{
+  width:100%;
+  height: 15rpx;
+}

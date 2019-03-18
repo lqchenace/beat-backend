@@ -1,0 +1,126 @@
+<!--pages/Beatdetails/Beatdetails.wxml-->
+<view class="details-container {{isfixed?'fixstyle':''}}" wx:for="{{itemList}}" wx:key="unique">
+  <!-- 第一行 -->
+  <view class="details-first">
+    <image wx:if="{{item.headimgUrl==''}}" class="details-headimg" mode='aspectFill' src="{{item.headimg}}"></image>
+    <image wx:else class="details-headimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <span class="yuepai-second">
+      <span class="yuepai-name">{{item.name}}</span>
+      <span class="yuepai-code">{{item.role}}</span>
+    </span>
+    <image src='{{item.sex==1?"../../images/icon/boy.png":"../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+    <span class="yuepai-local">
+      <image src='../../images/icon/complain.png' mode='aspectFit' class='localimg'></image>
+      <span class="localtext">投诉</span>
+    </span>
+  </view>
+  <!-- 第二行 -->
+  <view class='details-second' wx:if="{{confirmshow}}">
+    <view>
+      <image src='../../images/icon/city.png' mode='aspectFit' class="details-smallicon"></image>
+      <view class="details-text">面向{{item.city}}</view>
+    </view>
+    <view>
+      <image src='../../images/icon/flag.png' mode='aspectFit' class="details-smallicon"></image>
+      <view class="details-text">{{item.behavior}}</view>
+    </view>
+    <view>
+      <image src='../../images/icon/money.png' mode='aspectFit' class="details-smallicon"></image>
+      <view class="details-text">{{item.cost}}</view>
+    </view>
+  </view>
+  <!-- 第三行 -->
+  <view class="details-command">{{item.command}}</view>
+  <view class="details-third" wx-if="{{item.tooktime}}">拍摄时间：{{item.tooktime}}</view>
+  <view class="details-third" wx-if="{{item.place}}">拍摄地点：{{item.place}}</view>
+  <view class="details-third" wx-if="{{item.imgsum}}">拍摄成片：{{item.imgsum}}</view>
+  <view class="details-third" wx-if="{{item.device}}">设备：{{item.device}}</view>
+  <!-- 图片展示 -->
+  <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" mode='widthFix' class="imglist" wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage"></image>
+  <!-- 约拍信息分类 -->
+  <view class="sortyuepai">
+    <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
+  </view>
+
+  <!-- 推荐 -->
+
+<view class="arrianbeatstyle else-a" wx:if="{{groomList.length!=0}}">
+<view class='groomtitle'>为你推荐</view>
+<view wx:for="{{groomList}}" wx:key="unique" class='groomList' data-id='{{item.id}}' bindtap='groomToDetail'>
+    <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimgl" mode='aspectFill' src="{{item.headimg}}"></image>
+    <image wx:else class="arrian-headimgl" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <view class='groomComment'>{{item.command}}</view>
+</view>
+</view>
+
+  <!-- 收到的约拍 -->
+  <view class="arrianbeatstyle" wx:if="{{arrianList.length!=0}}">
+  <view class='arriantitle'>收到约拍{{arrianbeatnum}}条</view>
+  <view class="image-list">
+  <view wx:for="{{arrianList}}" wx:key="unique">
+    <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimg" mode='aspectFill' src="{{item.headimg}}"></image>
+    <image wx:else class="arrian-headimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    </view>
+  </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="discuss_list_concent" wx:if="{{con_discuss}}">
+    <view class="com-bottom">
+      <image src="../../images/icon/cancel.png" mode='aspectFit' class="discuss_cancel" bindtap='hideDiscusss'></image>
+      <view>全部评论({{com_num}})</view>
+
+      <!-- 评论列表 -->
+      <scroll-view scroll-y style="height: 220px; margin-bottom:110rpx;" wx:if="{{showList}}">
+        <view wx:for="{{commentList}}" wx:key="unique" class='commentList_contain'  wx:if="{{item.parentid=='0'}}">
+          <view class='commentList'>
+            <image wx:if="{{item.headimgUrl==''}}" class="com-headimg6" mode='aspectFill' src="{{item.headimg}}"></image>
+            <image wx:else class="com-headimg6" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+            <view class='content'>
+              <span class="com-name">{{item.name}}</span>
+              <view class="com-ment">{{item.comment}}</view>
+            </view>
+          </view>
+          <!-- 回复列表 -->
+          <view class="reployList" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploy" wx:if="{{reploy.parentid==item.bcid}}">
+          <!-- 列出所有的一级评论 -->
+          <view class="reploy_list"><span class="reploy_name">{{reploy.name}}</span>回复<span class="reploy_name">{{item.name}}</span>：{{reploy.comment}}</view>
+          <!-- 找出评论了某个人的的所有评论 -->
+          <view class="reploy_list" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploykid" wx:if="{{reploy.bcid==reploykid.parentid}}"><span class="reploy_name">{{reploykid.name}}</span>回复<span class="reploy_name">{{reploy.name}}</span>：{{reploykid.comment}}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <!-- 没有评论时 -->
+      <view wx:else class="qiangshafa">快来抢沙发呀~ ~</view>
+      <!-- 发表评论 -->
+      <view class="anouncecom">
+        <input class="inputclass" placeholder="来说点什么吧~~" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+        <view class='fasong' bindtap='confirmtap'>发送</view>
+      </view>
+
+    </view>
+  </view>
+
+</view>
+<!-- 底部菜单栏 -->
+<view class="details-bottom" wx:if="{{confirmshow}}">
+  <view class='bottom-view' bindtap='goback'>
+    <image src='../../images/icon/detailshome.png' mode='aspectFit' class="details-smallimg"></image>
+    <view class="details-text-bottom">首页</view>
+  </view>
+  <view class='bottom-view' bindtap='confirmsave'>
+    <image src='../../images/icon/{{confirmsave?"saved.png":"savenever.png"}}' mode='aspectFit' class="details-smallimg"></image>
+    <view class="details-text-bottom">收藏</view>
+  </view>
+  <span class="postbeat">约拍他</span>
+</view>
+<!-- 点赞 -->
+<image src="../../images/icon/full.png" mode='aspectFit' class="full"></image>
+<!-- 弹出评论；列表 -->
+<image src="../../images/icon/discuss.png" mode='aspectFit' class="discuss" bindtap='showDiscusss'></image>
+<!-- 分享按钮 -->
+<button open-type='share'>
+  <image src="../../images/icon/share.png" mode='aspectFit' class="details-share"></image>
+</button>
+<!-- 跳转首页 -->
+<image wx:if="{{!confirmshow}}" src="../../images/icon/home_active.png" mode='aspectFit' class="prohome" bindtap='goback'></image>

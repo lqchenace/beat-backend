@@ -1,0 +1,105 @@
+<!--pages/filterInfo/StyleandWorks/StyleandWorks.wxml-->
+    <view class='first-row'>
+      <scroll-view class="scroll-view_Y" scroll-x="true">
+        <text wx:for="{{styleList}}" class="{{thetypestyle==index?'type-class':'style-class'}}" wx:key="unique" data-theme='{{item}}' data-true="{{index}}" bindtap='clickStyle'>{{item}}</text>
+      </scroll-view>
+      <view class="first-text">
+        <image mode='aspectFit' src='../../../images/icon/bottom.png' class="sort_bottom"></image>
+      </view>
+    </view>
+
+<view class="style-works">
+  <!-- 页面分成左右两边 -->
+  <view class='leftList'>
+
+    <view wx:for="{{sortList}}" class="{{isClicked==index?'type-class1':'list-colsort'}}" wx:key="unique" data-themecolumn='{{item}}' data-index="{{index}}" bindtap='clickcolStyle'>{{item}}</view>
+
+  </view>
+
+  <view class='rightList'>
+    <!-- 筛选条件 -->
+    <view class="sort_style" wx:if="{{conproduct}}">
+      <view class="sort_style_view" bindtap='openarea'>{{local}}
+        <image mode='aspectFit' src='../../../images/icon/more.png' class="sort_more"></image>
+      </view>
+      <view class="sort_style_view" bindtap='opensort'>{{gender}}
+        <image mode='aspectFit' src='../../../images/icon/more.png' class="sort_more"></image>
+      </view>
+    </view>
+
+
+    <!-- 约拍信息列表 -->
+    <view class='yuepai-contain' wx:for="{{itemList}}" wx:key="unique" bindtap='linkTodetail' data-id="{{item.bid||item.pid}}">
+      <view class="yuepai-first">
+      <image  wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill'  src='{{item.headimg}}'></image>
+      <image wx:else  class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+        <span class="yuepai-second">{{item.name}}
+        </span>
+        <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+        <span wx:if="{{item.city}}" class="yuepai-local">
+          <image src='../../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
+          <span class="localtext">{{item.city}}</span>
+        </span>
+      </view>
+      <view wx:if="{{item.title}}" class="second-yuepai">
+        <span class="yuemodel">{{item.title}}</span>
+      </view>
+      <view wx:if="{{item.behavior&&item.cost}}" class="second-yuepai">
+        <span class="yuemodel">{{item.behavior}}</span>·
+        <span class="yuefree">{{item.cost}}</span>
+      </view>
+      <!-- <view class="third-yuepai">{{item.command}}</view> -->
+      <scroll-view class="scroll-view_H" scroll-x="true">
+        <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage"/>
+      </scroll-view>
+      <!-- 约拍信息分类 -->
+      <view class="sortyuepai">
+        <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
+      </view>
+      <view class="yuepai-bottom">
+        <span>收到约拍 {{item.receiveBeat}}</span>
+        <span class="readcode">阅读 {{item.readcount}}</span>
+      </view>
+    </view>
+
+
+  </view>
+
+</view>
+
+<!-- 弹出的地区选择层 -->
+
+<view wx:if="{{condition}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="confirmplace" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChange" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{countys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 弹出的类别选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

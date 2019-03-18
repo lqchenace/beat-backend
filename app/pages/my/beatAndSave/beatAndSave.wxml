@@ -1,0 +1,21 @@
+<!--pages/my/beatAndSave/beatAndSave.wxml-->
+<view class='yuepai-contain' wx:for="{{beatList}}" wx:key="unique" bindtap='savedetail' data-id="{{item.bid||item.pid}}">
+  <view class="second-yuepai">
+    <view wx:if="{{hide_firstline}}">
+        <span class="yuemodel">{{item.behavior}}</span>·
+        <span class="yuefree">{{item.cost}}</span>
+    </view>
+    <view class="photo-title" wx:else>{{item.title}}</view>
+  </view>
+  <!-- <view bindtap='beatdetail'> -->
+  <view class="third-yuepai" wx:if="{{hide_firstline}}">{{item.command}}</view>
+  <scroll-view class="scroll-view_H" scroll-x="true">
+    <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
+  </scroll-view>
+  <!-- </view> -->
+  <image wx:if="{{showSetting}}" src='../../../images/icon/setting.png' mode='aspectFill' class='setting' bindtap='showhide'></image>
+    <!-- 删除约拍 -->
+  <view class="delete-hide" wx:if="{{showDeletebeat}}" bindtap='returndelete'>
+    <view class="delete-button">{{operate}}</view>
+  </view>
+</view>

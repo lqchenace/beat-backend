@@ -1,0 +1,162 @@
+/* pages/my/myHome/myHome.wxss */
+.my-top{
+  width:100%;
+  height:300rpx;
+  position: relative;
+  background-image: url(http://127.0.0.1:7001/public/img/bgcimages/mybgc.jpg);
+  background-size:contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mydetail-home{
+  display: flex;
+  flex-direction: column;
+}
+.userinfo-avatar {
+	width: 140rpx;
+	height: 140rpx;
+  margin:20rpx;
+	border-radius: 50%;
+}
+.userinfo-nickname{
+  font-size: 38rpx;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.localimg{
+  width:40rpx;
+  height:35rpx;
+  margin-right: 5rpx;
+}
+.home-first{
+  margin-top:35rpx;
+  margin-bottom:20rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 31rpx;
+  color:rgb(188, 188, 188);
+}
+.else-flex{
+  margin-top:20rpx;
+  justify-content: space-around;
+}
+.home-role{
+  margin-right:25rpx;
+}
+.home-editor{
+  display: flex;
+  justify-content: center;
+}
+.editor-text{
+  display: block;
+  text-align: center;
+  padding:5rpx 35rpx;
+  font-size:29rpx;
+  color:rgba(252, 102, 115, 0.822);
+  border-radius: 30rpx;
+  border:1rpx solid rgba(252, 102, 115, 0.822);
+}
+.epsicl{
+  width:100%;
+  height:20rpx;
+  background-color: rgb(244, 244, 244);
+}
+
+.tab{
+   float: left;
+   width: 50%;
+   text-align: center;
+   padding: 10rpx 0;
+   color: rgb(188, 188, 188);
+ }
+.TabSwiper{  
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  }
+.tabBorer{
+   border-bottom: 2px solid rgba(252, 102, 115, 0.822);
+   color: rgba(252, 102, 115, 0.822);
+}
+.swiper{
+  width: 100%;
+}
+.swiper_con{
+  text-align: center;
+  width: 100%; 
+  height: 100%; 
+}
+.yuepai-contain{
+  padding-top:10rpx;
+  padding-bottom:30rpx;
+  border-bottom:20rpx solid #f4f4f4;
+  position: relative;
+}
+.second-yuepai{
+  margin-top:10rpx;
+  font-size: 32rpx;
+  text-align:left;
+}
+.yuemodel{
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuefree{
+  margin-left:20rpx;
+}
+.third-yuepai{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 1rpx;
+  margin:15rpx 25rpx 20rpx 30rpx;
+  text-align:left;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 70rpx; */
+  
+}
+.scroll-view_H{
+  width: calc(100% - 50rpx);
+  height:250rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+.yuepaithird-image{
+  width:270rpx;
+  height:250rpx;
+  margin-right: 10rpx;
+}
+.photo-title{
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 25rpx;
+  margin-left:30rpx;
+  font-size: 37rpx;
+}
+.nonestyle{
+  margin-top:50rpx;
+  height:400rpx;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+.noneimg{
+  width:300rpx;
+  height:300rpx;
+}
+.styletext{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 2rpx;
+}

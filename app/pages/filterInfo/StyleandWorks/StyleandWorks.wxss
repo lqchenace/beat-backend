@@ -1,0 +1,245 @@
+/* pages/filterInfo/StyleandWorks/StyleandWorks.wxss */
+.style-works{
+  display: flex;
+}
+.leftList{
+  width:20%;
+  height:1314rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(250, 248, 249);
+}
+.rightList{
+ width:80%;
+}
+.list-colsort{
+  height:70rpx;
+  line-height: 70rpx;
+  font-size:28rpx;
+  margin:5rpx;
+  text-align: center;
+}
+.type-class1{
+  height:70rpx;
+  line-height: 70rpx;
+  font-size:28rpx;
+  text-align: center;
+  background-color: #fff;
+}
+.scroll-view_Y{
+  width: 86%;
+  height:80rpx;
+  line-height: 80rpx;
+  white-space: nowrap;
+}
+.style-class{
+  display: inline-block;
+  min-width:80rpx;
+  padding-left:15rpx;
+  height:45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  margin-right: 15rpx;
+  font-size: 30rpx;
+}
+.type-class{
+  border-radius: 30rpx;
+  background-color: #fff;
+  display: inline-block;
+  min-width:80rpx;
+  padding:5rpx 10rpx;
+  height:45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+  font-size: 30rpx;
+}
+.first-row{
+  display: flex;
+  background-color: rgb(250, 248, 249);
+}
+.first-text{
+  width:16%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.sort_bottom{
+  width:40rpx;
+  height:50rpx;
+  margin-top:20rpx;
+}
+.sort_style{
+  width: 100%;
+  border-bottom:2px solid rgb(239, 239, 239);
+  display: flex;
+  height:70rpx;
+  align-content: center;
+  font-size: 32rpx;
+}
+.sort_style_view{
+  width: 50%;
+  padding-top:15rpx;
+  text-align: center;
+}
+.sort_more{
+  width:20rpx;
+  height: 20rpx;
+  margin-left:15rpx;
+}
+/* 约拍信息列表 */
+.yuepai-contain{
+  padding-bottom:30rpx;
+  border-bottom:15rpx solid #f4f4f4;
+}
+.yuepai-first{
+  position: relative;
+}
+.yuepai-headimage{
+  width: 60rpx;
+  height:60rpx;
+  border-radius: 50%;
+  margin:30rpx 30rpx 0 30rpx;
+}
+.yuepai-second{
+  /* display: inline-flex;
+  flex-direction: column; */
+  display: inline-block;
+  vertical-align: top;
+  padding-top:40rpx;
+  font-size: 30rpx;
+
+}
+.yuepai-local{
+  display: inline-block;
+  position: absolute;
+  right:30rpx;
+  top:32rpx;
+}
+.yuepai-name{
+  font-size: 37rpx;
+}
+.yuepai-code{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  margin-top:3rpx;
+  letter-spacing: 1rpx;
+}
+.localimg{
+  width:30rpx;
+  height:35rpx;
+  margin-right: 15rpx;
+  margin-top:10rpx;
+}
+.localtext{
+  display: inline-block;
+  vertical-align: top;
+  margin-top:5rpx;
+  font-size: 30rpx;
+}
+.second-yuepai{
+  margin-top:10rpx;
+  margin-bottom:15rpx;
+  font-size: 27rpx;
+}
+.yuemodel{
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuefree{
+  margin-left:20rpx;
+}
+.third-yuepai{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 1rpx;
+  margin:15rpx 25rpx 20rpx 30rpx;
+}
+.scroll-view_H{
+  width: calc(100% - 50rpx);
+  height:130rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+.yuepaithird-image{
+  width:150rpx;
+  height:130rpx;
+  margin-right: 10rpx;
+}
+.sortyuepai{
+  margin-top:15rpx;
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuepaithird-sort{
+  display: inline-block;
+  min-width:70rpx;
+  padding-left:10rpx;
+  padding-right:10rpx;
+  height:35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  margin-right: 15rpx;
+  font-size: 25rpx;
+  color:rgb(254, 131, 141);
+  border:1rpx solid rgb(254, 131, 141);
+  border-radius: 25rpx;
+}
+.yuepai-bottom{
+  margin-top:20rpx;
+  margin-left:30rpx;
+  margin-right:20rpx;
+  text-align: right;
+  font-size: 25rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 2rpx;
+}
+.readcode{
+  margin-left:45rpx;
+}
+.citypicker{
+  z-index: 1000;
+  position:fixed;
+  top:0;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(71, 71, 71, 0.5);
+}
+.picker-con{
+  width:100%;
+  height:190px;
+  position:fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.citybody {
+  position: absolute;
+  bottom:0;
+}
+
+.cityheader {
+  width: 100%;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: rgb(254, 131, 141);
+}
+.sex-info{
+width:30rpx;
+height:30rpx;
+display: inline-block;
+vertical-align: top;
+margin-left:15rpx;
+margin-top:45rpx;
+}

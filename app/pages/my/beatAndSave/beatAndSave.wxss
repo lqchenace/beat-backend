@@ -1,0 +1,77 @@
+/* pages/my/beatAndSave/beatAndSave.wxss */
+.yuepai-contain{
+  padding-top:10rpx;
+  padding-bottom:30rpx;
+  border-bottom:20rpx solid #f4f4f4;
+  position: relative;
+}
+.second-yuepai{
+  margin-top:10rpx;
+  font-size: 32rpx;
+}
+.yuemodel{
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuefree{
+  margin-left:20rpx;
+}
+.third-yuepai{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 1rpx;
+  margin:15rpx 25rpx 20rpx 30rpx;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 70rpx; */
+  
+}
+.scroll-view_H{
+  width: calc(100% - 50rpx);
+  height:250rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+.yuepaithird-image{
+  width:270rpx;
+  height:250rpx;
+  margin-right: 10rpx;
+}
+.setting{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  right:30rpx;
+  top:20rpx;
+}
+.delete-hide{
+  width:100%;
+  height:1314rpx;
+  position: fixed;
+  left:0;
+  top:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 400;
+  background-color: rgba(65, 64, 64, 0.315);
+}
+.delete-button{
+  width:70%;
+  height:90rpx;
+  background-color: #fff;
+  line-height: 90rpx;
+  padding-left:40rpx;
+  border-radius: 30rpx;
+}
+.photo-title{
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 25rpx;
+  margin-left:30rpx;
+  font-size: 37rpx;
+}

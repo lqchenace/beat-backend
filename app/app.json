@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/filterInfo/StyleandWorks/StyleandWorks",
+    "pages/filterInfo/filterInfo",
+    "pages/my/my",
+    "pages/my/myHome/myHome",
+    "pages/my/myfollow/myfollow",
+    "pages/newsCenter/newCenter",
+    "pages/announce/yuepaiform/yuepaiform",
+    "pages/logs/logs",
+    "pages/announce/announce",
+    "pages/Beatdetails/Beatdetails",
+    "pages/announce/Releasearound/ReleaseAround",
+    "pages/my/myEditor/myEditor",
+    "pages/my/beatAndSave/beatAndSave",
+    "pages/authorize/authorize"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fe838d",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#c8c8c8",
+    "selectedColor": "#e59da9",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon/home.png",
+        "selectedIconPath": "images/icon/home_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon/concern.png",
+        "selectedIconPath": "images/icon/concern_active.png",
+        "text": "论坛"
+      },
+      {
+        "pagePath": "pages/announce/announce",
+        "iconPath": "images/icon/add1.png",
+        "selectedIconPath": "images/icon/add1.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/newsCenter/newCenter",
+        "iconPath": "images/icon/talk.png",
+        "selectedIconPath": "images/icon/talk_active.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/icon/person.png",
+        "selectedIconPath": "images/icon/own_active.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

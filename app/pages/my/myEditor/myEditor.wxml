@@ -1,0 +1,5 @@
+<!--pages/my/myEditor/myEditor.wxml-->
+<view> 
+<view class='form-column'><span class="form-row">地区</span><span class="form-right">请选择地区</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>   
+<button class="form-button">保存</button> 
+</view>

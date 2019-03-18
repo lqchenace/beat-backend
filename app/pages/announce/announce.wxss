@@ -1,0 +1,27 @@
+/* pages/announce/announce.wxss */
+.content{
+  width:100%;
+  display:flex;
+}
+.first{
+  width:20%;
+  margin:40rpx 30rpx 50rpx 50rpx;
+}
+.second{
+  width:80%;
+  font-size:32rpx;
+  padding:50rpx 50rpx 40rpx 0;
+  letter-spacing: 0.5px;
+}
+.title{
+  color:rgb(240, 85, 112);
+}
+.text_two{
+  color:rgb(105, 105, 105);
+  margin:15rpx 0;
+}
+.picture{
+  width:134rpx;
+  height:112rpx;
+  margin-top:20rpx;
+}

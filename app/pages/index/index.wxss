@@ -1,0 +1,231 @@
+/**index.wxss**/
+.swiper {
+  height: 300rpx;
+  width: 100%;
+}
+.swiper-image {
+  height: 100%;
+  width: 100%;
+}
+.slide-image{
+   height: 100%;
+  width: 100%;
+}
+.index_container1{
+  width:90%;
+  height:190rpx;
+  border-bottom:20rpx solid #f4f4f4;
+  display:flex;
+  padding-left:40rpx;
+  padding-right:40rpx;
+}
+.model{
+  font-size:24rpx;
+  letter-spacing: 0.5px;
+  padding-top:30rpx;
+  padding-left:40rpx;
+  flex-grow: 1;
+}
+.img_con{
+  width:80rpx;
+  height:80rpx;
+  background-color: rgb(254, 131, 141);
+  border-radius:50%;
+  text-align: center;
+  margin-bottom:15rpx;
+  }
+.index_image{
+  width:45rpx;
+  height:45rpx;
+  margin-top:15rpx;
+}
+.K{
+  margin-top:17rpx;
+}
+.S{
+  margin-top:18rpx;
+}
+.L{
+  margin-left:10rpx;
+}
+.mode_text1{
+  display: inline-block;
+  width: 80rpx;
+  text-align: center;
+}
+.sort_style{
+  width: 100%;
+  border-top:1px solid #f4f4f4;
+  border-bottom:2px solid rgb(239, 239, 239);
+  display: flex;
+  height:35px;
+  align-items: center;
+}
+.sort_style_view{
+  width: 33.3%;
+  padding-top:15rpx;
+  text-align: center;
+  font-size:33rpx;
+}
+.sort_more{
+  width:20rpx;
+  height: 20rpx;
+  margin-left:15rpx;
+}
+.fixed_style{
+  position: fixed;
+  width:100%;
+  height:1px;
+  background-color: #F6F8FC;
+  z-index: 9999;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.citypicker{
+  z-index: 1000;
+  position:fixed;
+  top:0;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(71, 71, 71, 0.5);
+}
+.picker-con{
+  width:100%;
+  height:190px;
+  position:fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.citybody {
+  position: absolute;
+  bottom:0;
+}
+
+.cityheader {
+  width: 100%;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: rgb(254, 131, 141);
+}
+/* 约拍信息列表 */
+.yuepai-contain{
+  padding-bottom:30rpx;
+  border-bottom:20rpx solid #f4f4f4;
+}
+.yuepai-first{
+  position: relative;
+}
+.yuepai-headimage{
+  width: 90rpx;
+  height:90rpx;
+  border-radius: 50%;
+  margin:30rpx 30rpx 0 30rpx;
+}
+.yuepai-second{
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: top;
+  margin-top:20rpx;
+}
+.yuepai-local{
+  display: inline-block;
+  position: absolute;
+  right:30rpx;
+  top:40rpx;
+}
+.sex-info{
+width:30rpx;
+height:30rpx;
+margin-left:10rpx;
+margin-top:8rpx;
+}
+.yuepai-name{
+  font-size: 37rpx;
+}
+.yuepai-code{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  margin-top:3rpx;
+  letter-spacing: 1rpx;
+}
+.localimg{
+  width:40rpx;
+  height:35rpx;
+  margin-right: 15rpx;
+  margin-top:10rpx;
+}
+.localtext{
+  display: inline-block;
+  vertical-align: top;
+}
+.second-yuepai{
+  margin-top:10rpx;
+  font-size: 32rpx;
+}
+.yuemodel{
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuefree{
+  margin-left:20rpx;
+}
+.third-yuepai{
+  font-size: 28rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 1rpx;
+  margin:15rpx 25rpx 20rpx 30rpx;
+}
+.scroll-view_H{
+  width: calc(100% - 50rpx);
+  height:250rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+.yuepaithird-image{
+  width:270rpx;
+  height:250rpx;
+  margin-right: 10rpx;
+}
+.sortyuepai{
+  margin-top:15rpx;
+  margin-left:30rpx;
+  margin-right:20rpx;
+}
+.yuepaithird-sort{
+  display: inline-block;
+  min-width:80rpx;
+  padding-left:15rpx;
+  padding-right:15rpx;
+  height:45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  margin-right: 15rpx;
+  font-size: 30rpx;
+  color:rgb(254, 131, 141);
+  border:1rpx solid rgb(254, 131, 141);
+  border-radius: 25rpx;
+}
+.yuepai-bottom{
+  margin-top:20rpx;
+  margin-left:30rpx;
+  margin-right:20rpx;
+  text-align: right;
+  font-size: 30rpx;
+  color:rgb(185, 185, 185);
+  letter-spacing: 2rpx;
+}
+.readcode{
+  margin-left:45rpx;
+}

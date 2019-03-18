@@ -1,0 +1,136 @@
+/* pages/announce/yuepaiform/yuepaiform.wxss */
+.form-container{
+  width:100%;
+  min-height:1364rpx;
+  padding-top:10rpx;
+  background-color: rgb(242, 246, 247);
+}
+.form-first{
+  width:calc(100% - 40rpx);
+  margin:0rpx 20rpx 20rpx 20rpx;
+  background-color: #fff;
+}
+.form-first-textarea{
+  width:90%;
+  height:auto;
+  padding-top:20rpx;
+  margin-left:30rpx;
+}
+.form-first-bottom{
+  margin-left:30rpx;
+  margin-top:40rpx;
+  padding-bottom:40rpx;
+}
+.add-container{
+  width:30%;
+  height:200rpx;
+  text-align: center;
+  line-height: 260rpx;
+  border: 4rpx dashed rgb(231, 232, 233);
+}
+.selectclass{
+  width:90rpx;
+  height:90rpx;
+}
+.form-second{
+  padding-left:20rpx;
+  padding-right:20rpx;
+}
+.form-column{
+  background-color: #fff;
+  margin-top:5rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  position: relative;
+}
+.form-row{
+  margin-left:30rpx;
+  font-size:32rpx;
+}
+.form-right{
+  float: right;
+  font-size: 32rpx;
+  margin-right:70rpx;
+  color:rgb(193, 193, 193);
+}
+.col-right{
+  width:25rpx;
+  height:25rpx;
+  position: absolute;
+  top:35rpx;
+  right:20rpx;
+}
+.form-column1{
+  background-color: #fff;
+  margin-top:5rpx;
+  height:calc(90rpx - 20rpx);
+  padding-top:20rpx;
+}
+.addicon{
+  width:14%;
+  height:50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border:1px solid rgb(254, 131, 141);
+  border-radius: 30rpx;
+  color: rgb(254, 131, 141);
+  font-size: 30rpx;
+  margin-left:30rpx;
+}
+.smallicon{
+  width: 30rpx;
+  height:30rpx;
+  margin-left:5rpx;
+}
+.form-column2{
+  background-color: #fff;
+  margin-top:20rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  margin-left:20rpx;
+  margin-right:20rpx;
+  padding-left:30rpx;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.form-button{
+  width:calc(100% - 40rpx);
+  height:110rpx;
+  line-height: 110rpx;
+  background-color:  rgb(254, 131, 141);
+  border-radius: 20rpx;
+  color:#fff;
+  font-size: 40rpx;
+  margin-top:40rpx;
+}
+.more-select{
+  width:40rpx;
+  height:50rpx;
+  vertical-align: top;
+  margin-top:20rpx;
+  margin-right:30rpx;
+}
+.input-style{
+  width: calc(100% - 70rpx);
+  height:90rpx;
+  line-height: 90rpx;
+  margin-top:5rpx;
+  margin-left:20rpx;
+  margin-right:20rpx;
+  padding-left:30rpx;
+  background-color: #fff;
+}
+.showmore{
+  display: block;
+}
+.hidemore{
+  display: none;
+}
+.changebgc{
+  background-color: rgb(242, 246, 247);
+}
+.normal{
+  background-color: #fff;
+}

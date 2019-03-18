@@ -1,0 +1,35 @@
+/* pages/my/myEditor/myEditor.wxss */
+.form-column{
+  background-color: #fff;
+  margin-top:5rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  position: relative;
+}
+.form-row{
+  margin-left:30rpx;
+  font-size:32rpx;
+}
+.form-right{
+  float: right;
+  font-size: 32rpx;
+  margin-right:70rpx;
+  color:rgb(193, 193, 193);
+}
+.col-right{
+  width:25rpx;
+  height:25rpx;
+  position: absolute;
+  top:35rpx;
+  right:20rpx;
+}
+.form-button{
+  width:calc(100% - 40rpx);
+  height:110rpx;
+  line-height: 110rpx;
+  background-color:  rgb(254, 131, 141);
+  border-radius: 20rpx;
+  color:#fff;
+  font-size: 40rpx;
+  margin-top:40rpx;
+}
