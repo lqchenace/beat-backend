@@ -22,9 +22,25 @@ class BeatcommentController extends Controller {
             }
     
         })
+        let res = await ctx.app.model.Beatcomment.findAll({
+            where:data,
+            include: [{model: ctx.app.model.User}]
+        }).then(us =>us.map(u => u.toJSON()));
+        res.map((item)=>{
+            if(item.User.uid!='e3fe6790469ed968'){
+            item.User.headimgUrl=item.User.headimg;
+            item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
+            }else{
+                item.User.headimgUrl=''; 
+            }
+    
+        })
         ctx.body = {
             code:200,
-            data:result
+            data:{
+                result:result,
+                res:res
+            }
         };
     }
     async addComment(){
@@ -37,7 +53,8 @@ class BeatcommentController extends Controller {
             bid:data.bid,
             comment:data.comment,
             comtime:data.comtime,
-            parentid:data.parentid
+            parentid:data.parentid,
+            uid2:data.uid2
             })
         if(res)
             res=1;

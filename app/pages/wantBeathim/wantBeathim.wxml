@@ -1,0 +1,17 @@
+<!--pages/wantBeathim/wantBeathim.wxml-->
+<view class="beatcontain">
+    <input class='form-first-textarea' placeholder='输入约拍理由...' placeholder-class="placeholder-class" value="{{commentInput}}"bindinput='listenerSearchInput'></input>
+</view>
+
+<view class='thesecondinfo'>
+<image class='col-right' src='../../images/icon/talk_active.png' mode='aspectFit'></image>
+<span class="linkphone">联系方式</span>
+<span class="theperson">对方将会看到</span>
+</view>
+<view class='thethird'>
+<view class="userlist" wx:if="{{list.phone}}"><span class="phonetext">手机号</span>{{list.phone}}</view>
+<view class="userlist" wx:if="{{list.weixincode}}"><span class="phonetext">微信号</span>{{list.weixincode}}</view>
+<view class="userlist" wx:if="{{list.blogcode}}"><span class="phonetext">微博号</span>{{list.blogcode}}</view>
+</view>
+<view class="form-button" bindtap='commitbeatinfo'>提交约拍请求</view>
+

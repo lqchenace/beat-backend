@@ -80,6 +80,7 @@ Page({
   showBeat:function(data){
     let that=this;
     api.getArranceBeatInfo(data).then(res=>{
+      console.log("rrr",res);
       let resArr=[]
       res.map((item,index)=>{
         let itembeat={};

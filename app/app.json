@@ -14,7 +14,9 @@
     "pages/announce/Releasearound/ReleaseAround",
     "pages/my/myEditor/myEditor",
     "pages/my/beatAndSave/beatAndSave",
-    "pages/authorize/authorize"
+    "pages/authorize/authorize",
+    "pages/wantBeathim/addSuccess/addSuccess",
+    "pages/wantBeathim/wantBeathim"
   ],
   "window": {
     "backgroundTextStyle": "light",

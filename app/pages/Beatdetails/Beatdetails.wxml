@@ -44,24 +44,24 @@
 
   <!-- 推荐 -->
 
-<view class="arrianbeatstyle else-a" wx:if="{{groomList.length!=0}}">
-<view class='groomtitle'>为你推荐</view>
-<view wx:for="{{groomList}}" wx:key="unique" class='groomList' data-id='{{item.id}}' bindtap='groomToDetail'>
-    <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimgl" mode='aspectFill' src="{{item.headimg}}"></image>
-    <image wx:else class="arrian-headimgl" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
-    <view class='groomComment'>{{item.command}}</view>
-</view>
-</view>
+  <view class="arrianbeatstyle else-a" wx:if="{{groomList.length!=0}}">
+    <view class='groomtitle'>为你推荐</view>
+    <view wx:for="{{groomList}}" wx:key="unique" class='groomList' data-id='{{item.id}}' bindtap='groomToDetail'>
+      <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimgl" mode='aspectFill' src="{{item.headimg}}"></image>
+      <image wx:else class="arrian-headimgl" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+      <view class='groomComment'>{{item.command}}</view>
+    </view>
+  </view>
 
   <!-- 收到的约拍 -->
   <view class="arrianbeatstyle" wx:if="{{arrianList.length!=0}}">
-  <view class='arriantitle'>收到约拍{{arrianbeatnum}}条</view>
-  <view class="image-list">
-  <view wx:for="{{arrianList}}" wx:key="unique">
-    <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimg" mode='aspectFill' src="{{item.headimg}}"></image>
-    <image wx:else class="arrian-headimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <view class='arriantitle'>收到约拍{{arrianbeatnum}}条</view>
+    <view class="image-list">
+      <view wx:for="{{arrianList}}" wx:key="unique">
+        <image wx:if="{{item.headimgUrl==''}}" class="arrian-headimg" mode='aspectFill' src="{{item.headimg}}"></image>
+        <image wx:else class="arrian-headimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+      </view>
     </view>
-  </view>
   </view>
 
   <!-- 评论区 -->
@@ -72,8 +72,8 @@
 
       <!-- 评论列表 -->
       <scroll-view scroll-y style="height: 220px; margin-bottom:110rpx;" wx:if="{{showList}}">
-        <view wx:for="{{commentList}}" wx:key="unique" class='commentList_contain'  wx:if="{{item.parentid=='0'}}">
-          <view class='commentList'>
+        <view wx:for="{{commentList}}" wx:key="unique" class='commentList_contain' wx:if="{{item.parentid=='0'}}">
+          <view class='commentList' data-uid="{{item.uid}}" data-parentid="{{item.bcid}}" data-nickname="{{item.name}}" bindtap='groomuser'>
             <image wx:if="{{item.headimgUrl==''}}" class="com-headimg6" mode='aspectFill' src="{{item.headimg}}"></image>
             <image wx:else class="com-headimg6" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
             <view class='content'>
@@ -82,22 +82,42 @@
             </view>
           </view>
           <!-- 回复列表 -->
-          <view class="reployList" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploy" wx:if="{{reploy.parentid==item.bcid}}">
-          <!-- 列出所有的一级评论 -->
-          <view class="reploy_list"><span class="reploy_name">{{reploy.name}}</span>回复<span class="reploy_name">{{item.name}}</span>：{{reploy.comment}}</view>
-          <!-- 找出评论了某个人的的所有评论 -->
-          <view class="reploy_list" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploykid" wx:if="{{reploy.bcid==reploykid.parentid}}"><span class="reploy_name">{{reploykid.name}}</span>回复<span class="reploy_name">{{reploy.name}}</span>：{{reploykid.comment}}</view>
+          <view class="reployList" wx:for="{{commentList1}}" wx:key="unique" wx:for-item="reploy" wx:if="{{reploy.parentid==item.bcid}}">
+            <!-- 找出评论了某个人的的所有评论 -->
+            <view wx:if="{{reploy.uid2!='0'}}">
+            <view class="reploy_list" wx:for="{{commentList1}}" wx:key="unique" wx:for-item="reploykid" wx:if="{{reploy.uid2==reploykid.bcid}}">
+
+              <span class="reploy_name" data-parentid="{{item.bcid}}" data-pname="{{reploy.name}}" data-id="{{reploy.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploy.bcid}}" bindtap="reployoneperson">{{reploy.name}}</span>
+              回复
+              <span class="reploy_name" data-parentid="{{item.bcid}}"  data-pname="{{reploykid.name}}" data-id="{{reploykid.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploykid.bcid}}" bindtap="reployoneperson">{{reploykid.name}}</span>
+
+              ：{{reploy.comment}}
+              </view>
+            </view>
+             <!-- 列出所有的一级评论 -->
+            <view class="reploy_list" wx:else>
+
+              <span class="reploy_name" data-parentid="{{item.bcid}}"  data-pname="{{reploy.name}}" data-id="{{reploy.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploy.bcid}}" bindtap="reployoneperson">{{reploy.name}}</span>
+              回复
+              <span class="reploy_name" data-parentid="{{item.bcid}}"  data-pname="{{item.name}}" data-id="{{item.uid}}" data-fid="{{item.uid}}" data-uid2="{{item.bcid}}" bindtap="reployoneperson">{{item.name}}</span>
+ 
+              ：{{reploy.comment}}
+              </view>
           </view>
         </view>
       </scroll-view>
       <!-- 没有评论时 -->
       <view wx:else class="qiangshafa">快来抢沙发呀~ ~</view>
-      <!-- 发表评论 -->
-      <view class="anouncecom">
+      <!-- 发表一级评论 -->
+      <view class="anouncecom" wx:if="{{firstcommment}}">
         <input class="inputclass" placeholder="来说点什么吧~~" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
         <view class='fasong' bindtap='confirmtap'>发送</view>
       </view>
-
+       <!-- 发表二级评论 -->
+      <view class="anouncecom" wx:else>
+        <input class="inputclass" placeholder="回复{{reployperson}}" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+        <view class='fasong' bindtap='confirmsecondtap'>发送</view>
+      </view>
     </view>
   </view>
 
@@ -112,15 +132,22 @@
     <image src='../../images/icon/{{confirmsave?"saved.png":"savenever.png"}}' mode='aspectFit' class="details-smallimg"></image>
     <view class="details-text-bottom">收藏</view>
   </view>
-  <span class="postbeat">约拍他</span>
+  <span class="postbeat" bindtap="beathim">约拍他</span>
 </view>
+
 <!-- 点赞 -->
-<image src="../../images/icon/full.png" mode='aspectFit' class="full"></image>
+<view bindtap='confirmfull' class='fullliststyle'>
+<image src='../../images/icon/{{confirmfull?"full.png":"fullnone.png"}}' mode='aspectFit' class="full"></image>
+<view class="fulltext">{{fullnumber}}</view>
+</view>
+
 <!-- 弹出评论；列表 -->
 <image src="../../images/icon/discuss.png" mode='aspectFit' class="discuss" bindtap='showDiscusss'></image>
+
 <!-- 分享按钮 -->
 <button open-type='share'>
   <image src="../../images/icon/share.png" mode='aspectFit' class="details-share"></image>
 </button>
+
 <!-- 跳转首页 -->
 <image wx:if="{{!confirmshow}}" src="../../images/icon/home_active.png" mode='aspectFit' class="prohome" bindtap='goback'></image>

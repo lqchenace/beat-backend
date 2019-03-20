@@ -137,13 +137,6 @@
   bottom:160rpx;
   background-color: #fff;
 }
-.full{
-  width:65rpx;
-  height:75rpx;
-  position: fixed;
-  right:45rpx;
-  bottom:370rpx;
-}
 .discuss{
   width:75rpx;
   height:65rpx;
@@ -225,6 +218,7 @@ color: transparent;
 }
 .commentList{
   display: flex;
+  margin-bottom:20rpx;
 }
 .content{
   width:75%;
@@ -286,12 +280,12 @@ color: transparent;
 }
 .reployList{
   width:calc(100% - 160rpx);
-  margin-top:20rpx;
+  /* margin-top:20rpx; */
   margin-left:100rpx;
   background-color: rgb(245, 249, 248);
-  border-radius: 20rpx;
+  /* border-radius: 20rpx; */
   font-size: 30rpx;
-  padding:20rpx;
+  padding:15rpx;
   word-wrap: break-word;
 }
 .reploy_list{
@@ -368,4 +362,21 @@ color: transparent;
   background-color: rgb(244, 249, 252);
   border-radius: 20rpx;
   /* vertical-align: top; */
+}
+.fullliststyle{
+  width:65rpx;
+  height:150rpx;
+  position: fixed;
+  right:45rpx;
+  bottom:320rpx;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: rgb(254, 131, 141);
+  font-size: 33rpx;
+}
+.full{
+  width:65rpx;
+  height:75rpx;
+  /* margin-left:10rpx; */
 }

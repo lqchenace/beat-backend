@@ -83,6 +83,17 @@ async getfollownum(){
         data:{fnum,fans,money}
     };
 }
+// 获取某个人的信息
+async getperson(){
+    let ctx = this.ctx;
+    let {data}=ctx.request.body;
+
+    let user=await ctx.model.User.findOne({where:data}).then(us =>us.toJSON());
+    ctx.body ={
+        code:200,
+        data:user
+    };
+}
 // 获取关注和粉丝列表
 async getFollowList(){
     let ctx = this.ctx;
@@ -111,7 +122,6 @@ async FilterInfo(){
     const ctx = this.ctx;
     let Op = this.app.Sequelize.Op;
     let {data}=ctx.request.body;
-    console.log("ggggggggg",data);
     let data1={};
     if(data.area){
         if(data.area!='地区')

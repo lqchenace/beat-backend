@@ -30,11 +30,13 @@ Page({
   data: {
     itemList: [],
     confirmsave:false,
+    confirmfull: false,
     publicurl: util.pictureurl,
     confirmshow:true,
     con_discuss:false,
     com_num:0,
     commentList:[],
+    commentList1:[],
     commentInput:'',
     isfixed:false,
     showList:true,
@@ -42,7 +44,13 @@ Page({
     arrianbeatnum:0,
     groom:'',
     groomList:[],
-    logo:''
+    logo:'',
+    firstcommment:true,
+    reployperson:'',
+    parentid:'0',
+    uid2:'0',
+    conuid2:false,
+    fullnumber:0
   },
 
   /**
@@ -51,15 +59,19 @@ Page({
   onLoad: function (options) {
     if(options.id&&options.logo){
       console.log("rrrrrrrrr",options.id);
+      let data = { bid: options.id, uid: options.uid };
       if(options.logo=='作品相册'){
         this.setData({ confirmshow: false, logo: options.logo});
         this.getBeatDetails({ pid: options.id });
+        this.showmyfull(data);
+        this.getfullnum({ bid: options.id });
       }else{
         this.setData({logo: '约拍'});
-        let data = { bid: options.id, uid: options.uid };
         this.getBeatDetails({bid:options.id});
         this.getArrianList({ bid: options.id });
         this.showmysave(data);
+        this.showmyfull(data);
+        this.getfullnum({ bid: options.id });
       }
     }
     uid = options.uid;
@@ -71,10 +83,13 @@ Page({
     this.getBeatDetails({bid:options.bid});
     // 显示收到的约拍
     this.getArrianList({ bid: options.bid });
+    // 获取点赞数量
+    this.getfullnum({ bid: options.bid });
   } 
   if(options.bid&&options.uid){
     let data = { bid: options.bid, uid: options.uid};
     this.showmysave(data);
+    this.showmyfull(data);
   }
   },
   // 获取约拍详情
@@ -129,7 +144,6 @@ Page({
   getGroomList:function(data){
     let that = this;
     api.addSave('http://127.0.0.1:7001/showGroom', data).then(res => {
-      console.log("ssssssssss",res);
       let resArr = []
       res.map((item, index) => {
         let itembeat = {};
@@ -172,11 +186,39 @@ Page({
       }
     });
   },
+  // 读取点赞信息
+  showmyfull: function (data) {
+    let that = this;
+    api.addSave('http://127.0.0.1:7001/showmyFull', data).then(res => {
+      if (res.length == 0) {
+        that.setData({
+          confirmfull: false
+        })
+      } else {
+        that.setData({
+          confirmfull: true
+        })
+      }
+    });
+  },
+  // 读取点赞信息
+  getfullnum: function (data) {
+    let that = this;
+    api.addSave('http://127.0.0.1:7001/getfullnum', data).then(res => {
+     that.setData({fullnumber:res.fullnum[0].num});
+    });
+  },
 //  返回首页
   goback:function(){
     wx.switchTab({
       url: '../index/index',
     })
+  },
+  // 跳转约拍界面
+  beathim:function(){
+   wx.navigateTo({
+     url: '../wantBeathim/wantBeathim?bid='+bid,
+   })
   },
   // 获取约拍他的列表
   getArrianList(data){
@@ -217,19 +259,46 @@ Page({
       });
     }
   },
+  // 点赞或取消点赞 
+  confirmfull:function(){
+    let that = this;
+    let data = { bid: bid, uid: uid };
+    if (this.data.confirmfull == false) {
+      api.addSave('http://127.0.0.1:7001/addFull', data).then(res => {
+        if (res != null) {
+          that.setData({
+            confirmfull: true
+          })
+          // 获取点赞数量
+          this.getfullnum({ bid: bid });
+        }
+      });
+    } else {
+      api.addSave('http://127.0.0.1:7001/deleteFull', data).then(res => {
+        if (res == 1) {
+          that.setData({
+            confirmfull: false
+          })
+        }
+      });
+      // 获取点赞数量
+      this.getfullnum({ bid: bid });
+    }
+  },
   getCommentList:function(data){
     let that = this;
     api.addSave('http://127.0.0.1:7001/showBeatComment', data).then(res => {
       console.log("pppppppppppppp",res);
-      // that.setData({ com_num:res.length});
       let len=0;
-      if(res.length!=0){
+      if (res.result.length!=0){
       let resArr = [];
-      res.map((item, index) => {
+      res.result.map((item, index) => {
         if(item.parentid=='0')
         len++;
         let itembeat = {};
           itembeat.bcid=item.bcid;
+          itembeat.uid=item.uid;
+          itembeat.uid2=item.uid2;
           itembeat.headimg = item.User.headimg;
           itembeat.headimgUrl = item.User.headimgUrl;
           itembeat.name = item.User.nickname;
@@ -240,11 +309,28 @@ Page({
       that.setData({
         com_num: len,
         showList: true,
-        commentList: resArr
+        commentList: resArr,
+        firstcommment: true
       });
       }else{
         that.setData({ showList: false});
       }
+      let arr = [];
+      res.res.map((item, index) => {
+        let itembeat = {};
+        itembeat.bcid = item.bcid;
+        itembeat.uid = item.uid;
+        itembeat.uid2 = item.uid2;
+        itembeat.headimg = item.User.headimg;
+        itembeat.headimgUrl = item.User.headimgUrl;
+        itembeat.name = item.User.nickname;
+        itembeat.comment = item.comment;
+        itembeat.parentid = item.parentid;
+        arr.push(itembeat);
+      })
+      that.setData({
+        commentList1: arr,
+      });
     });
   },
   // 添加评论
@@ -252,7 +338,7 @@ Page({
     let that = this;
     api.addSave('http://127.0.0.1:7001/addComment', data).then(res => {
      if(res==1){
-       that.setData({commentInput:''});
+       that.setData({ commentInput: ''});
        let data = { bid: bid };
        this.getCommentList(data);
 
@@ -271,16 +357,54 @@ Page({
   },
   // 监听评论的输入
   listenerSearchInput: function (e) {
+    let val = e.detail.value;
+    val=val.replace(/[0-9]+|[a-z]+|[A-Z]+/g,"*");
     this.setData({
-      commentInput: e.detail.value
+      commentInput: val
     })
   },
   // 点击发送评论
   confirmtap:function(){
    let comment=this.data.commentInput;
    let time = util.formatTime(new Date());
-   let data={bid:bid,uid:uid,comment:comment,comtime:time,parentid:'0'};
+   let data={bid:bid,uid:uid,comment:comment,comtime:time,parentid:'0',uid2:'0'};
     this.addComment(data);
+  },
+  // 发送二级评论
+  confirmsecondtap:function(){
+    let comment = this.data.commentInput;
+    let time = util.formatTime(new Date());
+    let data={};
+    if(this.data.conuid2)
+      data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: this.data.uid2};
+    else
+      data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2:'0' };
+    this.addComment(data);
+  },
+  // 评论一级评论
+  groomuser:function(e){
+    let parentid = e.currentTarget.dataset.parentid;
+    let nickname= e.currentTarget.dataset.nickname;
+    let person = e.currentTarget.dataset.uid;
+    if(person!=uid)
+     this.setData({ firstcommment: false, reployperson:nickname,parentid:parentid});
+  },
+  // 评论二级评论
+  reployoneperson:function(e){
+    let pid= e.currentTarget.dataset.parentid;
+    let pname = e.currentTarget.dataset.pname;
+    let id = e.currentTarget.dataset.id;
+    let fid = e.currentTarget.dataset.fid;
+    let uid2 = e.currentTarget.dataset.uid2;
+// 不能评论自己
+    if(id!=uid){
+      // 当评论的是一级评论的人时，那么不需要设置uid2
+      if(id==fid)
+        this.setData({ firstcommment: false, reployperson: pname, parentid: pid,conuid2:false });
+       else
+        this.setData({ firstcommment: false, reployperson: pname, parentid: pid,uid2:uid2, conuid2: true });
+
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

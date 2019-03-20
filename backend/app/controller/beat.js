@@ -3,6 +3,7 @@
 const Controller = require('egg').Controller;
 //文件存储
 const fs=require('fs');
+let random = require('../util/random');
 class BeatController extends Controller {
 // 显示主题分类
 async ShowTheStyle(){
@@ -12,6 +13,27 @@ async ShowTheStyle(){
     ctx.body = {
         code:200,
         data:style
+    };
+}
+// 提交我的约拍请求
+async addBeat(){
+    let ctx = this.ctx;
+    let {data}=ctx.request.body;
+    let aid=random.getRandomString(8);
+    let res=await ctx.model.Arrianbeat.create({
+        aid:aid,
+        uid:data.uid,
+        bid:data.bid,
+        require:data.require
+        })
+    if(res)
+        res=1;
+    else
+        res=0;  
+
+    ctx.body = {
+        code:200,
+        data:res
     };
 }
 // 显示我的约拍信息列表, 显示我的作品相册
@@ -75,6 +97,7 @@ async showBeat(){
     const ctx = this.ctx;
     let Op = this.app.Sequelize.Op;
     let {data}=ctx.request.body;
+    let sequelize=this.app.Sequelize;
     let result,data1={},data2={};
     if(data.area){
         if(data.sex!='性别'){
@@ -125,6 +148,17 @@ async showBeat(){
         data:result
     };
     }
+// async getsortnum(data){
+//     const ctx = this.ctx;
+//     let sequelize=this.app.Sequelize;
+
+//         // 查询该约拍的点赞数
+//         let fullnum=await ctx.model.Full.findAll({
+//             where:{bid:data},
+//             attributes: [ [sequelize.fn('COUNT', sequelize.col('uid')), 'num']]
+//         }).then(us =>us.map(u => u.toJSON()));
+//     return fullnum[0].num;    
+// }
 // 推荐作品相册
 async  getProductlist(){
     const ctx = this.ctx;

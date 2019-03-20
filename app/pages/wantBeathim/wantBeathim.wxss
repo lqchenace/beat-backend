@@ -1,0 +1,77 @@
+/* pages/wantBeathim/wantBeathim.wxss */
+page{
+background-color: rgb(246, 246, 248);
+}
+.form-first-textarea{
+  width:90%;
+  height:auto;
+  padding-top:20rpx;
+  margin-left:30rpx;
+}
+.placeholder-class{
+  font-size: 32rpx;
+}
+.beatcontain{
+  width:100%;
+  margin-top:25rpx;
+  min-height: 270rpx;
+  background-color: #fff;
+}
+.col-right{
+  width:60rpx;
+  height:60rpx;
+  margin-top:20rpx;
+  margin-left:20rpx;
+}
+.thesecondinfo{
+  width:100%;
+  height:100rpx;
+  line-height: 100rpx;
+  margin-top:20rpx;
+  background-color: #fff;
+  letter-spacing: 1rpx;
+}
+.linkphone{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 33rpx;
+  margin-left:10rpx;
+  font-family: PingFang-SC;
+  letter-spacing: 1rpx;
+}
+.theperson{
+  display: inline-block;
+  vertical-align: top;
+  margin-left:15rpx;
+  font-family: PingFang-SC;
+  font-size: 30rpx;
+  color: rgb(184, 184, 184);
+}
+.thethird{
+  width:100%;
+  background-color: #fff;
+  margin-top:5rpx;
+  padding:30rpx;
+}
+.userlist{
+  width: 100%;
+  margin-bottom:26rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC;
+  letter-spacing: 1rpx;
+}
+.form-button{
+  width:100%;
+  height:100rpx;
+  line-height: 100rpx;
+  background-color:  rgb(254, 131, 141);
+  color:#fff;
+  font-size: 38rpx;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left:0;
+}
+.phonetext{
+  margin-right:30rpx;
+}

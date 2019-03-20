@@ -1,0 +1,9 @@
+<!--pages/wantBeathim/addSuccess/addSuccess.wxml-->
+<view class="scontain">
+<image class='col-right' src='../../../images/icon/success.png' mode='aspectFit'></image>
+</view>
+<text class='successtext'>发送成功！</text>
+<text class='successtext1'>您的约拍请求发送成功，等待对方联系你~</text>
+<text class='goback' bindtap='gotoindex'>
+<text class='gobackbottom'>返回首页</text>
+</text>

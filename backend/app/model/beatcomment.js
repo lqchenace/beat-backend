@@ -5,6 +5,7 @@ module.exports = app => {
         {
             bcid: { type: STRING(20), primaryKey: true},
             uid: STRING(20),
+            uid2: STRING(20),
             bid: STRING(20),
             parentid: STRING(20),
             comment: STRING(500),
