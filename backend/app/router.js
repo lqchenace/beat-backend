@@ -34,7 +34,13 @@ module.exports = app => {
   router.post('/getProductlist',controller.beat.getProductlist);
   router.post('/showBeatComment',controller.beatcomment.showBeatComment);
   router.post('/addComment',controller.beatcomment.addComment);
+  router.post('/showreployComment',controller.beatcomment.showreployComment);
+  router.post('/showreploydetail',controller.beatcomment.showreploydetail);
+
   router.post('/showArrianbeatList',controller.arrianbeat.showArrianbeatList);
+  router.post('/showrequirebeatList',controller.arrianbeat.showrequirebeatList);
+  router.post('/showrequiredetail',controller.arrianbeat.showrequiredetail);
   router.post('/showGroom',controller.beat.showGroom);
   router.post('/addBeat',controller.beat.addBeat);
+  router.post('/getsortnum',controller.beat.getsortnum);
 };

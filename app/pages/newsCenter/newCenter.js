@@ -14,7 +14,18 @@ Page({
   onLoad: function (options) {
 
   },
-
+//  跳转我发起的约拍页面
+  myWantBeat:function(e){
+    let sort = e.currentTarget.dataset.sort;
+    wx.navigateTo({
+      url: './myWantbeat/myWantbeat?sort='+sort,
+    })
+  },
+  gotoreploy:function(){
+    wx.navigateTo({
+      url: './myreployandcomment/myreployandcoment',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

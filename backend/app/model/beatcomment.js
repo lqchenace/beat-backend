@@ -18,6 +18,7 @@ module.exports = app => {
     );
     Beatcomment.associate = function() {
         app.model.Beatcomment.belongsTo(app.model.User,{ foreignKey: 'uid'});
+        app.model.Beatcomment.belongsTo(app.model.Beat,{ foreignKey: 'bid'});
     }
     return Beatcomment;
 

@@ -53,26 +53,6 @@ async getfullnum(){
             data:del
         };
     }
-            // // 查询该约拍的点赞数
-        // let fullnum=await ctx.model.Full.findAll({
-        //     where:{bid:item.bid},
-        //     attributes: [ [sequelize.fn('COUNT', sequelize.col('uid')), 'num']]
-        // }).then(us =>us.map(u => u.toJSON()));
-
-        // // 查询该约拍收到的约拍数
-        // let arrianum=await ctx.model.Arrianbeat.findAll({
-        //     where:{bid:item.bid},
-        //     attributes: [ [sequelize.fn('COUNT', sequelize.col('uid')), 'num']]
-        //     }).then(us =>us.map(u => u.toJSON()));
-
-        // // 查询该约拍的评论数
-        // let comnum=await ctx.model.Beatcomment.findAll({
-        //     where:{
-        //         bid:item.bid,
-        //         parentid:'0'
-        //     },
-        //     attributes: [ [sequelize.fn('COUNT', sequelize.col('uid')), 'num']]
-        //     }).then(us =>us.map(u => u.toJSON()));
 }
 
 module.exports =FullController;

@@ -1,12 +1,12 @@
 <!--pages/filterInfo/StyleandWorks/StyleandWorks.wxml-->
-    <view class='first-row'>
-      <scroll-view class="scroll-view_Y" scroll-x="true">
-        <text wx:for="{{styleList}}" class="{{thetypestyle==index?'type-class':'style-class'}}" wx:key="unique" data-theme='{{item}}' data-true="{{index}}" bindtap='clickStyle'>{{item}}</text>
-      </scroll-view>
-      <view class="first-text">
-        <image mode='aspectFit' src='../../../images/icon/bottom.png' class="sort_bottom"></image>
-      </view>
-    </view>
+<view class='first-row'>
+  <scroll-view class="scroll-view_Y" scroll-x="true">
+    <text wx:for="{{styleList}}" class="{{thetypestyle==index?'type-class':'style-class'}}" wx:key="unique" data-theme='{{item}}' data-true="{{index}}" bindtap='clickStyle'>{{item}}</text>
+  </scroll-view>
+  <view class="first-text">
+    <image mode='aspectFit' src='../../../images/icon/bottom.png' class="sort_bottom"></image>
+  </view>
+</view>
 
 <view class="style-works">
   <!-- 页面分成左右两边 -->
@@ -31,8 +31,8 @@
     <!-- 约拍信息列表 -->
     <view class='yuepai-contain' wx:for="{{itemList}}" wx:key="unique" bindtap='linkTodetail' data-id="{{item.bid||item.pid}}">
       <view class="yuepai-first">
-      <image  wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill'  src='{{item.headimg}}'></image>
-      <image wx:else  class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+        <image wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill' src='{{item.headimg}}'></image>
+        <image wx:else class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
         <span class="yuepai-second">{{item.name}}
         </span>
         <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
@@ -50,20 +50,31 @@
       </view>
       <!-- <view class="third-yuepai">{{item.command}}</view> -->
       <scroll-view class="scroll-view_H" scroll-x="true">
-        <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage"/>
+        <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
       </scroll-view>
       <!-- 约拍信息分类 -->
       <view class="sortyuepai">
         <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
       </view>
       <view class="yuepai-bottom">
-        <span>收到约拍 {{item.receiveBeat}}</span>
-        <span class="readcode">阅读 {{item.readcount}}</span>
+        <view class='theone' wx:if="{{item.bid}}">
+          <image src='../../../images/icon/arrianum.png' mode='aspectFit' class='localimg1'></image>
+          <span class="numstyle">{{item.arrian}}</span>
+        </view>
+        <view class='theone'>
+          <image src='../../../images/icon/fullnum.png' mode='aspectFit' class='localimg2'></image>
+          <span class="numstyle">{{item.full}}</span>
+        </view>
+        <view class='theone'>
+          <image src='../../../images/icon/comnum.png' mode='aspectFit' class='localimg3'></image>
+          <span class="numstyle">{{item.comnum}}</span>
+        </view>
       </view>
-    </view>
-
-
+  
   </view>
+
+
+</view>
 
 </view>
 

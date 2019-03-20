@@ -16,7 +16,10 @@
     "pages/my/beatAndSave/beatAndSave",
     "pages/authorize/authorize",
     "pages/wantBeathim/addSuccess/addSuccess",
-    "pages/wantBeathim/wantBeathim"
+    "pages/wantBeathim/wantBeathim",
+    "pages/newsCenter/myWantbeat/myWantbeat",
+    "pages/newsCenter/requiredetail/requiredetail",
+    "pages/newsCenter/myreployandcomment/myreployandcoment"
   ],
   "window": {
     "backgroundTextStyle": "light",

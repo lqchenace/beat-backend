@@ -1,0 +1,45 @@
+<!--pages/newsCenter/requiredetail/requiredetail.wxml-->
+<view wx:for="{{itemList}}" wx:key="unique">
+  <view class="details-first">
+    <image wx:if="{{item.headimgUrl==''}}" class="details-headimg" mode='aspectFill' src="{{item.headimg}}"></image>
+    <image wx:else class="details-headimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <span class="yuepai-second">
+      <span class="yuepai-name">{{item.name}}
+      <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+      </span>
+      <span class="yuepai-code">
+      <span class="zhuzhu">{{item.role}}</span>
+      <span>{{item.city}}</span>
+      </span>
+    </span>
+    <span class="yuepai-local">
+      <image src='../../../images/icon/complain.png' mode='aspectFit' class='localimg'></image>
+      <span class="localtext">投诉</span>
+    </span>
+  </view>
+    <view class='cssas'>
+      <view class="because">约拍理由：{{item.beacuse}}</view>
+      <view class='resource' wx:if="{{item.resource}}">来自约拍：{{item.resource}}</view>
+    </view>  
+  <view class='thesecondinfo'>
+    <image class='col-right' src='../../../images/icon/talk_active.png' mode='aspectFit'></image>
+    <span class="linkphone">联系方式</span>
+    <span class="theperson">(联系请说明来自约拍小程序)</span>
+  </view>
+  <view class='thethird'>
+    <view class="userlist" wx:if="{{item.phone}}">
+      <span class="phonetext">手机号</span>
+      <input class='inputclass' value='{{item.phone}}' disabled type='password'></input>
+    </view>
+    <view class="userlist" wx:if="{{item.weixincode}}">
+      <span class="phonetext">微信号</span>
+       <input class='inputclass' value=' {{item.weixincode}}' disabled type='password'></input>
+      </view>
+    <view class="userlist" wx:if="{{item.bolgcode}}">
+      <span class="phonetext">微博号</span>
+       <input class='inputclass' value='{{item.bolgcode}}' disabled type='password'></input>
+      </view>
+  </view>
+  <view class="form-button" bindtap='commitbeatinfo'>查看联系方式</view>
+  </view>
+  

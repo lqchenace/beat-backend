@@ -50,37 +50,46 @@
 </view>
 <!-- 约拍信息列表 -->
 <view class='yuepai-contain' wx:for="{{itemList}}" wx:key="unique" bindtap='beatdetail' data-bid="{{item.bid}}">
-    <view class="yuepai-first">
-     <image  wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill'  src='{{item.headimg}}'></image>
-      <image wx:else  class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
-      <span class="yuepai-second">
-        <span class="yuepai-name">{{item.name}}          
+  <view class="yuepai-first">
+    <image wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill' src='{{item.headimg}}'></image>
+    <image wx:else class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <span class="yuepai-second">
+      <span class="yuepai-name">{{item.name}}
         <image src='{{item.sex==1?"../../images/icon/boy.png":"../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
-        </span>
-        <span class="yuepai-code">{{item.role}}</span>
       </span>
-      <span class="yuepai-local">
-        <image src='../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
-        <span class="localtext">{{item.city}}</span>
-      </span>
+      <span class="yuepai-code">{{item.role}}</span>
+    </span>
+    <span class="yuepai-local">
+      <image src='../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
+      <span class="localtext">{{item.city}}</span>
+    </span>
+  </view>
+  <view class="second-yuepai">
+    <span class="yuemodel">{{item.behavior}}</span>·
+    <span class="yuefree">{{item.cost}}</span>
+  </view>
+  <view class="third-yuepai">{{item.command}}</view>
+  <scroll-view class="scroll-view_H" scroll-x="true">
+    <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
+  </scroll-view>
+  <!-- 约拍信息分类 -->
+  <view class="sortyuepai">
+    <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
+  </view>
+  <view class="yuepai-bottom">
+    <view class='theone'>
+      <image src='../../images/icon/arrianum.png' mode='aspectFit' class='localimg1'></image>
+      <span class="numstyle">{{item.arrian}}</span>
     </view>
-    <view class="second-yuepai">
-      <span class="yuemodel">{{item.behavior}}</span>·
-      <span class="yuefree">{{item.cost}}</span>
+    <view class='theone'>
+      <image src='../../images/icon/fullnum.png' mode='aspectFit' class='localimg2'></image>
+      <span class="numstyle">{{item.full}}</span>
     </view>
-    <view class="third-yuepai">{{item.command}}</view>
-    <scroll-view class="scroll-view_H" scroll-x="true">
-      <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage"/>
-    </scroll-view>
-    <!-- 约拍信息分类 -->
-    <view class="sortyuepai">
-      <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
+    <view class='theone'>
+      <image src='../../images/icon/comnum.png' mode='aspectFit' class='localimg3'></image>
+      <span class="numstyle">{{item.comnum}}</span>
     </view>
-    <view class="yuepai-bottom">
-      <span>收到约拍： {{item.receiveBeat}}</span>
-      <span class="readcode">点赞： {{item.readcount}}</span>
-       <span class="readcode">评论： {{item.discuss}}</span>
-    </view>
+  </view>
 </view>
 
 <!-- 底部灰色分割线 -->

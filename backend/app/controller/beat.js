@@ -97,7 +97,6 @@ async showBeat(){
     const ctx = this.ctx;
     let Op = this.app.Sequelize.Op;
     let {data}=ctx.request.body;
-    let sequelize=this.app.Sequelize;
     let result,data1={},data2={};
     if(data.area){
         if(data.sex!='性别'){
@@ -148,17 +147,41 @@ async showBeat(){
         data:result
     };
     }
-// async getsortnum(data){
-//     const ctx = this.ctx;
-//     let sequelize=this.app.Sequelize;
+// 获取点赞数和评论数以及收到的约拍数
+async getsortnum(){
+    const ctx = this.ctx;
+    let {data}=ctx.request.body;
+    let sequelize=this.app.Sequelize;
+            // 查询该约拍的点赞数
+        let fullnum=await ctx.model.Full.findAll({
+            where:data,
+            attributes: [ [sequelize.fn('COUNT', sequelize.col('lid')), 'num']]
+        }).then(us =>us.map(u => u.toJSON()));
 
-//         // 查询该约拍的点赞数
-//         let fullnum=await ctx.model.Full.findAll({
-//             where:{bid:data},
-//             attributes: [ [sequelize.fn('COUNT', sequelize.col('uid')), 'num']]
-//         }).then(us =>us.map(u => u.toJSON()));
-//     return fullnum[0].num;    
-// }
+        // 查询该约拍收到的约拍数
+        let arrianum=await ctx.model.Arrianbeat.findAll({
+            where:data,
+            attributes: [ [sequelize.fn('COUNT', sequelize.col('aid')), 'num']]
+            }).then(us =>us.map(u => u.toJSON()));
+
+        // 查询该约拍的评论数
+        let comnum=await ctx.model.Beatcomment.findAll({
+            where:{
+                bid:data.bid,
+                parentid:'0'
+            },
+            attributes: [ [sequelize.fn('COUNT', sequelize.col('bcid')), 'num']]
+            }).then(us =>us.map(u => u.toJSON()));
+
+            ctx.body = {
+                code:200,
+                data:{
+                    full:fullnum[0].num,
+                    arrian:arrianum[0].num,
+                    comnum:comnum[0].num
+                }
+            }; 
+}
 // 推荐作品相册
 async  getProductlist(){
     const ctx = this.ctx;

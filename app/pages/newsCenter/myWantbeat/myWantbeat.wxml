@@ -1,0 +1,19 @@
+<!--pages/newsCenter/myWantbeat/myWantbeat.wxml-->
+<view class="myBeatstyle" wx:for="{{ mybeat}}" wx:key="unique" bindtap='gotodetail' data-bid='{{item.bid}}' data-aid="{{item.aid}}">
+  <view class='follow-col'>
+    <image wx:if="{{item.avatarUrl==''}}" class="myheadimg" mode='aspectFill' src='{{item.imgurl}}'></image>
+    <image wx:else class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.avatarUrl}}/{{item.imgurl[0]}}'></image>
+    <view class="name-row">
+      <view>{{item.name}}
+      <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+      </view>
+      <view class='role-row'>
+        <text>{{item.role}}</text>
+        <text class="city-row">{{item.city}}</text>
+      </view>
+      <view class="because">约拍理由：{{item.beacuse}}</view>
+      <view class='resource' wx:if="{{item.resource}}">来自约拍：{{item.resource}}</view>
+    </view>
+
+  </view>
+</view>

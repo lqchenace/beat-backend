@@ -24,6 +24,8 @@ module.exports = app => {
     Beat.associate = function() {
         app.model.Beat.belongsTo(app.model.User,{ foreignKey: 'uid'});
         app.model.Beat.hasOne(app.model.Save,{ foreignKey: 'bid'});
+        app.model.Beat.hasOne(app.model.Arrianbeat,{ foreignKey: 'bid'});
+        app.model.Beat.hasOne(app.model.Beatcomment,{ foreignKey: 'bid'});
     }
     return Beat;
 

@@ -188,16 +188,47 @@
   border-radius: 25rpx;
 }
 .yuepai-bottom{
-  margin-top:20rpx;
-  margin-left:30rpx;
-  margin-right:20rpx;
+  width:calc(100% - 10rpx);
+  display: flex;
+  justify-content: flex-end;
   text-align: right;
-  font-size: 25rpx;
+  margin-top:20rpx;
+  font-size: 29rpx;
   color:rgb(185, 185, 185);
   letter-spacing: 2rpx;
+  padding-right:10rpx;
 }
 .readcode{
   margin-left:45rpx;
+}
+.theone{
+ width: 15%;
+ margin-right:25rpx;
+ display: flex;
+ justify-content:space-evenly;
+ align-items: center;
+}
+.numstyle{
+  display: inline-block;
+  margin-top:10rpx;
+}
+.localimg1{
+  width:50rpx;
+  height:37rpx;
+  margin-right: 15rpx;
+  margin-top:10rpx;
+}
+.localimg2{
+  width:50rpx;
+  height:45rpx;
+  margin-right: 15rpx;
+  margin-top:10rpx;
+}
+.localimg3{
+  width:40rpx;
+  height:35rpx;
+  margin-right: 15rpx;
+  margin-top:10rpx;
 }
 .citypicker{
   z-index: 1000;

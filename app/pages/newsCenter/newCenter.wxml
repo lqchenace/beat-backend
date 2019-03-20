@@ -1,7 +1,7 @@
 <!--pages/newsCenter/newCenter.wxml-->
 <view class="news-holder"> 
-<view class='form-column'><span class="form-row">收到的约拍请求</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>   
-<view class='form-column'><span class="form-row">发起的的约拍请求</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>  
+<view class='form-column' data-sort="yourbeat" bindtap='myWantBeat'><span class="form-row">收到的约拍请求</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>   
+<view class='form-column' data-sort="mybeat" bindtap='myWantBeat'><span class="form-row">发起的的约拍请求</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>  
 <view class="middle-view"></view>
-<view class='form-column'><span class="form-row">回复我的评论</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>  
+<view class='form-column'bindtap="gotoreploy"><span class="form-row">回复我的评论</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view>  
 </view>

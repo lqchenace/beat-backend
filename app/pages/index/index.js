@@ -100,9 +100,21 @@ Page({
         itembeat.beatUrl = item.beatUrl;
         resArr.push(itembeat);
       })
-      that.setData({
-        itemList: resArr
-      });
+      let i=0;
+      resArr.map(item=>{
+        api.addSave('http://127.0.0.1:7001/getsortnum', {bid:item.bid}).then(res => {
+          item.full=res.full;
+          item.comnum=res.comnum;
+          item.arrian=res.arrian;
+          i++;
+        })
+      })
+      setTimeout(function(){
+        if (i >= resArr.length)
+          that.setData({
+            itemList: resArr
+          });
+      },700)
     })   
     
   },

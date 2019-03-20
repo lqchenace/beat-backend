@@ -1,0 +1,13 @@
+<!--pages/newsCenter/myreployandcomment/myreployandcoment.wxml-->
+<view wx:for="{{itemList}}" wx:key="unique" class="reploylist" bindtap='gotobeatdetail' data-id="{{item.bid}}" data-parentid='{{item.parentid}}' data-bcid="{{item.bcid}}" data-name="{{item.name}}">
+    <image wx:if="{{item.headimgUrl==''}}" class="myheadimg" mode='aspectFill' src='{{item.headimg}}'></image>
+    <image wx:else class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <view class='adsreploy'>
+    <view class='remiddle'>
+    <view class='rename'>{{item.name}}</view>
+    <view class='recom'>{{item.comment}}</view>
+    <view class='retime'>{{item.comtime}}</view>
+    </view>
+    <view class="rethird">{{item.resource}}</view>
+    </view>
+</view>

@@ -15,6 +15,7 @@ module.exports = app => {
     )
     Arrianbeat.associate = function() {
         app.model.Arrianbeat.belongsTo(app.model.User,{ foreignKey: 'uid'});
+        app.model.Arrianbeat.belongsTo(app.model.Beat,{ foreignKey: 'bid'});
     }
     return Arrianbeat;
 }

@@ -73,6 +73,19 @@ Page({
         this.showmyfull(data);
         this.getfullnum({ bid: options.id });
       }
+      if (options.bcid) {
+        console.log("rrfsfsfrr");
+        this.setData({ con_discuss: true,
+                     isfixed: true ,
+                     conuid2:true,
+                     paeentid:options.parentid,
+                     uid2:options.bcid,
+                     firstcommment:false,
+                     reployperson:options.name
+                     });
+        let data = { bid: options.id };
+        this.getCommentList(data);
+      }
     }
     uid = options.uid;
     bid = options.bid||options.id;

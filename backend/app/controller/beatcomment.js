@@ -43,6 +43,45 @@ class BeatcommentController extends Controller {
             }
         };
     }
+    // 回复我的评论
+    async showreployComment(){
+        const ctx = this.ctx;
+        const {data}=ctx.request.body;
+        let result = await ctx.app.model.Beatcomment.findAll({
+            where:{uid:{$ne:data.uid},
+                    parentid:{$ne:'0'}
+                },
+        }).then(us =>us.map(u => u.toJSON()));
+        let res= await ctx.app.model.Beatcomment.findAll().then(us =>us.map(u => u.toJSON()));
+        ctx.body = {
+            code:200,
+            data:{result:result,
+                    res:res}
+        };
+    }
+    // 找出评论我的人的信息和评论的约拍信息
+    async showreploydetail(){
+        const ctx = this.ctx;
+        const {data}=ctx.request.body;
+        let result = await ctx.app.model.Beatcomment.findAll({
+            where:data,
+            include: [{model: ctx.app.model.User},
+                        {model: ctx.app.model.Beat}]
+        }).then(us =>us.map(u => u.toJSON()));
+        result.map((item)=>{
+            if(item.User.uid!='e3fe6790469ed968'){
+            item.User.headimgUrl=item.User.headimg;
+            item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
+            }else{
+                item.User.headimgUrl=''; 
+            }
+    
+        })
+        ctx.body = {
+            code:200,
+            data:result
+        };
+    }
     async addComment(){
         let ctx = this.ctx;
         let {data}=ctx.request.body;

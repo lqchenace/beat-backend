@@ -177,9 +177,23 @@ Page({
         }
         resArr.push(itembeat);
       })
-      that.setData({
-        itemList: resArr
-      });
+      let i = 0;
+      resArr.map(item => {
+        console.log(item);
+        api.addSave('http://127.0.0.1:7001/getsortnum', { bid: item.bid||item.pid }).then(res => {
+          console.log(res);
+          item.full = res.full;
+          item.comnum = res.comnum;
+          item.arrian = res.arrian;
+          i++;
+        })
+      })
+      setTimeout(function () {
+        if (i >= resArr.length)
+          that.setData({
+            itemList: resArr
+          });
+      }, 700)
     })
   },
 
