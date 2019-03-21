@@ -36,6 +36,25 @@ async addBeat(){
         data:res
     };
 }
+// 添加约拍
+    async addBeat(){
+        let ctx = this.ctx;
+        let {data}=ctx.request.body;
+        let res;
+        if(data.bid)
+        res=await ctx.model.Beat.create(data)
+        else
+        res=await ctx.model.Product.create(data)
+        if(res)
+            res=1;
+        else
+            res=0;  
+
+        ctx.body = {
+            code:200,
+            data:res
+        };
+    }
 // 显示我的约拍信息列表, 显示我的作品相册
 async MyBeatList(){
     const ctx = this.ctx;

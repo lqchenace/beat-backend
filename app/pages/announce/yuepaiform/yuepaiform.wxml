@@ -1,28 +1,101 @@
 <!--pages/announce/yuepaiform/yuepaiform.wxml-->
 <view class="form-container">
+  <input wx:if="{{logo}}" placeholder="作品相册名称" placeholder-class='placetyle' class='input-style2' bindinput='listenername' value="{{pname}}" style='margin-bottom:10rpx' />
   <view class="form-first">
-    <input class='form-first-textarea' placeholder='输入约拍说明'></input>
+    <input wx:if="{{logo}}" class='form-first-textarea' placeholder='作品相册描述' bindinput='listenercommand' value="{{command}}"></input>
+    <input wx:else class='form-first-textarea' placeholder='输入约拍说明' bindinput='listenercommand' value="{{command}}"></input>
     <view class="form-first-bottom">
-      <view class="add-container"><image class="selectclass" src='../../../images/icon/select.png' mode='aspectFit'></image></view>
+      <view class="add-container" wx:for="{{upimgarr}}" wx:key="unique">
+        <image class="selectclass1" src='{{item}}' mode='aspectFill'></image>
+      </view>
+      <view class="add-container" bindtap="upImgClick">
+        <image class="selectclass" src='../../../images/icon/select.png' mode='aspectFit'></image>
+      </view>
     </view>
   </view>
-  <view class="form-second">
-     <view class='form-column'><span class="form-row">地区</span><span class="form-right">请选择地区</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
-     <view class='form-column'><span class="form-row">要求</span><span class="form-right">接收所有人的约拍</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
-     <view class='form-column'><span class="form-row">费用</span><span class="form-right">希望互免</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>
-     <view class='form-column1'>
-     <view class='addicon'><image class="smallicon" src='../../../images/icon/addicon.png' mode='aspectFit'></image>标签</view>
-     </view>
+  <view class="form-second" wx:if="{{!logo}}">
+    <view class='form-column'  bindtap='openarea'>
+      <span class="form-row">地区</span>
+      <span class="form-right">{{area1}}</span>
+      <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+    </view>
+    <view class='form-column' bindtap='opensort'>
+      <span class="form-row">费用</span>
+      <span class="form-right">{{price}}</span>
+      <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+    </view>
+    <input placeholder="请输入手机号码" placeholder-class='placetyle' class='input-style1' bindinput='listenerphone' value="{{phone}}" />
   </view>
   <view>
-  <view class='form-column2 {{showmore?"changebgc":"normal"}}' bindtap='showmore'><span >更多选项</span><image class='more-select' src='../../../images/icon/more-select.png' mode='aspectFit'></image></view>
+    <view class='form-column2 {{showmore?"changebgc":"normal"}}' bindtap='showmore'>
+      <span>更多选项</span>
+      <image class='more-select' src='../../../images/icon/more-select.png' mode='aspectFit'></image>
+    </view>
   </view>
   <!-- 更多选项  -->
-<view class="{{showmore?'showmore':'hidemore'}}">
-<input placeholder="拍摄时间说明" class='input-style'/>
-<input placeholder="拍摄地点说明"class='input-style'/>
-</view>
-  <button class="form-button">发布</button>
+  <view class="{{showmore?'showmore':'hidemore'}}">
+    <input wx:if="{{logo}}" placeholder="拍摄地点" placeholder-class='placetyle' class='input-style' bindinput='listenertime' value="{{tooktime}}"/>
+    <input wx:else placeholder="拍摄时间说明" placeholder-class='placetyle' class='input-style' bindinput='listenertime' value="{{tooktime}}"/>
+    <input wx:if="{{logo}}" placeholder="使用设备" placeholder-class='placetyle' class='input-style' bindinput='listenerplace' value="{{tookplace}}"/>
+    <input wx:else placeholder="拍摄地点说明" placeholder-class='placetyle' class='input-style' bindinput='listenerplace' value="{{tookplace}}"/>
+  </view>
+
+  <!-- 标签 -->
+  <view class='form-column1'>
+    <view class="form-row">主题风格</view>
+    <view class="form-first-bottom1">
+      <view wx:for="{{styleList}}" wx:key="unique" class='conlabel'>
+        <view wx:if="{{item.checked}}" class="addicon" data-true="{{index}}" bindtap='clickStyle'>{{item.style}}</view>
+        <view wx:else class="style-class" data-true="{{index}}" bindtap='clickStyle'>{{item.style}}</view>
+      </view>
+    </view>
+  </view>
+
+  <button class="form-button" bindtap='announcebeat'>发布</button>
 </view>
 <!-- <button bindtap="upImgClick ">上传图片</button>
 <image src='{{imgshow}}'></image>   -->
+
+<!-- 弹出的地区选择层 -->
+
+<view wx:if="{{condition}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="confirmplace" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChange" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{countys}}" wx:key="item" style="line-height: 40px;padding-left:35px;font-size:30rpx">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 弹出的费用选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 弹出的提示层 -->
+<view wx:if="{{code}}" class="citypicker" bindtap='citypicker1'>
+  <view class="picker-con1">
+{{rewalk}}
+  </view>
+</view>

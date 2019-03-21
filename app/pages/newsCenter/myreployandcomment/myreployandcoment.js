@@ -23,19 +23,22 @@ Page({
      let arr = [];
      let i = 0;
      api.addSave('http://127.0.0.1:7001/showreployComment', data).then(res => {
+       console.log("v",res);
        res.result.map(item=>{
          res.res.map(dev=>{
           //  筛选出评论我的人
            if (((item.parentid == dev.bcid) || (item.uid2 == dev.bcid))&&dev.uid==data.uid)
-             arr.push(item.bcid);
+             arr.push({bcid:item.bcid,bid:item.bid});
          })
        })
      })
      setTimeout(function(){
        let resarr=[];
+       console.log(arr);
        arr.map(item=>{
         //  取得评论我的人的详细信息系
-         api.addSave('http://127.0.0.1:7001/showreploydetail', { bcid: item }).then(res => {
+         api.addSave('http://127.0.0.1:7001/showreploydetail',  item ).then(res => {
+           console.log("d0",res);
            res.map((item, index) => {
              let itembeat = {};
              itembeat.bid = item.bid;
@@ -44,7 +47,7 @@ Page({
              itembeat.name = item.User.nickname;
              itembeat.headimgUrl = item.User.headimgUrl;
              itembeat.headimg = item.User.headimg;
-             itembeat.resource = item.Beat.command;
+             itembeat.resource = item.Beat?item.Beat.command : item.product.pdetail;
              itembeat.comment = item.comment;
              itembeat.comtime = item.comtime;
              resarr.push(itembeat);

@@ -75,6 +75,8 @@ Page({
       }
       if (options.bcid) {
         console.log("rrfsfsfrr");
+        let data = { bid: options.id };
+        this.getCommentList(data);
         this.setData({ con_discuss: true,
                      isfixed: true ,
                      conuid2:true,
@@ -83,8 +85,6 @@ Page({
                      firstcommment:false,
                      reployperson:options.name
                      });
-        let data = { bid: options.id };
-        this.getCommentList(data);
       }
     }
     uid = options.uid;

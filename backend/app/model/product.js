@@ -19,6 +19,7 @@ module.exports = app => {
     )
     Product.associate = function() {
         app.model.Product.belongsTo(app.model.User,{ foreignKey: 'uid'});
+        app.model.Product.hasMany(app.model.Beatcomment,{ foreignKey: 'bid',targetKey: 'pid'});
     }
     return Product;
 }

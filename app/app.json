@@ -19,7 +19,8 @@
     "pages/wantBeathim/wantBeathim",
     "pages/newsCenter/myWantbeat/myWantbeat",
     "pages/newsCenter/requiredetail/requiredetail",
-    "pages/newsCenter/myreployandcomment/myreployandcoment"
+    "pages/newsCenter/myreployandcomment/myreployandcoment",
+    "pages/forum/forum"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,7 +41,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/forum/forum",
         "iconPath": "images/icon/concern.png",
         "selectedIconPath": "images/icon/concern_active.png",
         "text": "论坛"

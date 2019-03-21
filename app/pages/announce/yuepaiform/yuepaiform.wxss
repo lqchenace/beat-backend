@@ -18,15 +18,23 @@
 }
 .form-first-bottom{
   margin-left:30rpx;
+  margin-right:20rpx;
   margin-top:40rpx;
   padding-bottom:40rpx;
+  width:clac(100% - 50rpx);
+  display:flex;
+  flex-wrap:wrap;
 }
 .add-container{
-  width:30%;
+  width:calc(34% - 18rpx);
   height:200rpx;
   text-align: center;
   line-height: 260rpx;
-  border: 4rpx dashed rgb(231, 232, 233);
+  padding-top:13rpx;
+  padding-right:13rpx;
+}
+.form-first-bottom>.add-container:nth-of-type(3n){ /* 选择个数是3的倍数的元素 */
+  padding-right: 0;
 }
 .selectclass{
   width:90rpx;
@@ -63,20 +71,42 @@
 .form-column1{
   background-color: #fff;
   margin-top:5rpx;
-  height:calc(90rpx - 20rpx);
   padding-top:20rpx;
+  margin:15rpx 20rpx;
+}
+.conlabel{
+  width: 14%;
+  margin-left:30rpx;
 }
 .addicon{
-  width:14%;
-  height:50rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border:1px solid rgb(254, 131, 141);
-  border-radius: 30rpx;
-  color: rgb(254, 131, 141);
-  font-size: 30rpx;
-  margin-left:30rpx;
+    width:100%;
+    height:40rpx;
+    border:1px solid rgb(254, 131, 141);
+    border-radius:30rpx;
+    color:rgb(254, 131, 141);
+    font-size:27rpx;
+    /* margin-left:30rpx; */
+    line-height:40rpx;
+    text-align:center;
+    margin-top:17rpx;
+}
+.style-class{
+    width:100%;
+    height:40rpx;
+    border:1px solid rgb(191, 191, 191);
+    border-radius:30rpx;
+    color:rgb(191, 191, 191);
+    font-size:27rpx;
+    /* margin-left:30rpx; */
+    line-height:40rpx;
+    text-align:center;
+    margin-top:17rpx;
+}
+.form-first-bottom1{
+  padding-bottom:40rpx;
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
 }
 .smallicon{
   width: 30rpx;
@@ -112,6 +142,26 @@
   margin-top:20rpx;
   margin-right:30rpx;
 }
+.input-style1{
+  width: calc(100% - 30rpx);
+  height:90rpx;
+  line-height: 90rpx;
+  margin-top:5rpx;
+  padding-left:30rpx;
+  background-color: #fff;
+}
+.input-style2{
+  width: calc(100% - 70rpx);
+  height:90rpx;
+  line-height: 90rpx;
+  margin:5rpx 20rpx 10rpx 20rpx;
+  padding-left:30rpx;
+  background-color: #fff;
+}
+.placetyle{
+  font-size:32rpx;
+  color:rgb(191, 191, 191);
+}
 .input-style{
   width: calc(100% - 70rpx);
   height:90rpx;
@@ -134,3 +184,56 @@
 .normal{
   background-color: #fff;
 }
+.selectclass1{
+  width:100%;
+  height:100%;
+}
+
+.citypicker{
+  z-index: 1000;
+  position:fixed;
+  top:0;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(71, 71, 71, 0.5);
+}
+.picker-con{
+  width:100%;
+  height:190px;
+  position:fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.citybody {
+  position: absolute;
+  bottom:0;
+}
+
+.cityheader {
+  width: 100%;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: rgb(254, 131, 141);
+}
+.picker-con1{
+width:85%;
+position:fixed;
+top:36%;
+background-color:#fff;
+border-radius:30rpx;
+padding:15rpx;
+text-align: center;
+margin-left:39rpx;
+
+}
+

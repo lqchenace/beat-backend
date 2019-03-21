@@ -2,13 +2,15 @@
 <text class='announce_text'>{{text}}</text>
 <view class="anounce_con">
 
- <view class="taker_anounce" bindtap='yuepaitap'>
- <view><image class="a_picture" src='../../../images/icon/a_taker.png' mode='aspectFit'></image></view>
+ <view class="taker_anounce">
+ <view data-sort='{{text1}}' bindtap='yuepaitap'>
+ <image class="a_picture" src='../../../images/icon/a_taker.png' mode='aspectFit'></image></view>
  <view class="re_text">{{text1}}</view>
  </view>
 
  <view class="taker_anounce">
- <view><image class="a_picture1" src='../../../images/icon/a_model.png' mode='aspectFit'></image></view>
+ <view data-sort='{{text2}}' bindtap='yuepaitap'>
+ <image class="a_picture1" src='../../../images/icon/a_model.png' mode='aspectFit'></image></view>
  <view class="re_text">{{text2}}</view>
  </view>
 

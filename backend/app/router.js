@@ -43,4 +43,5 @@ module.exports = app => {
   router.post('/showGroom',controller.beat.showGroom);
   router.post('/addBeat',controller.beat.addBeat);
   router.post('/getsortnum',controller.beat.getsortnum);
+  router.post('/addBeat',controller.beat.addBeat);
 };

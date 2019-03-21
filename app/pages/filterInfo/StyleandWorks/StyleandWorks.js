@@ -6,7 +6,7 @@ const sort=["约摄影师","约模特","作品相册"];
 // 地区列表引入
 const tcity = require("../../../utils/city.js");
 const sex = ['男', '女'];
-
+ 
 const style = ["cosplay", "情绪", "校园", "森系", "清新"];
 const list = [{
   headimg: "../../../images/test/headimg.jpg",
@@ -193,7 +193,7 @@ Page({
           that.setData({
             itemList: resArr
           });
-      }, 700)
+      }, 1000)
     })
   },
 

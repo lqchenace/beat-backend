@@ -15,6 +15,14 @@ Page({
    */
   onLoad: function(options) {
     if (options.sort) {
+      if (options.sort =='你想约拍模特还是摄影师？')
+        wx.setNavigationBarTitle({
+          title: '发布约拍'
+        })
+        else
+        wx.setNavigationBarTitle({
+          title: '发布作品相册'
+        })
       this.setData({
         text: options.sort,
         text1: options.sort1,
@@ -22,9 +30,10 @@ Page({
       })
     }
   },
-  yuepaitap:function(){
+  yuepaitap:function(e){
+    let sort= e.currentTarget.dataset.sort;
    wx.navigateTo({
-     url: '../../announce/yuepaiform/yuepaiform',
+     url: '../../announce/yuepaiform/yuepaiform?sort='+sort,
    })
   },
   /**

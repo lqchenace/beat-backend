@@ -17,14 +17,14 @@ const pictureurl ='http://127.0.0.1:7001/';
 
 // 显示繁忙提示
 var showBusy=text=>wx.showToast({
-  title: 'text',
+  title: '正在上传',
   icon:'loading',
   duration:10000
 })
 //显示成功提示
 
 var showSuccess=text=>wx.showToast({
-  title: 'text',
+  title: '成功',
   icon:'success'
 })
 

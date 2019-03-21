@@ -63,11 +63,22 @@ class BeatcommentController extends Controller {
     async showreploydetail(){
         const ctx = this.ctx;
         const {data}=ctx.request.body;
-        let result = await ctx.app.model.Beatcomment.findAll({
-            where:data,
+        let result;
+        if(data.bid.indexOf("fdg")==-1){
+            result = await ctx.app.model.Beatcomment.findAll({
+            where:{bcid:data.bcid},
             include: [{model: ctx.app.model.User},
                         {model: ctx.app.model.Beat}]
         }).then(us =>us.map(u => u.toJSON()));
+    }
+        else{
+            result = await ctx.app.model.Beatcomment.findAll({
+                where:{bcid:data.bcid},
+                include: [{model: ctx.app.model.User},
+                            {model: ctx.app.model.Product}]
+            }).then(us =>us.map(u => u.toJSON()));
+        }
+        console.log(result);
         result.map((item)=>{
             if(item.User.uid!='e3fe6790469ed968'){
             item.User.headimgUrl=item.User.headimg;
@@ -75,8 +86,8 @@ class BeatcommentController extends Controller {
             }else{
                 item.User.headimgUrl=''; 
             }
-    
         })
+
         ctx.body = {
             code:200,
             data:result

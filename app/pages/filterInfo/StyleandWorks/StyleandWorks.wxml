@@ -27,7 +27,7 @@
       </view>
     </view>
 
-
+ 
     <!-- 约拍信息列表 -->
     <view class='yuepai-contain' wx:for="{{itemList}}" wx:key="unique" bindtap='linkTodetail' data-id="{{item.bid||item.pid}}">
       <view class="yuepai-first">
