@@ -27,13 +27,20 @@ class HomeController extends Controller {
     // path.extname(stream.filename).toLocaleLowerCase()为后缀名（.jpg,.png等）
     const filename = Math.random().toString(36).substr(2) + new Date().getTime() + path.extname(stream.filename).toLocaleLowerCase();
     // 判断对应的约拍文件夹是否已经生成
-    if(bid.indexOf("fgd")==-1){
+    if(bid.indexOf("fgd")==-1&&bid.indexOf("fode34j")==-1){
         if(i==0){
         if(! fs.existsSync())
         fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid+'/beat',bid));
         }
         target = path.join(this.config.baseDir, 'app/public/'+uid+'/beat/'+bid, filename);
         imgurl='public/'+uid+'/beat/'+bid;
+      }else if(bid.indexOf("fode34j")!=-1){
+        if(i==0){
+          if(! fs.existsSync())
+          fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid+'/forum',bid));
+          }
+          target = path.join(this.config.baseDir, 'app/public/'+uid+'/forum/'+bid, filename);
+          imgurl='public/'+uid+'/forum/'+bid;
       }else{
         if(i==0){
           if(! fs.existsSync())

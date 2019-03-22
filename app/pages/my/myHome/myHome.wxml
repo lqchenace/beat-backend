@@ -34,8 +34,9 @@
     <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>约拍动态</view>
     <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>作品相册</view>
   </view>
-  <swiper current="{{currentData}}" class='swiper'style="min-height:600rpx" duration="300" bindchange="bindchange">
+  <swiper current="{{currentData}}" class='swiper' style="height:600rpx" duration="300" bindchange="bindchange">
     <swiper-item>
+      <scroll-view scroll-y style="height: 600rpx;">
       <view wx:if="{{theResult}}" class='swiper_con'>
         <view class='yuepai-contain' wx:for="{{beatList}}" wx:key="unique" bindtap='detail' data-bid="{{item.bid}}">
           <view class="second-yuepai">
@@ -53,10 +54,10 @@
    <image  src='../../../images/icon/none.png' mode='aspectFit' class='noneimg'></image>
    <view class='styletext'> 你还没有发布约拍信息哦</view>
     </view>
-    
-    
+    </scroll-view>
     </swiper-item>
     <swiper-item>
+       <scroll-view scroll-y style="height: 600rpx;">
       <view wx:if="{{theResult1}}" class='swiper_con'>
           <view class='yuepai-contain' wx:for="{{productList}}" wx:key="unique" bindtap='productdetail' data-id="{{item.pid}}">
           <view class="second-yuepai">
@@ -73,6 +74,7 @@
      <image  src='../../../images/icon/none.png' mode='aspectFit' class='noneimg'></image>
      <view class='styletext'>你还没有发布相册哦</view>
      </view>
+     </scroll-view>
     </swiper-item>
   </swiper>
 

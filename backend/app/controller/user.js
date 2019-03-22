@@ -32,6 +32,7 @@ async index() {
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public',uid));
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'beat'));
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'project'));
+            if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'forum'));
             data=res;
         }
     }

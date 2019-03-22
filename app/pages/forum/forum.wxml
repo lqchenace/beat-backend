@@ -1,2 +1,66 @@
 <!--pages/forum/forum.wxml-->
-<text>pages/forum/forum.wxml</text>
+<view>
+  <!-- 搜索 -->
+  <view class="search_arr">
+    <view class="sort_style_view" bindtap='opensort'>{{sort}}
+      <image mode='aspectFit' src='../../images/icon/more.png' class="sort_more"></image>
+    </view>
+    <input class="inputclass" placeholder="搜索相关帖子" placeholder-class="placeholder-class" confirm-type="search" bindinput='listenerSearchInput' bindconfirm="confirmtap" />
+    <image mode='aspectFit' src='../../images/icon/search.png' class="search"></image>
+  </view>
+  <!-- 帖子 -->
+  <view class='TabSwiper'>
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>最新</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>热门</view>
+  </view>
+  <swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
+    <swiper-item>
+      <view class='swiper_con' wx:for="{{forumlist}}" wx:key="unique">
+        <view>{{item.title}}</view>
+        <view class='command'>{{item.command}}</view>
+        <view class='second-list'>
+          <view class='second_inner'>
+            <image wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill' src='{{item.headimg}}'></image>
+           <image wx:else class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+             <view class='name-style'>{{item.name}}</view>
+              <view>#{{item.style}}</view>
+          </view>
+        </view>
+        <view class='second-list'>
+        <view class='comtime'>{{item.comtime}}</view>
+          <view class='second_inner1'>
+            <view>帖子：{{item.reploynum}}</view>
+            <view>查看：{{item.clicknum}}</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+            <view class='swiper_con' wx:for="{{forumlist1}}" wx:key="unique">
+        <view>{{item.title}}</view>
+        <view class='command'>{{item.command}}</view>
+        <view class='second-list'>
+          <view class='second_inner'>
+            <image wx:if="{{item.headimgUrl==''}}" class="yuepai-headimage" mode='aspectFill' src='{{item.headimg}}'></image>
+           <image wx:else class="yuepai-headimage" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+             <view class='name-style'>{{item.name}}</view>
+              <view>#{{item.style}}</view>
+          </view>
+        </view>
+        <view class='second-list'>
+        <view class='comtime'>{{item.comtime}}</view>
+          <view class='second_inner1'>
+            <view>帖子：{{item.reploynum}}</view>
+            <view>查看：{{item.clicknum}}</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+
+</view>
+<image mode='aspectFit' src='../../images/icon/post.png' class="post" bindtap='postessay'></image>
+<view class='sortlabel' wx:if="{{showsort}}">
+<view wx:for="{{label}}" wx:key="unique" class='itemlBEL' data-style="{{item}}" bindtap='seclectsort'>{{item}}</view>
+</view>

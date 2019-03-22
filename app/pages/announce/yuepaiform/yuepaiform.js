@@ -5,7 +5,7 @@ const api = require("../../../utils/api.js");
 const tcity = require("../../../utils/city.js");
 const sex = ['希望互免', '费用协商',"需要付费","愿意付费"];
 let i=0;
-Page({
+Page({ 
 
   /**
    * 页面的初始数据

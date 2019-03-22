@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/forum/forum",
     "pages/index/index",
     "pages/filterInfo/StyleandWorks/StyleandWorks",
     "pages/filterInfo/filterInfo",
@@ -20,7 +21,7 @@
     "pages/newsCenter/myWantbeat/myWantbeat",
     "pages/newsCenter/requiredetail/requiredetail",
     "pages/newsCenter/myreployandcomment/myreployandcoment",
-    "pages/forum/forum"
+    "pages/forum/post/post"
   ],
   "window": {
     "backgroundTextStyle": "light",
