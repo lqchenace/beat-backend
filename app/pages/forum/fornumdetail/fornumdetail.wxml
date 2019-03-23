@@ -1,0 +1,24 @@
+<!--pages/forum/fornumdetail/fornumdetail.wxml-->
+<view wx:for="{{forumlist}}"  wx:key="unique">
+<view class='title'>{{item.title}}</view>
+<view class="myBeatstyle">
+  <view class='follow-col'>
+    <image wx:if="{{item.headimgUrl==''}}" class="myheadimg" mode='aspectFill' src='{{item.headimg}}'></image>
+    <image wx:else class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+    <view class="name-row">
+      <view>{{item.name}}
+      <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
+      </view>
+      <view class="because">{{item.command}}</view>
+      <view class='second-list'>
+        <view class='comtime'>{{item.comtime}}</view>
+          <view class='second_inner1'>
+            <view>帖子：{{item.reploynum}}</view>
+            <view>查看：{{item.clicknum}}</view>
+          </view>
+        </view>
+    </view>
+
+  </view>
+</view>
+</view>

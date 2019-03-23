@@ -75,8 +75,12 @@ class ArrianbeatController extends Controller {
             result = await ctx.app.model.Beat.findAll({
                 where:{uid:data.uid},
                 include: [{model: ctx.app.model.Arrianbeat,
-                            include:[{model:ctx.app.model.User}] }]
+                            include:[{model: ctx.app.model.User}] }]
             }).then(us =>us.map(u => u.toJSON()));
+            console.log("11111",result);
+            result=result.filter((item)=>{
+                return item.arrianbeat!=null
+            })
             result.map((item)=>{
                 if(item.arrianbeat.User.uid!='e3fe6790469ed968'){
                 item.arrianbeat.User.headimgUrl=item.arrianbeat.User.headimg;

@@ -46,4 +46,6 @@ module.exports = app => {
   router.post('/addBeat',controller.beat.addBeat);
   router.post('/addForum',controller.forum.addForum);
   router.post('/getforumlist',controller.forum.getforumlist);
+  router.post('/getforumsearchresult',controller.forum.getforumsearchresult);
+  router.post('/getthesearchresult',controller.forum.getthesearchresult);
 };

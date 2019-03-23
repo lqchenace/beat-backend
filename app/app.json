@@ -21,7 +21,8 @@
     "pages/newsCenter/myWantbeat/myWantbeat",
     "pages/newsCenter/requiredetail/requiredetail",
     "pages/newsCenter/myreployandcomment/myreployandcoment",
-    "pages/forum/post/post"
+    "pages/forum/post/post",
+    "pages/forum/fornumdetail/fornumdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

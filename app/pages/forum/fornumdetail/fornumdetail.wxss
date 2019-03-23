@@ -1,0 +1,78 @@
+/* pages/forum/fornumdetail/fornumdetail.wxss */
+.title{
+  width: calc(100% - 50rpx);
+  padding:30rpx 25rpx 20rpx 25rpx;
+  background-color: rgb(246, 246, 248);
+  font-size: 40rpx;
+  letter-spacing: 1.5rpx;
+}/* pages/newsCenter/myWantbeat/myWantbeat.wxss */
+page{
+  background-color: rgb(246, 246, 248);
+  padding-bottom:20rpx;
+}
+.myBeatstyle{
+  width:100%;
+  min-height: 130rpx;
+  background-color: #fff;
+  padding:20rpx;
+  margin-top:20rpx;
+}
+.follow-col{
+  width: calc(100% - 40rpx);
+  padding: 10rpx 25rpx 15rpx 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.myheadimg{
+  width:60rpx;
+  height:60rpx;
+  border-radius: 50%;
+}
+.name-row{
+  width:calc(95% - 40rpx);
+  display: inline-block;
+  margin-left:22rpx;
+  font-size: 32rpx;
+  vertical-align: top;
+}
+.sex-info{
+width:30rpx;
+height:30rpx;
+margin-left:10rpx;
+margin-top:8rpx;
+}
+.because{
+  width: calc(100% - 15rpx);
+  padding:15rpx 15rpx 15rpx 0;
+  font-size: 30rpx;
+  letter-spacing: 1rpx;
+}
+.resource{
+  width: calc(100% - 30rpx);
+  background-color: rgb(247, 247, 247);
+  padding:15rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:rgb(101, 101, 101);
+}
+.second-list{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.second_inner1{
+  width: 42%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 29rpx;
+  color:rgb(152, 156, 159);
+}
+.comtime{
+  font-size: 27rpx;
+  color:rgb(152, 156, 159);
+  margin-top:20rpx;
+}

@@ -160,3 +160,28 @@ border-bottom:1rpx solid rgb(241, 241, 241);
   border-bottom: 1rpx solid #fff;
   text-align: center;
 }
+
+
+.searchHigh {
+  color: rgb(254, 131, 141);
+}
+.oneText {
+   height: 60rpx;
+    line-height: 60rpx;
+    margin: 15;
+    text-align: left;
+    color: #9B9B9B;
+    font-size: 33rpx;
+    text-indent:1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.searingresult{
+  width: 69.5%;
+  background-color: #fff;
+  position: fixed;
+  top:97rpx;
+  left: 16.5%;
+  z-index: 2000;
+}

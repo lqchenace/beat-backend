@@ -2,6 +2,8 @@
 const sort=["全部","技术","生活"];
 const util = require("../../utils/util.js");
 const api = require("../../utils/api.js");
+
+const getInf = (str, key) => str.replace(new RegExp(`${key}`, 'g'), `%%${key}%%`).split('%%');
 Page({
 
   /**
@@ -14,26 +16,28 @@ Page({
     forumlist1: [],
     publicurl: util.pictureurl,
     label:sort,
-    showsort:false
+    showsort:false,
+    keyName:'',
+    listDataCopy: [],
+    searchlogo:false,
+    key:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     this.getforumlist({data:{},sort:'comtime'});
     this.getforumlist({ data: {}, sort: 'reploynum' });
   },
   getforumlist: function (data) {
     let that=this;
-    console.log("sdfsfsfsdfsdfsdfsdf");
     api.addSave('http://127.0.0.1:7001/getforumlist', data).then(res => {
-      console.log("sfsfsfsfsfsd", res);
       let resArr = []
+      console.log("0000000", res.res);
       res.res.map((item, index) => {
         let itembeat = {};
-        itembeat.bid = item.foid;
+        itembeat.foid = item.foid;
         itembeat.headimg = item.User.headimg;
         itembeat.headimgUrl = item.User.headimgUrl;
         itembeat.name = item.User.nickname;
@@ -58,9 +62,12 @@ Page({
   opensort:function(){
    this.setData({showsort:true});
   },
+  // 切换分类时
   seclectsort:function(e){
     let s=e.target.dataset.style;
     this.setData({ showsort: false,sort:s});
+    let data = { key: this.data.keyName, style: this.data.sort };
+      this.getsearch(data);
   },
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
@@ -87,6 +94,95 @@ Page({
   wx.navigateTo({
     url: './post/post',
   })
+  },
+  // 实时监听输入框输入的内容
+  searchInputAction:function(e){
+    let that = this
+    let value = e.detail.value
+    if(value.length==0)
+      this.setData({
+        listDataCopy: []
+      })
+      this.setData({
+        key: that.trim(e.detail.value),
+        keyName: that.trim(e.detail.value)
+      })
+    let data={key:value,style:this.data.sort};
+    if (value.length > 0)
+     this.getsearch(data);
+  },
+  // 去除首尾的空格
+  trim: function (s) {
+    return s.replace(/(^\s*)|(\s*$)/g, "");
+  },
+//  获取搜索结果
+  getsearch: function (data) {
+    let that = this;
+    api.addSave('http://127.0.0.1:7001/getforumsearchresult', data).then(res => {
+      that.setData({
+        listDataCopy: res
+      })
+      var data = res;
+      var newData = that.data.listDataCopy;
+      for (var i = 0; i < data.length; i++) {
+        var dic = data[i];
+        var newDic = newData[i];
+        var fund_name = dic.title;
+        newDic.title = getInf(fund_name, that.data.keyName);
+      }
+      
+      that.setData({
+        listDataCopy: newData,
+      })
+    })
+  },
+  // 点击搜索按钮
+  searchingessay:function(){
+    let that = this;
+    let data = { key: this.data.keyName, style: this.data.sort };
+    api.addSave('http://127.0.0.1:7001/getthesearchresult', data).then(res => {
+      console.log(res);
+      let resArr = []
+      res.map((item, index) => {
+        let itembeat = {};
+        itembeat.foid = item.foid;
+        itembeat.headimg = item.User.headimg;
+        itembeat.headimgUrl = item.User.headimgUrl;
+        itembeat.name = item.User.nickname;
+        itembeat.command = item.command;
+        itembeat.style = item.style;
+        itembeat.title = getInf(item.title, that.data.keyName);
+        itembeat.comtime = item.comtime;
+        itembeat.clicknum = item.clicknum;
+        itembeat.reploynum = item.reploynum;
+        resArr.push(itembeat);
+      });
+      that.setData({
+        forumlist: resArr,
+        listDataCopy: [],
+        key: '',
+        searchlogo:true,
+        currentData:0
+      })
+    })
+  },
+  // 点击实时搜索结果的某一列
+  getthelist:function(e){
+    let a = e.currentTarget.dataset.foid;
+    this.setData({
+      listDataCopy: [],
+      key:'',
+      currentData: 0,
+      searchlogo: true
+    })
+    this.getforumlist({ data: {foid:a}, sort: 'comtime' });
+  },
+  getforumdetail:function(e){
+    let foid = e.currentTarget.dataset.foid;
+    console.log("sfsfsfsfsfsd", foid);
+    wx.navigateTo({
+      url: './fornumdetail/fornumdetail?foid='+foid,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
