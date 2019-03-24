@@ -1,24 +1,77 @@
 <!--pages/forum/fornumdetail/fornumdetail.wxml-->
-<view wx:for="{{forumlist}}"  wx:key="unique">
-<view class='title'>{{item.title}}</view>
-<view class="myBeatstyle">
-  <view class='follow-col'>
-    <image wx:if="{{item.headimgUrl==''}}" class="myheadimg" mode='aspectFill' src='{{item.headimg}}'></image>
-    <image wx:else class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
-    <view class="name-row">
-      <view>{{item.name}}
-      <image src='{{item.sex==1?"../../../images/icon/boy.png":"../../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
-      </view>
-      <view class="because">{{item.command}}</view>
-      <view class='second-list'>
-        <view class='comtime'>{{item.comtime}}</view>
-          <view class='second_inner1'>
-            <view>帖子：{{item.reploynum}}</view>
-            <view>查看：{{item.clicknum}}</view>
+<view style="margin-bottom:100rpx;">
+  <view wx:for="{{forumlist}}" wx:key="unique" style="margin-bottom:15rpx;">
+    <view class='title'>{{item.title}}</view>
+    <view class="myBeatstyle">
+      <view class='follow-col'>
+        <image wx:if="{{item.headimgUrl==''}}" class="myheadimg" mode='aspectFill' src='{{item.headimg}}'></image>
+        <image wx:else class="myheadimg" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+        <view class="name-row">
+          <view class='spescial'>{{item.name}}
+            <span class="louzhu">#楼主</span>
+          </view>
+          <view class="because">{{item.command}}</view>
+
+          <view class="form-first-bottom" wx:if="{{item.beatUrl}}">
+            <view class="add-container" wx:for="{{item.imgurl}}" wx:key="unique" wx:for-item="beatimage">
+              <image class="selectclass1" src='{{publicurl}}{{item.beatUrl}}/{{beatimage}}' mode='widthFix'></image>
+            </view>
+          </view>
+          <view class='second-list'>
+            <view class='comtime'>{{item.comtime}}</view>
+            <view class='second_inner1'>
+              <view>帖子：{{item.reploynum}}</view>
+              <view>查看：{{item.clicknum}}</view>
+            </view>
           </view>
         </view>
+
+      </view>
+    </view>
+  </view>
+
+  <!-- 评论列表 -->
+  <view wx:for="{{commentList}}" wx:key="unique" class='commentList_contain' wx:if="{{item.parentid=='0'}}">
+    <view class='commentList' data-uid="{{item.uid}}" data-parentid="{{item.fcid}}" data-nickname="{{item.name}}" bindtap='groomuser'>
+      <image wx:if="{{item.headimgUrl==''}}" class="com-headimg6" mode='aspectFill' src="{{item.headimg}}"></image>
+      <image wx:else class="com-headimg6" mode='aspectFill' src='{{publicurl}}{{item.headimgUrl}}/{{item.headimg[0]}}'></image>
+      <view class='content'>
+        <span class="spescial">{{item.name}}</span>
+        <span class="com-name" style="margin-left:20rpx;">#{{index+1}}楼</span>
+        <view class="com-ment">{{item.comment}}</view>
+        <view class='comtime' style="margin-bottom:20rpx;">{{item.comtime}}</view>
+        <!-- 回复列表 -->
+        <view class='zhuzhuxia '>
+          <view class="reployList" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploy" wx:if="{{reploy.parentid==item.fcid}}">
+            <!-- 找出评论了某个人的的所有评论 -->
+            <view wx:if="{{reploy.uid2!='0'}}">
+              <view class="reploy_list" wx:for="{{commentList}}" wx:key="unique" wx:for-item="reploykid" wx:if="{{reploy.uid2==reploykid.fcid}}">
+                <span class="reploy_name" data-parentid="{{item.fcid}}" data-pname="{{reploy.name}}" data-id="{{reploy.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploy.fcid}}" catchtap="reployoneperson">{{reploy.name}}</span>
+                回复
+                <span class="reploy_name" data-parentid="{{item.fcid}}" data-pname="{{reploykid.name}}" data-id="{{reploykid.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploykid.fcid}}" catchtap="reployoneperson">{{reploykid.name}}</span>
+
+                ：{{reploy.comment}}
+              </view>
+            </view>
+            <!-- 列出所有的一级评论 -->
+            <view class="reploy_list" wx:else>
+              <span class="reploy_name" data-parentid="{{item.fcid}}" data-pname="{{reploy.name}}" data-id="{{reploy.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploy.fcid}}" catchtap="reployoneperson">{{reploy.name}}</span>
+              ：{{reploy.comment}}
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
 
   </view>
 </view>
+<!-- 发表一级评论 -->
+<view class="anouncecom" wx:if="{{firstcommment}}">
+  <input class="inputclass" placeholder="来说点什么吧~~" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+  <view class='fasong' bindtap='confirmtap'>发送</view>
+</view>
+<!-- 发表二级评论 -->
+<view class="anouncecom" wx:else>
+  <input class="inputclass" placeholder="回复{{reployperson}}" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+  <view class='fasong' bindtap='confirmsecondtap'>发送</view>
 </view>

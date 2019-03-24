@@ -4,6 +4,28 @@ const fs=require('fs');
 
 class ForumController extends Controller {
 
+    // 更新表中的信息
+    async updateinfo(){
+        let ctx = this.ctx;
+        let {data}=ctx.request.body;
+        console.log("ccccccc",data);
+        // let info=ctx.model.Forum.update({data, {
+        //         where: data1
+        //     })
+
+    let info =await ctx.model.Forum.update(data.data, {
+                    where: data.data1
+                })
+            console.log("bbbbbbb",info);
+
+        ctx.body = {
+            code:200,
+            data:info
+        }; 
+    }
+
+
+
     // 点击“搜索”时返回搜索结果
     async getthesearchresult(){
         const ctx = this.ctx;
@@ -116,7 +138,7 @@ async getforumlist() {
         order:[['reploynum','DESC']],
         include: [{model: ctx.app.model.User}]
     }).then(us =>us.map(u => u.toJSON())); 
-    console.log("dfsdfsdfsdfs",res);
+
     res.map((item)=>{
         if(item.imgurl!=null){
         item.beatUrl=item.imgurl;

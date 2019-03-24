@@ -179,9 +179,17 @@ Page({
   },
   getforumdetail:function(e){
     let foid = e.currentTarget.dataset.foid;
-    console.log("sfsfsfsfsfsd", foid);
-    wx.navigateTo({
-      url: './fornumdetail/fornumdetail?foid='+foid,
+    let clicknum = e.currentTarget.dataset.clicknum+1;
+    let sort= e.currentTarget.dataset.sort;
+    let data ={};
+    data.data={clicknum:clicknum};
+    data.data1={foid:foid};
+    api.addSave('http://127.0.0.1:7001/updateinfo', data).then(res => {
+         if(res[0]==1){
+               wx.navigateTo({
+                url: './fornumdetail/fornumdetail?foid='+foid,
+              })
+         }
     })
   },
   /**
@@ -195,7 +203,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getforumlist({ data: {}, sort: 'comtime' });
+    this.getforumlist({ data: {}, sort: 'reploynum' });
   },
 
   /**

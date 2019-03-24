@@ -27,6 +27,7 @@ module.exports = app => {
         app.model.User.hasOne(app.model.Beat, { foreignKey: 'uid' });
         app.model.User.hasOne(app.model.Product, { foreignKey: 'uid' });
         app.model.User.hasOne(app.model.Beatcomment, { foreignKey: 'uid' });
+        app.model.User.hasOne(app.model.Forumcomment, { foreignKey: 'uid' });
         app.model.User.hasMany(app.model.Follow, { foreignKey: 'uid' });
         app.model.User.hasMany(app.model.Fans, { foreignKey: 'uid' });
         app.model.User.hasOne(app.model.Arrianbeat, { foreignKey: 'uid'});

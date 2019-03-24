@@ -5,23 +5,6 @@ const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 var uid='';
 var bid='';
-// 约拍列表测试对象
-const list = [{
-  headimg: "../../images/test/headimg.jpg",
-  name: "溜影",
-  role: "摄影师",
-  city: "深圳市",
-  behavior: "约模特",
-  cost: "希望互免",
-  command: "发挥司法害死大放送很舒服设计费，舒服舒服积分金佛寺发挥司法死哦斐济水是否金，佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../images/test/test1.jpg', '../../images/test/test4.jpg', '../../images/test/test6.jpg', '../../images/test/test7.jpg', '../../images/test/test2.jpg', '../../images/test/test3.jpg'],
-  sortlabel: ["cosplay", "情绪", "校园", "森系", "清新"],
-  receiveBeat: 4,
-  readcount: 15,
-  tooktime:"下午三点左右开始",
-  place:"草场地",
-  imgsum:"50张左右"
-}];
 Page({
 
   /**

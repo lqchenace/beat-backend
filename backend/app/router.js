@@ -48,4 +48,9 @@ module.exports = app => {
   router.post('/getforumlist',controller.forum.getforumlist);
   router.post('/getforumsearchresult',controller.forum.getforumsearchresult);
   router.post('/getthesearchresult',controller.forum.getthesearchresult);
+  router.post('/updateinfo',controller.forum.updateinfo);
+
+
+  router.post('/showforumComment',controller.forumcomment.showforumComment);
+  router.post('/addforumComment',controller.forumcomment.addforumComment);
 };

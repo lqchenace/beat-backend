@@ -55,7 +55,7 @@ border-bottom:1rpx solid rgb(241, 241, 241);
  border-radius: 10rpx;
  padding-left: 20rpx;
  padding-top:15rpx;
- margin-bottom: 17rpx;
+ padding-bottom: 17rpx;
  position: fixed;
  top:0;
  left: 0;
