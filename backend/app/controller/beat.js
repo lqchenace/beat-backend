@@ -99,7 +99,7 @@ async showGroom(){
     beatlist.map((item)=>{
         item.beatUrl=item.imgurl;
         item.imgurl=fs.readdirSync('app/'+item.imgurl);
-        if(item.User.uid!='e3fe6790469ed968'){
+        if(item.User.headimg.indexOf("https")==-1){
         item.User.headimgUrl=item.User.headimg;
         item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
         }else{
@@ -153,12 +153,12 @@ async showBeat(){
     result.map((item)=>{
         item.beatUrl=item.imgurl;
         item.imgurl=fs.readdirSync('app/'+item.imgurl);
-        if(item.User.uid!='e3fe6790469ed968'){
-        item.User.headimgUrl=item.User.headimg;
-        item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
-        }else{
-            item.User.headimgUrl=''; 
-        }
+        if(item.User.headimg.indexOf("https")==-1){
+            item.User.headimgUrl=item.User.headimg;
+            item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
+            }else{
+                item.User.headimgUrl=''; 
+            }
 
     })
     ctx.body = {
@@ -246,7 +246,7 @@ async  getProductlist(){
     list.map((item)=>{
         item.beatUrl=item.imgurl;
         item.imgurl=fs.readdirSync('app/'+item.imgurl);
-        if(item.User.uid!='e3fe6790469ed968'){
+        if(item.User.headimg.indexOf("https")==-1){
         item.User.headimgUrl=item.User.headimg;
         item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
         }else{
@@ -276,7 +276,7 @@ async showBeatDetails(){
     result.map((item)=>{
         item.beatUrl=item.imgurl;
         item.imgurl=fs.readdirSync('app/'+item.imgurl);
-        if(item.User.uid!='e3fe6790469ed968'){
+        if(item.User.headimg.indexOf("https")==-1){
         item.User.headimgUrl=item.User.headimg;
         item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
         }else{

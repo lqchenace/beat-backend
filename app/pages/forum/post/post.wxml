@@ -22,7 +22,7 @@
 <!-- 弹出的分类选择层 -->
 <view wx:if="{{conditionsort}}" class="citypicker">
   <view class="picker-con">
-    <view class="cityheader">
+    <view class="cityheader"> 
       <view bindtap="closesort" class="city-cancel">取消</view>
       <view bindtap="getconfirmval" class="city-true">确定</view>
     </view>

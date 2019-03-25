@@ -2,32 +2,6 @@
 const app = getApp();
 const api = require("../../../utils/api.js");
 const util = require("../../../utils/util.js");
-
-const list={
-  nickName:'ace&ass',
-  avatarUrl:  "https://wx.qlogo.cn/mmopen/vi_32/BsfCxu2ejcIcHRzPMv3ID0SAmKcIjWvWpW2iaVy6JBRBLsCuNicDEA8BrWKgLstQl5QTm2E36KDhZmQRBPCqQPVw/132",
-  role:"模特",
-  city:"广州市",
-  age:"22",
-  follow:2,
-  fans:1,
-  beatnum:1
-
-}
-const arrlist = [{
-  title: '处女座',
-  behavior: "约模特",
-  cost: "希望互免",
-  command: "发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../../images/test/test1.jpg', '../../../images/test/test2.jpg', '../../../images/test/test3.jpg'],
-},
-{
-  title: '和盒库设计发送键of叫搜放假是否是方式方式',
-  behavior: "约模特",
-  cost: "希望互免",
-  command: "发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../../images/test/test1.jpg', '../../../images/test/test2.jpg', '../../../images/test/test3.jpg'],
-}];
 Page({
 
   /**

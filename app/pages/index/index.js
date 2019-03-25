@@ -3,26 +3,15 @@
 const app = getApp();
 const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
+const bmap = require("../../utils/bmap-wx.min.js");
+var reg = /.+?(省|市|自治区|自治州|县|区)/g;
 // 轮播图图片列表
 const src = ['../../images/images2.jpg', '../../images/images.jpg','../../images/images5.jpg'];
-// 约拍列表测试对象
-const list=[{
-  headimg:"../../images/test/headimg.jpg",
-  name:"溜影",
-  role:"摄影师",
-  city:"深圳市",
-  behavior:"约模特",
-  cost:"希望互免",
-  command:"发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../images/test/test1.jpg', '../../images/test/test2.jpg', '../../images/test/test3.jpg'],
-  sortlabel: ["cosplay", "情绪", "校园", "森系", "清新"],
-  receiveBeat:4,
-  readcount:15
-}];
 // 地区列表引入
 const tcity = require("../../utils/city.js");
 const sort=['约摄影师','约模特'];
 const sex=['男','女'];
+var wxMarkerData = [];
 Page({
   data: {
     imgUrls:src,
@@ -44,7 +33,11 @@ Page({
     publicurl: util.pictureurl,
     local:'地区',
     beatrole:'类别',
-    gender:'性别'
+    gender:'性别',
+    showmap: false,
+    markers: [],
+    latitude: '',
+    longitude: '',
   },
   //事件处理函数
   bindViewTap: function() {
@@ -75,12 +68,68 @@ Page({
       'citys': citys,
       'countys': countys
     })
+    // 请求获取当前位置
+    wx.showModal({
+      title: '约拍小程序请求授权当前位置',
+      content: '获取当前位置可以查看离您最近的约拍信息哦',
+      success: function (res) {
+        if (res.cancel) {
+          wx.showToast({
+            title: '拒绝授权',
+            icon: 'none',
+            duration: 1000
+          })
+        } else if (res.confirm) {
+          // 新建百度地图对象 
+          var BMap = new bmap.BMapWX({
+            ak: '0oSInL129sGPHnAvGvylFTjmUoTcZw06'
+          });
+          var fail = function (data) {
+            console.log(data)
+          };
+          var success = function (data) {
+            wxMarkerData = data.wxMarkerData;
+            that.setData({
+              markers: wxMarkerData
+            });
+            that.setData({
+              latitude: wxMarkerData[0].latitude
+            });
+            that.setData({
+              longitude: wxMarkerData[0].longitude
+            });
+          }
+          // 发起regeocoding检索请求 (地址逆解析)
+          BMap.regeocoding({
+            fail: fail,
+            success: success
+          });
+          that.setData({ showmap: true });
+
+        }
+      }
+    })
+
+  },
+  // 地图点击事件
+  makertap: function (e) {
+    var id = e.markerId;
+    this.setData({
+      local: wxMarkerData[id].address.match(reg)[1],
+      showmap: false
+    });
+
+    let data = {
+      area: this.data.local,
+      beatrole: '类别',
+      sex: '性别'}
+    this.showBeat(data);
   },
   // 调用接口展示约拍信息
   showBeat:function(data){
     let that=this;
     api.getArranceBeatInfo(data).then(res=>{
-      console.log("rrr",res);
+      // console.log("rrr",res);
       let resArr=[]
       res.map((item,index)=>{
         let itembeat={};
@@ -118,7 +167,12 @@ Page({
     })   
     
   },
-  
+  /**
+ * 生命周期函数--监听页面显示
+ */
+  onShow: function () {
+    this.showBeat({});
+  },
   //点击某条约拍信息，跳转到详情页
   beatdetail:function(e){
     let bid = e.currentTarget.dataset.bid;

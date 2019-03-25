@@ -1,5 +1,65 @@
 <!--pages/my/myEditor/myEditor.wxml-->
 <view> 
-<view class='form-column'><span class="form-row">地区</span><span class="form-right">请选择地区</span><image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image></view>   
-<button class="form-button">保存</button> 
+<view class='form-column' bindtap='chooseimg'>
+<span class="form-row">头像</span>
+<image wx:if="{{upimgarr!=''}}" class="form-right-img" mode='aspectFill' src='{{upimgarr}}'></image>
+<image wx:elif="{{imgurl==''}}" class="form-right-img" mode='aspectFill' src='{{headimg}}'></image>
+<image wx:else class="form-right-img" mode='aspectFill' src='{{publicurl}}{{headimg}}/{{imgurl[0]}}'></image>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>  
+
+<view class='form-column'>
+<span class="form-row">昵称</span>
+<input class="form-right1" value='{{nickname}}' bindinput='listenername'/>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>   
+<view class='form-column' bindtap='opensort'>
+<span class="form-row">身份</span>
+<span class="form-right">{{role}}</span>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>
+
+<view class='form-column' bindtap='getlocal'>
+<span class="form-row">地区</span><span class="form-right">{{rgcData}}</span>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>
+
+<view class='form-column'>
+<span class="form-row">手机号</span>
+<input class="form-right1" value='{{phone}}'  bindinput='listenerphone'/>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>
+
+<view class='form-column'>
+<span class="form-row">微信号</span>
+<input class="form-right1" value='{{weixincode}}'  bindinput='listeneweixin'/>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>
+
+<view class='form-column'>
+<span class="form-row">微博号</span>
+<input class="form-right1" value='{{blogcode}}'  bindinput='listenerbolgname'/>
+<image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+</view>
+
+<button class="form-button" bindtap='gotosave'>保存</button> 
+</view>
+
+<view class="map_container" wx:if="{{showmap}}"> 
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map> 
+</view> 
+
+<!-- 弹出的分类选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
 </view>

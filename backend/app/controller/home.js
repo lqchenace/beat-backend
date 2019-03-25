@@ -67,6 +67,57 @@ class HomeController extends Controller {
 
     };
   }
+  //  上传头像图片
+  async uploadheadImg(){
+    const ctx = this.ctx;
+    const stream=await ctx.getFileStream();
+    let uid=stream.fieldname;
+    console.log("1111111",uid);
+    // random.getRandomString(8);
+    //文件名：随机数+时间戳+原文件后缀
+    // path.extname(stream.filename).toLocaleLowerCase()为后缀名（.jpg,.png等）
+    const filename = Math.random().toString(36).substr(2) + new Date().getTime() + path.extname(stream.filename).toLocaleLowerCase();
+
+    var files = fs.readdirSync('app/public/'+uid+'/img');//读取该文件夹
+
+    files.forEach(function(file){
+
+    var stats = fs.statSync('app/public/'+uid+'/img'+'/'+file);
+
+          if(stats.isDirectory()){
+
+          emptyDir('app/public/'+uid+'/img'+'/'+file);
+
+        }else{
+
+          fs.unlinkSync('app/public/'+uid+'/img'+'/'+file); 
+
+          console.log("删除文件"+'app/public/'+uid+'/img'+'/'+file+"成功");
+
+          }   
+        })
+
+        let target = path.join(this.config.baseDir, 'app/public/'+uid+'/img', filename);
+        let imgurl='public/'+uid+'/img';
+    
+        // 生成一个文件写入 文件流
+        const writeStream = fs.createWriteStream(target);
+        try {
+            // 异步把文件流 写入
+            await awaitWriteStream(stream.pipe(writeStream));
+        } catch (err) {
+            // 如果出现错误，关闭管道
+            await sendToWormhole(stream);
+            throw err;
+        }
+    ctx.body = {
+      code:200,
+      data:{
+            imgurl
+          }
+
+    };
+  }
 }
 
 module.exports = HomeController;

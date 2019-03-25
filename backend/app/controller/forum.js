@@ -60,7 +60,7 @@ class ForumController extends Controller {
             item.beatUrl=item.imgurl;
             item.imgurl=fs.readdirSync('app/'+item.imgurl);
             }
-            if(item.User.uid!='e3fe6790469ed968'){
+            if(item.User.headimg.indexOf("https")==-1){
             item.User.headimgUrl=item.User.headimg;
             item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
             }else{
@@ -144,7 +144,7 @@ async getforumlist() {
         item.beatUrl=item.imgurl;
         item.imgurl=fs.readdirSync('app/'+item.imgurl);
         }
-        if(item.User.uid!='e3fe6790469ed968'){
+        if(item.User.headimg.indexOf("https")==-1){
         item.User.headimgUrl=item.User.headimg;
         item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
         }else{

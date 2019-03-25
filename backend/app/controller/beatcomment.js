@@ -14,7 +14,7 @@ class BeatcommentController extends Controller {
             include: [{model: ctx.app.model.User}]
         }).then(us =>us.map(u => u.toJSON()));
         result.map((item)=>{
-            if(item.User.uid!='e3fe6790469ed968'){
+            if(item.User.headimg.indexOf("https")==-1){
             item.User.headimgUrl=item.User.headimg;
             item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
             }else{
@@ -24,10 +24,11 @@ class BeatcommentController extends Controller {
         })
         let res = await ctx.app.model.Beatcomment.findAll({
             where:data,
+            order:[['comtime','ASC']],
             include: [{model: ctx.app.model.User}]
         }).then(us =>us.map(u => u.toJSON()));
         res.map((item)=>{
-            if(item.User.uid!='e3fe6790469ed968'){
+            if(item.User.headimg.indexOf("https")==-1){
             item.User.headimgUrl=item.User.headimg;
             item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
             }else{
@@ -80,7 +81,7 @@ class BeatcommentController extends Controller {
         }
         console.log(result);
         result.map((item)=>{
-            if(item.User.uid!='e3fe6790469ed968'){
+            if(item.User.headimg.indexOf("https")==-1){
             item.User.headimgUrl=item.User.headimg;
             item.User.headimg=fs.readdirSync('app/'+item.User.headimg);
             }else{

@@ -98,9 +98,6 @@
             <view class="reploy_list" wx:else>
 
               <span class="reploy_name" data-parentid="{{item.bcid}}"  data-pname="{{reploy.name}}" data-id="{{reploy.uid}}" data-fid="{{item.uid}}" data-uid2="{{reploy.bcid}}" bindtap="reployoneperson">{{reploy.name}}</span>
-              回复
-              <span class="reploy_name" data-parentid="{{item.bcid}}"  data-pname="{{item.name}}" data-id="{{item.uid}}" data-fid="{{item.uid}}" data-uid2="{{item.bcid}}" bindtap="reployoneperson">{{item.name}}</span>
- 
               ：{{reploy.comment}}
               </view>
           </view>

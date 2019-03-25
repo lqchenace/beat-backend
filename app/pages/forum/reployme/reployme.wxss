@@ -1,0 +1,48 @@
+/* pages/forum/reployme/reployme.wxss */
+.reploylist{
+  width:calc(100% - 50rpx);
+  display: flex;
+  padding:30rpx 30rpx 0 20rpx;
+  /* justify-content:space-around; */
+
+}
+.remiddle{
+  width:calc(68% - 20rpx);
+  margin-left:20rpx;
+}
+.rethird{
+width:23%;
+height:100rpx;
+font-size:25rpx;
+padding:15rpx 0;
+
+background-color: rgb(243, 243, 243);
+overflow: hidden;
+color: rgb(134, 134, 134);
+}
+.myheadimg{
+  width:90rpx;
+  height:90rpx;
+  border-radius: 10rpx;
+}
+.rename{
+  font-size: 28rpx;
+  color:rgb(84, 142, 204);
+}
+.recom{
+font-size: 28rpx;
+margin-top:10rpx;
+margin-bottom:10rpx;
+}
+.retime{
+font-size: 25rpx;
+color:rgb(172, 172, 172);
+}
+.adsreploy{
+  width: 90%;
+  border-bottom:1rpx solid rgb(241, 241, 241);
+  display: flex;
+justify-content:space-between;
+padding-bottom:20rpx;
+
+}

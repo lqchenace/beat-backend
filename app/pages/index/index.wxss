@@ -260,3 +260,15 @@ margin-top:8rpx;
   margin-right: 15rpx;
   margin-top:10rpx;
 }
+.map_container{ 
+    height: 100%; 
+    width: 100%; 
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1000;
+} 
+.map { 
+    height: 100%; 
+    width: 100%; 
+}

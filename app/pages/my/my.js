@@ -1,9 +1,13 @@
 //获取应用实例
 const app = getApp();
 const api = require("../../utils/api.js");
+const util = require("../../utils/util.js");
 Page({
   data: {
-    userInfo: {},
+    publicurl: util.pictureurl,
+    nickname: '',
+    headimg:'',
+    imgurl:'',
     follow:'',
     fans:'',
     money:0
@@ -28,12 +32,24 @@ Page({
  * 生命周期函数--监听页面显示
  */
   onShow: function () {
+    let that=this;
     let userInfo = wx.getStorageSync('userInfo');
     if (!userInfo) {
       wx.navigateTo({
         url: "/pages/authorize/authorize"
       })
     }else{
+      let uid = wx.getStorageSync('openid');
+      // 获取个人信息
+      api.addSave('http://127.0.0.1:7001/showMyInfo', { uid: uid }).then(res => {
+        let resArr = []
+        console.log("0000000", res);
+        that.setData({
+          nickname: res.info[0].nickname,
+          headimg: res.info[0].headimg,
+          imgurl: res.info[0].imgurl,
+        });
+      })
          this.setData({
             userInfo: userInfo,
           })

@@ -26,6 +26,11 @@ Page({
       url: './myreployandcomment/myreployandcoment',
     })
   },
+  gotoforumreploy:function(){
+    wx.navigateTo({
+      url: '../forum/reployme/reployme',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

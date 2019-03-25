@@ -11,6 +11,8 @@ module.exports = app => {
   router.post('/showBeat',controller.beat.showBeat);
   router.get('/ShowTheStyle',controller.beat.ShowTheStyle);
   router.post('/api/uploads',controller.home.uploadImg);
+  router.post('/api/uploadheadImg',controller.home.uploadheadImg);
+
   router.post('/showBeatDetails',controller.beat.showBeatDetails);
 
   router.post('/showmySave',controller.save.ShowmySave);
@@ -28,6 +30,7 @@ module.exports = app => {
   router.post('/FilterInfo',controller.user.FilterInfo);
   router.post('/showMyInfo',controller.user.showMyInfo);
   router.post('/getFollowList',controller.user.getFollowList);
+  router.post('/updateuserinfo',controller.user.updateuserinfo);
   router.post('/showFansandFollownum',controller.user.getfollownum);
   router.post('/getperson',controller.user.getperson);
 
@@ -53,4 +56,6 @@ module.exports = app => {
 
   router.post('/showforumComment',controller.forumcomment.showforumComment);
   router.post('/addforumComment',controller.forumcomment.addforumComment);
+  router.post('/showforumreployComment',controller.forumcomment.showforumreployComment);
+  router.post('/showforumreploydetail',controller.forumcomment.showforumreploydetail);
 };

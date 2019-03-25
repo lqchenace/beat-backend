@@ -1,16 +1,13 @@
 <!--pages/my/my.wxml-->
 <view>
   <view class="my-top">
-    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" mode='aspectFit'></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <image wx:if="{{imgurl==''}}" class="userinfo-avatar" background-size="cover" mode='aspectFit' src='{{headimg}}'></image>
+<image wx:else class="userinfo-avatar" background-size="cover" mode='aspectFill' src='{{publicurl}}{{headimg}}/{{imgurl[0]}}'></image>
+    <text class="userinfo-nickname">{{nickname}}</text>
     <view class="edite" bindtap='bindmyeditor'>
       <text class="blockclass">编辑资料</text>
       <image class='editorimg' src='../../images/icon/editor.png' mode='aspectFit'></image>
     </view>
-    <!-- <view class="edite product">
-      <text class="blockclass">未担保</text>
-      <image class='editorimg1' src='../../images/icon/product.png' mode='aspectFit'></image>
-    </view> -->
     <text class='sign-in'>签到</text>
 
     <view class='user-bottom'>
@@ -30,17 +27,6 @@
       <text class="user-middle1">|</text>
     </view>
   </view>
-  <!-- <view class="first-row">
-  <view class="user-row-style">
-    <view class="inrow-col else-border"><image class='user-mysave1' src='../../images/icon/myhome.png' mode='aspectFit'></image>个人主页</view>
-    <view class="inrow-col"><image class='user-mysave' src='../../images/icon/mysave.png' mode='aspectFit'></image>我的收藏</view>
-  </view>
-  <view class="user-row-style1">
-    <view class="inrow-col else-border"><image class='user-mysave2' src='../../images/icon/mytook.png' mode='aspectFit'></image>我的约拍</view>
-    <view class="inrow-col"><image class='user-mysave3' src='../../images/icon/myname.png' mode='aspectFit'></image>发送名片</view>
-  </view>
-</view> -->
-
   <view class='form-column' bindtap="bindmyhome">
     <image class='user-mysave5' src='../../images/icon/myhome.png' mode='aspectFit'></image>
     <span class="form-row">个人主页</span>
@@ -67,14 +53,9 @@
     <image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image>
   </view>
 
-  <!-- <view class='form-column'><image class='user-mysave5' src='../../images/icon/myhuifu.png' mode='aspectFit'></image><span class="form-row">我的评论/回复</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view> -->
-  <!-- <view class='epsicl'></view> -->
-
   <view class='form-column'>
     <image class='user-mysave5' src='../../images/icon/aboutwe.png' mode='aspectFit'></image>
     <span class="form-row">关于我们</span>
     <image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image>
   </view>
-
-  <!-- <view class='form-column'><image class='user-mysave5' src='../../images/icon/mytuichu.png' mode='aspectFit'></image><span class="form-row">退出当前账号</span><image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image></view> -->
 </view>

@@ -66,8 +66,6 @@ Page({
       if (res.result.length != 0) {
         let resArr = [];
         res.result.map((item, index) => {
-          if (item.parentid == '0')
-            len++;
           let itembeat = {};
           itembeat.fcid = item.fcid;
           itembeat.uid = item.uid;
@@ -86,27 +84,10 @@ Page({
           commentList: resArr,
           firstcommment: true
         });
-        console.log("3333333",that.data.commentList);
       } else {
         that.setData({ showList: false });
       }
-      let arr = [];
-      res.res.map((item, index) => {
-        let itembeat = {};
-        itembeat.fcid = item.fcid;
-        itembeat.uid = item.uid;
-        itembeat.uid2 = item.uid2;
-        itembeat.headimg = item.User.headimg;
-        itembeat.headimgUrl = item.User.headimgUrl;
-        itembeat.name = item.User.nickname;
-        itembeat.comment = item.comment;
-        itembeat.parentid = item.parentid;
-        itembeat.comtime = item.comtime;
-        arr.push(itembeat);
-      })
-      that.setData({
-        commentList1: arr,
-      });
+
     });
   },
   // 添加评论

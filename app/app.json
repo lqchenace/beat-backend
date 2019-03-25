@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/forum/forum",
     "pages/index/index",
+    "pages/my/myEditor/myEditor",
+    "pages/forum/forum",
     "pages/filterInfo/StyleandWorks/StyleandWorks",
     "pages/filterInfo/filterInfo",
     "pages/my/my",
@@ -13,7 +14,6 @@
     "pages/announce/announce",
     "pages/Beatdetails/Beatdetails",
     "pages/announce/Releasearound/ReleaseAround",
-    "pages/my/myEditor/myEditor",
     "pages/my/beatAndSave/beatAndSave",
     "pages/authorize/authorize",
     "pages/wantBeathim/addSuccess/addSuccess",
@@ -22,8 +22,14 @@
     "pages/newsCenter/requiredetail/requiredetail",
     "pages/newsCenter/myreployandcomment/myreployandcoment",
     "pages/forum/post/post",
-    "pages/forum/fornumdetail/fornumdetail"
+    "pages/forum/fornumdetail/fornumdetail",
+    "pages/forum/reployme/reployme"
   ],
+    "permission": {
+      "scope.userLocation": {
+        "desc": "你的位置信息可以让更多的看到你的约拍信息"
+      }
+    },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fe838d",
@@ -46,7 +52,7 @@
         "pagePath": "pages/forum/forum",
         "iconPath": "images/icon/concern.png",
         "selectedIconPath": "images/icon/concern_active.png",
-        "text": "论坛"
+        "text": "社区"
       },
       {
         "pagePath": "pages/announce/announce",

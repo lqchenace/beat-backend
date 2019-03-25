@@ -7,20 +7,6 @@ const sort=["约摄影师","约模特","作品相册"];
 const tcity = require("../../../utils/city.js");
 const sex = ['男', '女'];
  
-const style = ["cosplay", "情绪", "校园", "森系", "清新"];
-const list = [{
-  headimg: "../../../images/test/headimg.jpg",
-  name: "溜影",
-  role: "摄影师",
-  city: "深圳市",
-  behavior: "约模特",
-  cost: "希望互免",
-  command: "发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../../images/test/test1.jpg', '../../../images/test/test2.jpg', '../../../images/test/test3.jpg'],
-  sortlabel: ["cosplay", "情绪", "校园", "森系", "清新"],
-  receiveBeat: 4,
-  readcount: 15
-}];
 Page({
 
   /**

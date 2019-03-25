@@ -33,6 +33,7 @@ async index() {
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'beat'));
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'project'));
             if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'forum'));
+            if(! fs.existsSync())fs.mkdirSync(path.join(this.config.baseDir,'app/public/'+uid,'img'));
             data=res;
         }
     }
@@ -44,6 +45,21 @@ async index() {
         data:data
     };
 }
+// 修改个人信息
+async updateuserinfo(){
+    let ctx = this.ctx;
+    let {data}=ctx.request.body;
+    console.log("ccccccc",data);
+let info =await ctx.model.User.update(data.data, {
+                where:{uid: data.uid}
+            })
+        console.log("bbbbbbb",info);
+
+    ctx.body = {
+        code:200,
+        data:info
+    }; 
+} 
 // 查询个人信息 主页
 async showMyInfo(){
     const ctx = this.ctx;
@@ -51,7 +67,7 @@ async showMyInfo(){
     let info=await ctx.model.User.findAll
     ({where:data}).then(us =>us.map(u => u.toJSON()));
     info.map((item)=>{
-        if(item.uid!='e3fe6790469ed968')
+        if(item.headimg.indexOf("https")==-1)
         item.imgurl=fs.readdirSync('app/'+item.headimg);
         else
         item.imgurl=''
@@ -108,7 +124,7 @@ async getFollowList(){
         include: [{model: ctx.app.model.User}]
     }).then(us =>us.map(u => u.toJSON()));
     list.map((item)=>{
-        if(item.User.uid!='e3fe6790469ed968')
+        if(item.headimg.indexOf("https")==-1)
         item.User.imgurl=fs.readdirSync('app/'+item.User.headimg);
         else
         item.User.imgurl=''
