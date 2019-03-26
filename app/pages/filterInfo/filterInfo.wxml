@@ -25,7 +25,7 @@
             <image src='../../images/icon/local.png' mode='aspectFit' class='localimg'></image>
             <span>{{item.city}}</span>
           </view>
-          <span>约拍数：{{item.receiveBeat}}</span>
+          <!-- <span>约拍数：{{item.receiveBeat}}</span> -->
         </view>
       </view>
     </view>

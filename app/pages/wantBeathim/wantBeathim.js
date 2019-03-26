@@ -43,14 +43,27 @@ Page({
   // 提交约拍信息
   commitbeatinfo:function(){
     let that = this;
-    let data = { uid: this.data.uid, bid: this.data.bid, require: this.data.commentInput};
-    console.log(data);
-    api.addSave('http://127.0.0.1:7001/addBeat', data).then(res => {
-      if (res == 1) {
-        wx:wx.navigateTo({
-          url: './addSuccess/addSuccess',
-        })
-
+    wx.showModal({
+      title: '温馨提示',
+      content: '发送约拍请求消耗2个约豆，确定发送吗？',
+      success: function (res) {
+        if (res.cancel) {
+          wx.showToast({
+            title: '您已经取消约拍',
+            icon: 'none',
+            duration: 1000
+          })
+        } else if (res.confirm) {
+          let data = { uid: that.data.uid, bid: that.data.bid, require: that.data.commentInput };
+          console.log(data);
+          api.addSave('http://127.0.0.1:7001/addmyBeat', data).then(res => {
+            if (res == 1) {
+              wx: wx.navigateTo({
+                url: './addSuccess/addSuccess',
+              })
+            }
+          })
+        }
       }
     })
   },

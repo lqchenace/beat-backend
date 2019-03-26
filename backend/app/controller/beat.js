@@ -16,11 +16,20 @@ async ShowTheStyle(){
     };
 }
 // 提交我的约拍请求
-async addBeat(){
+async addmyBeat(){
     let ctx = this.ctx;
     let {data}=ctx.request.body;
+    let res='';
+    console.log("00000",data);
+    let user=await ctx.model.User.findOne({where:{uid:data.uid}}).then(us =>us.toJSON());
+    console.log("1111111",user);
+    let money=user.money-2;
+    let info =await ctx.model.User.update({money:money}, {
+        where:{uid: data.uid}
+    })
     let aid=random.getRandomString(8);
-    let res=await ctx.model.Arrianbeat.create({
+    if(info[0]==1)
+    res=await ctx.model.Arrianbeat.create({
         aid:aid,
         uid:data.uid,
         bid:data.bid,

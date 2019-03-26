@@ -13,7 +13,7 @@
     <view class='user-bottom'>
       <view class='user-col'>
         <view>{{money}}</view>
-        <view>余额</view>
+        <view>约豆</view>
       </view>
       <view class='user-col' data-sort="follow" bindtap='bindfollow'>
         <view>{{follow}}</view>

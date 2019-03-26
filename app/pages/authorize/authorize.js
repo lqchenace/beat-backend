@@ -48,7 +48,8 @@ Page({
                     data:dataform,
                     dataType: 'json',
                     success: res => {
-                      wx.setStorageSync('openid', res.data.data.uid);
+                      console.log("fffff",res);
+                      wx.setStorageSync('openid', res.data.data[0].uid);
                       wx.navigateBack();
                     }
                   })

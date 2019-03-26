@@ -44,7 +44,7 @@ module.exports = app => {
   router.post('/showrequirebeatList',controller.arrianbeat.showrequirebeatList);
   router.post('/showrequiredetail',controller.arrianbeat.showrequiredetail);
   router.post('/showGroom',controller.beat.showGroom);
-  router.post('/addBeat',controller.beat.addBeat);
+  router.post('/addmyBeat',controller.beat.addmyBeat);
   router.post('/getsortnum',controller.beat.getsortnum);
   router.post('/addBeat',controller.beat.addBeat);
   router.post('/addForum',controller.forum.addForum);
