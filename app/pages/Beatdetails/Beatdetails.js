@@ -167,6 +167,12 @@ Page({
       url: './Beatdetails?id=' + id + '&uid=' + u + '&logo=' + logo,
     })
   },
+  // 跳转投诉页面
+  gotocomplain:function(){
+    wx.navigateTo({
+      url: '../complain/complain?bid=' +bid,
+    })
+  },
   // 读取收藏信息
   showmysave:function(data){
     let that = this;

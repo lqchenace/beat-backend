@@ -9,7 +9,7 @@
       <span class="yuepai-code">{{item.role}}</span>
     </span>
     <image src='{{item.sex==1?"../../images/icon/boy.png":"../../images/icon/girl.png"}}' mode='aspectFit' class="sex-info"></image>
-    <span class="yuepai-local">
+    <span class="yuepai-local" bindtap="gotocomplain">
       <image src='../../images/icon/complain.png' mode='aspectFit' class='localimg'></image>
       <span class="localtext">投诉</span>
     </span>

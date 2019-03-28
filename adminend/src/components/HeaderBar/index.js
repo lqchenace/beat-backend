@@ -30,14 +30,18 @@ class HeaderBar extends React.Component {
                 screenfull.toggle()
                 }
             }
+            logout=()=>{
+                localStorage.clear();
+                this.props.history.push("/")
+            }
         render () {
             const {icon, visible, avatar} = this.state
                 const menu = (
                 <Menu className='menu'>
                     <Menu.ItemGroup title='用户中心' className='menu-group'>
-                    <Menu.Item>你好 - admin</Menu.Item>
+                    <Menu.Item>你好 - { localStorage.getItem("username")}</Menu.Item>
                     <Menu.Item>个人信息</Menu.Item>
-                    <Menu.Item><span onClick={this.logout}>退出登录</span></Menu.Item>
+                    <Menu.Item onClick={this.logout}><span>退出登录</span></Menu.Item>
                     </Menu.ItemGroup>
                 </Menu>
                 )

@@ -23,9 +23,12 @@
         <view>{{fans}}</view>
         <view>粉丝</view>
       </view>
-      <text class="user-middle">|</text>
-      <text class="user-middle1">|</text>
     </view>
+  </view>
+    <view class='form-column' bindtap="bindmycertification">
+    <image class='user-mysave5' src='../../images/icon/renzhneg.png' mode='aspectFit'></image>
+    <span class="form-row">实名认证</span>
+    <image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image>
   </view>
   <view class='form-column' bindtap="bindmyhome">
     <image class='user-mysave5' src='../../images/icon/myhome.png' mode='aspectFit'></image>

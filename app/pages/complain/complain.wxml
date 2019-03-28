@@ -1,0 +1,34 @@
+<!--pages/complain/complain.wxml-->
+    <view class='form-column' bindtap='opensort'>
+      <span class="form-row">{{style}}</span>
+      <!-- <span class="form-right">{{style}}</span>请选择投诉的原因-->
+      <image class='col-right' src='../../images/icon/right.png' mode='aspectFit'></image>
+    </view>
+<view class="beatcontain">
+      <input class='form-first-textarea' placeholder='请输入您的投诉内容...' placeholder-class="placeholder-class" value="{{commentInput}}"bindinput='listenerSearchInput'></input>
+</view> 
+<view class='comfirmpic'>证据截图：</view>
+    <view class="form-first-bottom">
+      <view class="add-container" wx:for="{{upimgarr}}" wx:key="unique">
+        <image class="selectclass1" src='{{item}}' mode='aspectFill'></image>
+      </view>
+      <view class="add-container" bindtap="upImgClick">
+        <image class="selectclass" src='../../images/icon/upload.png' mode='aspectFit'></image>
+      </view>
+    </view>
+     <button class="form-button" bindtap='announcebeat'>提交</button>
+
+<!-- 弹出的分类选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader"> 
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

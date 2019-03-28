@@ -1,8 +1,8 @@
 import React from 'react'
 import { randomNum, calculateWidth } from '../../utils/utils'
 import { withRouter } from 'react-router-dom'
-import PropTypes from "prop-types"  
-import { Form, Icon,  Input, Row, Col, message } from 'antd'
+import axios from 'axios';
+import { Form,Input, Row, Col, message } from 'antd'
 import PromptBox from '../../components/PromptBox'
 
 
@@ -23,6 +23,7 @@ loginSubmit = (e) => {
     this.setState({
         focusItem: -1
         })
+        let that=this;
         this.props.form.validateFields((err, values) => {
         if (!err) {
             // 表单登录时，若验证码长度小于4则不会验证，所以我们这里要手动验证一次，线上的未修复
@@ -35,34 +36,43 @@ loginSubmit = (e) => {
             })
             return
             }
-    
-            const users = this.props.appStore.users
-            // 检测用户名是否存在
-            const result = users.find(item => item.username === values.username)
-            if (!result) {
-            this.props.form.setFields({
-                username: {
-                value: values.username,
-                errors: [new Error('用户名不存在')]
-                }
-            })
-            return
-            } else {
-            //检测密码是否错误
-            if (result.password !== values.password) {
-                this.props.form.setFields({
-                password: {
-                    value: values.password,
-                    errors: [new Error('密码错误')]
-                }
+            // console.log("000000000000",values);
+            var api = 'http://127.0.0.1:7001';
+                axios.get(api+'/getadmin?adminid='+values.username)
+                .then(function (response) {
+                    // console.log(response);
+                    if (response.data.data==null) {
+                        that.props.form.setFields({
+                            username: {
+                            value: values.username,
+                            errors: [new Error('用户名不存在')]
+                            }
+                        })
+                        return
+                        } else {
+                        //检测密码是否错误
+                        if (response.data.data.password !== values.password) {
+                            that.props.form.setFields({
+                            password: {
+                                value: values.password,
+                                errors: [new Error('密码错误')]
+                            }
+                            })
+                            return
+                        }
+                        else{
+                            localStorage.setItem('username',values.username);
+                            localStorage.setItem('password',values.password);
+                            message.success('登录成功')
+                            that.props.history.push("/myhome") 
+                        }
+                        }
                 })
-                return
-            }
-            }
+                .catch(function (error) {
+                    console.log(error);
+                });
 
         }
-        this.props.history.push("/myhome") 
-        message.success('注册成功')
         })
     }   
     /**

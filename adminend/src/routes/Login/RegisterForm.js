@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, message } from 'antd'
+import axios from 'axios';
 import { calculateWidth } from '../../utils/utils'
 import PromptBox from '../../components/PromptBox'
 
@@ -13,11 +14,36 @@ class RegisterForm extends React.Component {
                 this.setState({
                 focusItem: -1
                 })
+                let that=this;
             this.props.form.validateFields((err, values) => {
                 if (!err) {
-                
+                    var api = 'http://127.0.0.1:7001';
+                    axios.get(api+'/getadmin?adminid='+values.registerUsername)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.data.data!=null) {
+                            that.props.form.setFields({
+                                registerUsername: {
+                                value: values.registerUsername,
+                                errors: [new Error('该用户名已经注册')]
+                                }
+                            })
+                            return
+                            } else {
+                                // var params=new URLSearchParams();
+                                // params.append('adminid',values.registerUsername);
+                                // params.append('password',values.registerPassword);
+                                axios.get(api+'/addadmin?adminid='+values.registerUsername+'&password='+values.registerPassword)
+                                .then(function (response) {
+                                    if (response.data.data!=null) {
+                                        that.props.switchShowBox('login')
+                                        message.success('注册成功')
+                                    }
+                                })
+                            }
+
+                    })                   
                 }
-                message.success('注册成功')
             })
         }
     gobackLogin = () => {

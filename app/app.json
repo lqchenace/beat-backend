@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/my/certification/certification",
+    "pages/my/my",
     "pages/index/index",
+    "pages/complain/complain",
     "pages/my/myEditor/myEditor",
     "pages/forum/forum",
     "pages/filterInfo/StyleandWorks/StyleandWorks",
     "pages/filterInfo/filterInfo",
-    "pages/my/my",
     "pages/my/myHome/myHome",
     "pages/my/myfollow/myfollow",
     "pages/newsCenter/newCenter",
@@ -25,11 +27,11 @@
     "pages/forum/fornumdetail/fornumdetail",
     "pages/forum/reployme/reployme"
   ],
-    "permission": {
-      "scope.userLocation": {
-        "desc": "你的位置信息可以让更多的看到你的约拍信息"
-      }
-    },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息可以让更多的看到你的约拍信息"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fe838d",

@@ -79,5 +79,11 @@ Page({
     wx.navigateTo({
       url: 'myHome/myHome?uid='+uid+'&fans='+this.data.fans+'&follow='+this.data.follow,
     })
+  },
+  bindmycertification:function(){
+    let uid = wx.getStorageSync('openid');
+    wx.navigateTo({
+      url: 'certification/certification?uid=' + uid
+    })
   }
 })

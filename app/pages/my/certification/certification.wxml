@@ -1,0 +1,64 @@
+<!--pages/my/certification/certification.wxml-->
+<view>
+  <view class='form-column'>
+    <span class="form-row">真实姓名</span>
+    <input class="form-right1" value='{{name}}' bindinput='listenername' />
+    <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+  </view>
+
+  <view class='form-column' bindtap='getlocal'>
+    <span class="form-row">身份证号</span>
+    <input class="form-right1" value='{{idcode}}' bindinput='listenername' />
+    <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+  </view>
+
+  <view class='form-column' bindtap='opensort'>
+    <span class="form-row">认证身份</span>
+    <span class="form-right">{{role}}</span>
+    <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
+  </view>
+
+  <view class='uploadimg'>
+    <view class='idfirst'>
+      <image class='idcard' src='../../../images/icon/idcard.png' mode='aspectFill'></image>
+      <view>上传身份证照片</view>
+    </view>
+    <view class='idsecond'>
+      <view class='conpicture'>
+        <image class='idcardpicture' src='{{pic1}}' mode='aspectFill'></image>
+      </view>
+      <view class='conpicture'>
+        <image class='idcardpicture' src='{{pic2}}' mode='aspectFit'></image>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='uploadimg'>
+    <view class='idfirst'>
+      <image class='idcard' src='../../../images/icon/owner.png' mode='aspectFill'></image>
+      <view>本人日常照片</view>
+    </view>
+    <view class='idsecond1'>
+      <!-- <view class='conpicture'> -->
+        <image class='ownerpicture' src='{{pic3}}' mode='widthFix'></image>
+      <!-- </view> -->
+    </view>
+  </view>
+  <button class="form-button" bindtap='gotosave'>提交申请</button>
+</view>
+
+<!-- 弹出的分类选择层 -->
+<view wx:if="{{conditionsort}}" class="citypicker">
+  <view class="picker-con">
+    <view class="cityheader">
+      <view bindtap="closesort" class="city-cancel">取消</view>
+      <view bindtap="getconfirmval" class="city-true">确定</view>
+    </view>
+    <picker-view indicator-style="width:30%;height: 40px;border-top:1px solid rgb(254, 131, 141);border-bottom:1px solid rgb(254, 131, 141);margin-left:120px" style="width: 100%; height: 130px;" value="{{value}}" bindchange="bindChangesort" class="citybody">
+      <picker-view-column>
+        <view wx:for="{{sort}}" wx:key="item" style="line-height: 40px;padding-left:20px;text-align:center;font-size:30rpx;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

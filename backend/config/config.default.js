@@ -27,12 +27,13 @@ config.security = {
     ignoreJSON: true,
   },
   // 白名单
-  domainWhiteList: [ 'http://localhost:8080' ],
+  domainWhiteList: [ 'http://localhost:3000/'],
 };
 
 // 允许规则
 config.cors = {
   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  origin:'*'
 };
   return config;
 };

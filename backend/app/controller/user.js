@@ -170,12 +170,39 @@ async FilterInfo(){
         data:filterresult
     };
 }
-async test() {
-    const _ctx=this.ctx;
+// 查找管理员账号是否存在
+async getadmin() {
+    let ctx=this.ctx;
     // 打印ajax.post data参数
-        console.log(_ctx.request.body);
-    _ctx.body = 'user';
+    let adminid = await ctx.query.adminid;
+    let admin=await ctx.model.Admin.findOne({where:{adminid:adminid}});
+    ctx.body ={
+        code:200,
+        data:admin
+    };
 }
+
+// 注册为管理员
+async addadmin() {
+    let ctx=this.ctx;
+    let data = await ctx.query;
+    var res=await ctx.model.Admin.create(data);
+    ctx.body ={
+        code:200,
+        data:res
+    };
+}
+    // 获取平台上的所有用户
+    async queryUser(){
+        let ctx=this.ctx;
+        let users=await ctx.model.User.findAll
+        ().then(us =>us.map(u => u.toJSON()));
+        ctx.body ={
+            code:200,
+            data:users
+        };
+    }
+
 }
 
 module.exports = UserController;

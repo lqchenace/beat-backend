@@ -5,9 +5,16 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  // const bodyParser = require('body-parser')
+
+  //   app.use(bodyParser.urlencoded({
+  //     extended: false
+  //   }))
   // router.get('/', controller.home.index);
   router.post('/user',controller.user.index);
-  router.get('/test',controller.user.test);
+  router.get('/getadmin',controller.user.getadmin)
+  router.get('/addadmin',controller.user.addadmin);
+  router.get('/queryUser',controller.user.queryUser);
   router.post('/showBeat',controller.beat.showBeat);
   router.get('/ShowTheStyle',controller.beat.ShowTheStyle);
   router.post('/api/uploads',controller.home.uploadImg);
