@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
-import {HashRouter,Route,Switch} from 'react-router-dom'
-import Login from './routes/Login/index'
+import {HashRouter , Route , Switch} from 'react-router-dom'
+import { createBrowserHistory } from "history";
 
+import Login from './routes/Login/index';
+import Index from './routes/Index/index';
+import PrivateRoute from './routes/PrivateRoute/index';
 import './App.css';
-
+import './assets/font/iconfont.css'
 class App extends Component {
 
 
   render() {
     return (
-      <HashRouter>
-        <Switch>
-        <Route path='/login' component={Login}/>
+      <HashRouter  history={createBrowserHistory()}>
+          <Switch>
+                <Route exact path="/" component={Login}/>
+                <Route path="/myhome" component={Index}/>
+                <PrivateRoute path="/" component={Index}/>
         </Switch>
-      </HashRouter>
+      </HashRouter >
+
     );
   }
 }

@@ -1,4 +1,50 @@
 
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+/*HeaderBar*/
+.trigger{
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+}
+.trigger:hover{
+  color: #1890ff;
+}
+.header-ul{
+  display: flex;
+  width: 150px;
+  list-style-type:none;
+}
+.header-ul li {
+  flex-grow: 1;
   text-align: center;
+}
+.header-ul>li img{
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+}
+.menu{
+  /* width:100px; */
+  line-height: 2em;
+  padding: 0 10px;
+}
+.menu-group li{
+  /* padding: 0 24px; */
+  line-height: 2em;
+}
+.ant-dropdown-menu-item-group-list{
+  list-style-type:none;
+}
+
+/*美化webkit内核滚动条*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+background-color: #777;
 }

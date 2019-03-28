@@ -1,16 +1,39 @@
 import React from 'react'
 import BGParticle from '../../utils/BGParticle'
-class Login extends React.Component {
+import './style.css'
+import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
+import 'animate.css'
 
+class Login extends React.Component {
+    state = {
+        showBox: 'login',   //展示当前表单
+}
+
+  //切换showbox
+    switchShowBox = (box) => {
+        this.setState({
+        showBox: box
+        })
+    }
     componentDidMount () {
         this.particle = new BGParticle('backgroundBox')
         this.particle.init()
         }
     render(){
+        const {showBox} = this.state
         return(
-
-            <div id='backgroundBox' style={styles.backgroundBox}/>
-
+            <div id='login-page'>
+                <div id='backgroundBox' style={styles.backgroundBox}/>
+                <div className='container'>
+                    <LoginForm
+                    className={showBox === 'login' ? 'box showBox' : 'box hiddenBox'}
+                    switchShowBox={this.switchShowBox}/>
+                    <RegisterForm
+                    className={showBox === 'register' ? 'box showBox' : 'box hiddenBox'}
+                    switchShowBox={this.switchShowBox}/>
+                </div>
+            </div>
         )
     }
 }
