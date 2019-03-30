@@ -1,4 +1,4 @@
-/* pages/wantBeathim/addSuccess/addSuccess.wxss */
+/* pages/my/certification/verify/verify.wxss */
 .scontain{
     width:100%;
     height:280rpx;
@@ -6,13 +6,13 @@
     margin-top:130rpx;
 }
 .col-right{
-    width:160rpx;
-    height:160rpx;
+    width:260rpx;
+    height:200rpx;
     position: absolute;
     left:50%;
     top:50%;
-    margin-top:-80rpx;
-    margin-left:-80rpx;
+    margin-top:-130rpx;
+    margin-left:-130rpx;
 }
 .successtext{
   display: inline-block;
@@ -24,16 +24,15 @@
   font-family: PingFang-SC;
 }
 .successtext1{
-display:inline-block;
-width:70%;
-text-align:center;
-color:rgb(161, 161, 161);
-font-size:29rpx;
-margin-top:10rpx;
-letter-spacing:2rpx;
-margin-left:119rpx;
-
+  display: inline-block;
+  width:100%;
+  text-align: center;
+  color:rgb(161, 161, 161);
+  font-size: 29rpx;
+  margin-top:10rpx;
+  letter-spacing: 2rpx;
 }
+
 .goback{
   display: inline-block;
   width:100%;

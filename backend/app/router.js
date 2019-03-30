@@ -5,22 +5,26 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  // const bodyParser = require('body-parser')
-
-  //   app.use(bodyParser.urlencoded({
-  //     extended: false
-  //   }))
-  // router.get('/', controller.home.index);
   router.post('/user',controller.user.index);
   router.get('/getadmin',controller.user.getadmin)
   router.get('/addadmin',controller.user.addadmin);
   router.get('/queryUser',controller.user.queryUser);
+  router.get('/queryBlacklistUser',controller.user.queryBlacklistUser);
+  router.get('/createblackUser',controller.user.createblackUser);
+
   router.post('/showBeat',controller.beat.showBeat);
   router.get('/ShowTheStyle',controller.beat.ShowTheStyle);
   router.post('/api/uploads',controller.home.uploadImg);
   router.post('/api/uploadheadImg',controller.home.uploadheadImg);
+  router.post('/api/uploadidImg',controller.home.uploadidImg);
 
   router.post('/showBeatDetails',controller.beat.showBeatDetails);
+
+  router.post('/addCertification',controller.certification.addCertification);
+  router.post('/queryverify',controller.certification.queryverify);
+  router.get('/queryverifylist',controller.certification.queryverifylist);
+  router.get('/queryverifydetail',controller.certification.queryverifydetail);
+  router.get('/confirmverify',controller.certification.confirmverify);
 
   router.post('/showmySave',controller.save.ShowmySave);
   router.post('/addSave',controller.save.addSave);
@@ -40,6 +44,7 @@ module.exports = app => {
   router.post('/updateuserinfo',controller.user.updateuserinfo);
   router.post('/showFansandFollownum',controller.user.getfollownum);
   router.post('/getperson',controller.user.getperson);
+  router.get('/deleteUser',controller.user.deleteUser);
 
   router.post('/getProductlist',controller.beat.getProductlist);
   router.post('/showBeatComment',controller.beatcomment.showBeatComment);

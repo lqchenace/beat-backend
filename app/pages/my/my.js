@@ -22,7 +22,7 @@ Page({
     let uid = wx.getStorageSync('openid');
     let that=this
     api.addSave('http://127.0.0.1:7001/showFansandFollownum', { uid:uid }).then(res => {
-      console.log(res);
+      // console.log(res);
       that.setData({ follow: res.fnum[0].num, fans: res.fans[0].fans, money: res.money});
     })
  
@@ -42,17 +42,13 @@ Page({
       let uid = wx.getStorageSync('openid');
       // 获取个人信息
       api.addSave('http://127.0.0.1:7001/showMyInfo', { uid: uid }).then(res => {
-        let resArr = []
-        console.log("0000000", res);
+        // console.log("0000000", res);
         that.setData({
           nickname: res.info[0].nickname,
           headimg: res.info[0].headimg,
           imgurl: res.info[0].imgurl,
         });
       })
-         this.setData({
-            userInfo: userInfo,
-          })
     } 
   },
   // 编辑资料
@@ -82,8 +78,22 @@ Page({
   },
   bindmycertification:function(){
     let uid = wx.getStorageSync('openid');
-    wx.navigateTo({
-      url: 'certification/certification?uid=' + uid
+    api.addSave('http://127.0.0.1:7001/queryverify', { uid: uid }).then(res => {
+      console.log("44",res)
+      if(res==null)
+        wx.navigateTo({
+          url: 'certification/certification?uid=' + uid
+        })
+        else{
+          if(res.status=='已审核')
+            wx.navigateTo({
+              url: 'certification/verified/verified?idcode='+res.idcode
+            })
+          else
+            wx.navigateTo({
+              url: 'certification/verify/verify'
+            })
+        }
     })
   }
 })

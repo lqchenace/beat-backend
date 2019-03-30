@@ -1,4 +1,5 @@
 // pages/announce/announce.js
+const api = require("../../utils/api.js");
 Page({
 
   /**
@@ -15,18 +16,29 @@ Page({
   },
 
   containertap:function(e){
-    var sort,sort1,sort2;
-    if (e.currentTarget.dataset.sort=='约拍'){
-      sort ='你想约拍模特还是摄影师？';
-      sort1='约摄影师';
-      sort2='约模特';
-    }else{
-      sort = '选择你在作品中的身份';
-      sort1='我是摄影师';
-      sort2='我是模特';
-    }
-    wx.navigateTo({
-      url: '../announce/Releasearound/ReleaseAround?sort=' + sort + '&sort1=' + sort1 + '&sort2=' + sort2
+    api.getBlack().then(res => {
+     console.log(res);
+      if (res[0].black == 1){
+       wx.showToast({
+         title: '您好，您目前没有权限执行此操作',
+         icon: 'none',
+         duration: 2000
+       })
+     }else{
+       var sort, sort1, sort2;
+       if (e.currentTarget.dataset.sort == '约拍') {
+         sort = '你想约拍模特还是摄影师？';
+         sort1 = '约摄影师';
+         sort2 = '约模特';
+       } else {
+         sort = '选择你在作品中的身份';
+         sort1 = '我是摄影师';
+         sort2 = '我是模特';
+       }
+       wx.navigateTo({
+         url: '../announce/Releasearound/ReleaseAround?sort=' + sort + '&sort1=' + sort1 + '&sort2=' + sort2
+       })
+     }
     })
   },
   /**

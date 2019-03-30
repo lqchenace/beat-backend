@@ -25,7 +25,8 @@ async index() {
         sex:gender,
         headimg:avatarUrl,
         openid:openid,
-        money:1000
+        money:100,
+        black:0
         })
         if(res){
             // mkdirSync()用来生成文件夹
@@ -50,7 +51,7 @@ async updateuserinfo(){
     let ctx = this.ctx;
     let {data}=ctx.request.body;
     console.log("ccccccc",data);
-let info =await ctx.model.User.update(data.data, {
+    let info =await ctx.model.User.update(data.data, {
                 where:{uid: data.uid}
             })
         console.log("bbbbbbb",info);
@@ -195,8 +196,70 @@ async addadmin() {
     // 获取平台上的所有用户
     async queryUser(){
         let ctx=this.ctx;
+        let data = await ctx.query;
         let users=await ctx.model.User.findAll
-        ().then(us =>us.map(u => u.toJSON()));
+        ({where:data}).then(us =>us.map(u => u.toJSON()));
+        ctx.body ={
+            code:200,
+            data:users
+        };
+    }
+    async queryBlacklistUser(){
+        let ctx=this.ctx;
+        let data = await ctx.query;
+        let users=await ctx.model.Blacklist.findAll
+            ({where:data,
+                include: [{model: ctx.app.model.User}]
+            }).then(us =>us.map(u => u.toJSON()));
+        ctx.body ={
+            code:200,
+            data:users
+        };
+    }
+
+    async createblackUser(){
+        let ctx=this.ctx;
+        let data = await ctx.query;
+        data.blid=random.getRandomString(8);
+        var res=await ctx.model.Blacklist.create(data);
+        if(res!=null){
+            let user =await ctx.model.User.update(
+                {black:1}, {
+                where:{uid: data.uid}
+            })
+            if(user==1)
+            res=1;
+            else
+            res=0
+        }
+        ctx.body ={
+            code:200,
+            data:res
+        };
+    }
+
+    // 删除用户
+
+    async deleteUser(){
+        let ctx=this.ctx;
+        let data = await ctx.query;
+        let users;
+        // console.log("data",data);
+        if(!data.blid)
+        users=await ctx.model.User.destroy({where:data});
+        else{
+        users=await ctx.model.Blacklist.destroy({where:data});
+        if(users==1){
+            let user =await ctx.model.User.update(
+                {black:0}, {
+                where:{uid: data.uid}
+            })
+            if(user==1)
+            users=1;
+            else
+            users=0
+        }
+        }
         ctx.body ={
             code:200,
             data:users

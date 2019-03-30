@@ -20,9 +20,7 @@ async addmyBeat(){
     let ctx = this.ctx;
     let {data}=ctx.request.body;
     let res='';
-    console.log("00000",data);
     let user=await ctx.model.User.findOne({where:{uid:data.uid}}).then(us =>us.toJSON());
-    console.log("1111111",user);
     let money=user.money-2;
     let info =await ctx.model.User.update({money:money}, {
         where:{uid: data.uid}

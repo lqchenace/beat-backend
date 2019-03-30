@@ -43,6 +43,29 @@ const api = {
       })
     })
   },
+
+  // 获取用户信息
+  getBlack: function () {
+    let uid = wx.getStorageSync('openid');
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: 'http://127.0.0.1:7001/queryUser?uid='+uid,
+        header: {
+          'content-type': 'application/json'
+        },
+        dataType: 'json',
+        success: res => {
+          if (res.data.code == 200) {
+            let data = res.data.data;
+            resolve(data);
+          } else {
+            reject();
+          }
+
+        }
+      })
+    })
+  },
   //获取约拍详情
   getArranceBeatDetails: function (data) {
     return new Promise((resolve, reject) => {

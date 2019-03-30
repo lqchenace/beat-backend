@@ -104,10 +104,21 @@ Page({
   },
   // 点击发送评论
   confirmtap: function () {
-    let comment = this.data.commentInput;
-    let time = util.formatTime(new Date());
-    let data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: '0', uid2: '0' };
-    this.addComment(data);
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        let comment = this.data.commentInput;
+        let time = util.formatTime(new Date());
+        let data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: '0', uid2: '0' };
+        this.addComment(data);
+      }
+    })
+
   },
   // 监听评论的输入
   listenerSearchInput: function (e) {
@@ -126,14 +137,24 @@ Page({
   },
   // 发送二级评论
   confirmsecondtap: function () {
-    let comment = this.data.commentInput;
-    let time = util.formatTime(new Date());
-    let data = {};
-    if (this.data.conuid2)
-      data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: this.data.uid2 };
-    else
-      data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: '0' };
-    this.addComment(data);
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        let comment = this.data.commentInput;
+        let time = util.formatTime(new Date());
+        let data = {};
+        if (this.data.conuid2)
+          data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: this.data.uid2 };
+        else
+          data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: '0' };
+        this.addComment(data);
+      }
+      })
   },
   // 评论二级评论
   reployoneperson: function (e) {

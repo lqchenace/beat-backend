@@ -1,25 +1,24 @@
-// pages/wantBeathim/addSuccess/addSuccess.js
+// pages/my/certification/verify/verify.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    content:'您的约拍请求发送成功，等待对方联系你~'
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.con)
-    this.setData({content:options.con});
+
   },
   //  返回首页
- gotoindex:function() {
-   wx.switchTab({
-     url: '../../index/index',
-   })
+  gotoindex: function () {
+    wx.switchTab({
+      url: '../../../index/index',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

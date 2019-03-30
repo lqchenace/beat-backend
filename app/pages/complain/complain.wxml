@@ -11,12 +11,12 @@
     <view class="form-first-bottom">
       <view class="add-container" wx:for="{{upimgarr}}" wx:key="unique">
         <image class="selectclass1" src='{{item}}' mode='aspectFill'></image>
-      </view>
+      </view> 
       <view class="add-container" bindtap="upImgClick">
         <image class="selectclass" src='../../images/icon/upload.png' mode='aspectFit'></image>
       </view>
     </view>
-     <button class="form-button" bindtap='announcebeat'>提交</button>
+     <button class="form-button" bindtap='addcomplain'>提交</button>
 
 <!-- 弹出的分类选择层 -->
 <view wx:if="{{conditionsort}}" class="citypicker">

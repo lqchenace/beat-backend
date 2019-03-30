@@ -1,0 +1,9 @@
+<!--pages/my/certification/verify/verify.wxml-->
+<view class="scontain">
+<image class='col-right' src='../../../../images/icon/kaohe.png' mode='aspectFill'></image>
+</view>
+<text class='successtext'>认证申请成功！</text>
+<text class='successtext1'>您的认证请求发送成功，等待管理员审核您的信息~</text>
+<text class='goback' bindtap='gotoindex'>
+<text class='gobackbottom'>返回首页</text>
+</text>

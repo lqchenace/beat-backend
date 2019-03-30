@@ -1,0 +1,15 @@
+<!--pages/my/certification/verified/verified.wxml-->
+<view>
+  <view class="my-top">
+    <view class='card'></view>
+  </view>
+  <view class="userinfo-avatar">
+    <image wx:if="{{imgurl==''}}" class="user" background-size="cover" mode='aspectFit' src='{{headimg}}'></image>
+    <image wx:else class="user" background-size="cover" mode='aspectFill' src='{{publicurl}}{{headimg}}/{{imgurl[0]}}'></image>
+  </view>
+
+    <image class="verified" background-size="cover" mode='aspectFill' src='../../../../images/icon/verified.png'></image>
+    <text class="userinfo-nickname">{{nickname}}</text>
+    <image class="verify" background-size="cover" mode='aspectFit' src='../../../../images/icon/verfiy.png'></image>
+    <text class="yinidcode">{{idcode}}</text>
+</view>

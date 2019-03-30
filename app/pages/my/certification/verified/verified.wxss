@@ -1,0 +1,62 @@
+/* pages/my/certification/verified/verified.wxss */
+.my-top{
+  width:100%;
+  height:350rpx;
+  position: relative;
+  background-image: url(http://127.0.0.1:7001/public/img/bgcimages/mybgc.jpg);
+  background-size:contain;
+}
+.card{
+  width: 88%;
+  height: 350rpx;
+  border-radius: 20rpx;
+  box-shadow: 10rpx 10rpx 5rpx #888888;
+  background-color: #fff;
+  position: absolute;
+  top:150rpx;
+  left:40rpx;
+}
+.userinfo-avatar {
+width:160rpx;
+height:160rpx;
+border-radius:50%;
+position:absolute;
+top:76rpx;
+left:284rpx;
+overflow: hidden;
+border: 8rpx solid #fff;
+}
+.user{
+  width: 100%;
+  height:100%;
+}
+.verified{
+width:160rpx;
+height:160rpx;
+border-radius:50%;
+position:absolute;
+top:170rpx;
+right:70rpx;
+}
+.userinfo-nickname{
+  font-size: 45rpx;
+  font-weight: 700;
+  color: rgb(61, 61, 61);
+  position: absolute;
+  top:260rpx;
+  left:280rpx;
+}
+.verify{
+width:138rpx;
+height:36rpx;
+position:absolute;
+top:340rpx;
+left:300rpx;
+}
+.yinidcode{
+font-size: 32rpx;
+color:rgb(174, 174, 174);
+position:absolute;
+top:410rpx;
+left:240rpx;
+}

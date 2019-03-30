@@ -29,7 +29,7 @@ class Index extends React.Component {
                         collapsible
                         collapsed={this.state.collapsed}
                         >
-                        <div style={{height: '100vh',overflowY:'scroll'}}>
+                        <div style={{height: '100vh'}}>
                             <div className="logo" />
                             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
                             selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>

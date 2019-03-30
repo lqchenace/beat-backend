@@ -19,7 +19,7 @@
     <view>{{userInfo.age==null?0:userInfo.age}}岁</view>
   </view>
   <!-- 编辑 -->
-  <view class='home-editor' bindtap='bindmyeditor'>
+  <view class='home-editor' bindtap='bindmyeditor' wx:if="{{him}}">
     <text class="editor-text">编辑</text>
   </view>
 

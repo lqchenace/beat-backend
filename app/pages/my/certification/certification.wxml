@@ -6,9 +6,9 @@
     <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
   </view>
 
-  <view class='form-column' bindtap='getlocal'>
+  <view class='form-column'>
     <span class="form-row">身份证号</span>
-    <input class="form-right1" value='{{idcode}}' bindinput='listenername' />
+    <input class="form-right1" value='{{idcode}}' bindinput='listeneridcode' bindblur='vercification' />
     <image class='col-right' src='../../../images/icon/right.png' mode='aspectFit'></image>
   </view>
 
@@ -23,11 +23,11 @@
       <image class='idcard' src='../../../images/icon/idcard.png' mode='aspectFill'></image>
       <view>上传身份证照片</view>
     </view>
-    <view class='idsecond'>
+    <view class='idsecond' catchtap='uploadpic1'>
       <view class='conpicture'>
         <image class='idcardpicture' src='{{pic1}}' mode='aspectFill'></image>
       </view>
-      <view class='conpicture'>
+      <view class='conpicture' catchtap='uploadpic2'>
         <image class='idcardpicture' src='{{pic2}}' mode='aspectFit'></image>
       </view>
     </view>
@@ -39,13 +39,11 @@
       <image class='idcard' src='../../../images/icon/owner.png' mode='aspectFill'></image>
       <view>本人日常照片</view>
     </view>
-    <view class='idsecond1'>
-      <!-- <view class='conpicture'> -->
+    <view class='idsecond1' bindtap='uploadpic3'>
         <image class='ownerpicture' src='{{pic3}}' mode='widthFix'></image>
-      <!-- </view> -->
     </view>
   </view>
-  <button class="form-button" bindtap='gotosave'>提交申请</button>
+  <button class="form-button" bindtap='gotocertification'>提交申请</button>
 </view>
 
 <!-- 弹出的分类选择层 -->

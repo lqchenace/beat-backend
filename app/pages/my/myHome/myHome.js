@@ -15,17 +15,20 @@ Page({
     publicurl: util.pictureurl,
     beatnum:'',
     theResult:true,
-    theResult1: true
+    theResult1: true,
+    him:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.name)
+    if(options.name){
       wx.setNavigationBarTitle({
         title: options.name+'的主页'
       })
+      this.setData({him:false})
+    }
       else{
       wx.setNavigationBarTitle({
         title: '我的主页'

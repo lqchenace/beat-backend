@@ -91,9 +91,19 @@ Page({
   },
   // 发帖
   postessay:function(){
-  wx.navigateTo({
-    url: './post/post',
-  })
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        wx.navigateTo({
+          url: './post/post',
+        })
+      }
+    })
   },
   // 实时监听输入框输入的内容
   searchInputAction:function(e){

@@ -10,6 +10,7 @@
     "customize-cra": "^0.2.12",
     "gsap": "^2.1.2",
     "history": "^4.9.0",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-app-rewired": "^2.1.1",

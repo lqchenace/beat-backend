@@ -31,11 +31,13 @@ background-color: rgb(246, 246, 248);
   /* color:rgb(191, 191, 191); */
 }
 .form-first-bottom{
-  padding-bottom:40rpx;
-  width:100%;
-  display:flex;
-  flex-wrap:wrap;
-  background-color: #fff;
+padding-bottom:40rpx;
+width:calc(100% - 30rpx);
+display:flex;
+flex-wrap:wrap;
+background-color:#fff;
+padding-left:20rpx;
+padding-right:20rpx;
 }
 .add-container{
   width:calc(34% - 18rpx);

@@ -5,6 +5,7 @@ const api = require("../../utils/api.js");
 const util = require("../../utils/util.js");
 var uid='';
 var bid='';
+let person='';
 Page({
 
   /**
@@ -41,7 +42,7 @@ Page({
    */
   onLoad: function (options) {
     if(options.id&&options.logo){
-      console.log("rrrrrrrrr",options.id);
+      // console.log("rrrrrrrrr",options.id);
       let data = { bid: options.id, uid: options.uid };
       if(options.logo=='作品相册'){
         this.setData({ confirmshow: false, logo: options.logo});
@@ -57,7 +58,7 @@ Page({
         this.getfullnum({ bid: options.id });
       }
       if (options.bcid) {
-        console.log("rrfsfsfrr");
+        // console.log("rrfsfsfrr");
         let data = { bid: options.id };
         this.getCommentList(data);
         this.setData({ con_discuss: true,
@@ -72,7 +73,7 @@ Page({
     }
     uid = options.uid;
     bid = options.bid||options.id;
-    console.log("345",options,bid);
+    // console.log("345",options,bid);
   if(options.bid){
     this.setData({ logo: '约拍' });
     //显示约拍详情
@@ -129,6 +130,7 @@ Page({
           // 显示推荐约拍
           that.getGroomList({ sort: 'product', style: that.data.groom, uid: item.uid });
       }
+        person = item.uid;
         resArr.push(itembeat);
       })
       that.setData({
@@ -170,7 +172,7 @@ Page({
   // 跳转投诉页面
   gotocomplain:function(){
     wx.navigateTo({
-      url: '../complain/complain?bid=' +bid,
+      url: '../complain/complain?bid=' +bid+'&uid2='+person,
     })
   },
   // 读取收藏信息
@@ -218,9 +220,19 @@ Page({
   },
   // 跳转约拍界面
   beathim:function(){
-   wx.navigateTo({
-     url: '../wantBeathim/wantBeathim?bid='+bid,
-   })
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        wx.navigateTo({
+          url: '../wantBeathim/wantBeathim?bid=' + bid,
+        })
+      }
+      })
   },
   // 获取约拍他的列表
   getArrianList(data){
@@ -290,7 +302,7 @@ Page({
   getCommentList:function(data){
     let that = this;
     api.addSave('http://127.0.0.1:7001/showBeatComment', data).then(res => {
-      console.log("pppppppppppppp",res);
+      // console.log("pppppppppppppp",res);
       let len=0;
       if (res.result.length!=0){
       let resArr = [];
@@ -337,6 +349,7 @@ Page({
   },
   // 添加评论
   addComment:function(data){
+
     let that = this;
     api.addSave('http://127.0.0.1:7001/addComment', data).then(res => {
      if(res==1){
@@ -367,21 +380,41 @@ Page({
   },
   // 点击发送评论
   confirmtap:function(){
-   let comment=this.data.commentInput;
-   let time = util.formatTime(new Date());
-   let data={bid:bid,uid:uid,comment:comment,comtime:time,parentid:'0',uid2:'0'};
-    this.addComment(data);
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        let comment = this.data.commentInput;
+        let time = util.formatTime(new Date());
+        let data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: '0', uid2: '0' };
+        this.addComment(data);
+      }
+      })
   },
   // 发送二级评论
   confirmsecondtap:function(){
-    let comment = this.data.commentInput;
-    let time = util.formatTime(new Date());
-    let data={};
-    if(this.data.conuid2)
-      data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: this.data.uid2};
-    else
-      data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2:'0' };
-    this.addComment(data);
+    api.getBlack().then(res => {
+      if (res[0].black == 1) {
+        wx.showToast({
+          title: '您好，您目前没有权限执行此操作',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        let comment = this.data.commentInput;
+        let time = util.formatTime(new Date());
+        let data = {};
+        if (this.data.conuid2)
+          data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: this.data.uid2 };
+        else
+          data = { bid: bid, uid: uid, comment: comment, comtime: time, parentid: this.data.parentid, uid2: '0' };
+        this.addComment(data);
+      }
+      })
   },
   // 评论一级评论
   groomuser:function(e){
