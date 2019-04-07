@@ -2,6 +2,7 @@
 var app = getApp();
 var secret ='8ae4e3c23025029539b97b2cbc92b0f4';
 var appid ='wx0ad0a0b467d8046c';
+const util = require("../../utils/util.js");
 var dataform={};
 Page({
 
@@ -27,6 +28,7 @@ Page({
     this.login();
   },
   login:function(){
+    // console.log("55555555555555");
     wx.login({
       success: function (res) {
         wx.request({
@@ -38,9 +40,10 @@ Page({
             'content-type': 'application/json'
           },
           success: function (res) {
+            // console.log("888888888888");
             dataform.openid=res.data.openid;
                 wx.request({
-                    url: 'http://127.0.0.1:7001/user',
+                  url: util.pictureurl +'user',
                     method: 'POST',
                     header: {
                       'content-type': 'application/json'
@@ -48,7 +51,7 @@ Page({
                     data:dataform,
                     dataType: 'json',
                     success: res => {
-                      console.log("fffff",res);
+                      // console.log("fffff",res);
                       wx.setStorageSync('openid', res.data.data[0].uid);
                       wx.navigateBack();
                     }

@@ -16,6 +16,12 @@ Page({
   },
 
   containertap:function(e){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
      console.log(res);
       if (res[0].black == 1){
@@ -40,6 +46,7 @@ Page({
        })
      }
     })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

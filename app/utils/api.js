@@ -1,9 +1,10 @@
+const util = require("./util.js");
 const api = {
     //获取约拍列表信息信息
     getArranceBeatInfo:function(data){
       return new Promise((resolve, reject) => {
         wx.request({
-          url: 'http://127.0.0.1:7001/showBeat',
+          url: util.pictureurl+'showBeat',
           header: {
             'content-type': 'application/json'
           },
@@ -47,9 +48,10 @@ const api = {
   // 获取用户信息
   getBlack: function () {
     let uid = wx.getStorageSync('openid');
+    // console.log("openid",uid);
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://127.0.0.1:7001/queryUser?uid='+uid,
+        url: util.pictureurl +'queryUser?uid='+uid,
         header: {
           'content-type': 'application/json'
         },
@@ -70,7 +72,7 @@ const api = {
   getArranceBeatDetails: function (data) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://127.0.0.1:7001/showBeatDetails',
+        url: util.pictureurl +'showBeatDetails',
         header: {
           'content-type': 'application/json'
         },
@@ -96,7 +98,7 @@ const api = {
   getMySave: function (data) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://127.0.0.1:7001/showmySave',
+        url: util.pictureurl +'showmySave',
         header: {
           'content-type': 'application/json'
         },

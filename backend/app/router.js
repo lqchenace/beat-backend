@@ -37,7 +37,7 @@ module.exports = app => {
 
   router.post('/TheSaveShow',controller.save.TheSaveShow);
   router.post('/MyBeatList',controller.beat.MyBeatList);
-
+  
   router.post('/FilterInfo',controller.user.FilterInfo);
   router.post('/showMyInfo',controller.user.showMyInfo);
   router.post('/getFollowList',controller.user.getFollowList);
@@ -45,16 +45,18 @@ module.exports = app => {
   router.post('/showFansandFollownum',controller.user.getfollownum);
   router.post('/getperson',controller.user.getperson);
   router.get('/deleteUser',controller.user.deleteUser);
-
+  
   router.post('/getProductlist',controller.beat.getProductlist);
   router.post('/showBeatComment',controller.beatcomment.showBeatComment);
   router.post('/addComment',controller.beatcomment.addComment);
   router.post('/showreployComment',controller.beatcomment.showreployComment);
   router.post('/showreploydetail',controller.beatcomment.showreploydetail);
-
+  
   router.post('/showArrianbeatList',controller.arrianbeat.showArrianbeatList);
   router.post('/showrequirebeatList',controller.arrianbeat.showrequirebeatList);
   router.post('/showrequiredetail',controller.arrianbeat.showrequiredetail);
+  router.post('/updatearrianbeat',controller.arrianbeat.updatearrianbeat);
+
   router.post('/showGroom',controller.beat.showGroom);
   router.post('/addmyBeat',controller.beat.addmyBeat);
   router.post('/getsortnum',controller.beat.getsortnum);

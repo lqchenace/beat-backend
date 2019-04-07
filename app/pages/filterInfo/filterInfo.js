@@ -4,42 +4,6 @@ const util = require("../../utils/util.js");
 // 地区列表引入
 const tcity = require("../../utils/city.js");
 const sex = ['男', '女'];
-
-const firstlist = [{
-  img: "../../images/test/headimg.jpg",
-  name: "溜影",
-  gender: "1",
-  city: "深圳市",
-  receiveBeat: 14
-},
-  {
-    img: "../../images/test/headimg.jpg",
-    name: "无聊人哈哈哈",
-    gender: "2",
-    city: "汕头市",
-    receiveBeat: 6
-  }, {
-    img: "../../images/test/headimg.jpg",
-    name: "无聊人哈哈哈",
-    gender: "2",
-    city: "汕头市",
-    receiveBeat: 6
-  }];
-const secondlist = [{
-  img: "../../images/test/headimg.jpg",
-  name: "溜影",
-  gender: "2",
-  city: "深圳市",
-  receiveBeat: 14
-},
-{
-  img: "../../images/test/headimg.jpg",
-  name: "无聊人哈哈哈",
-  gender: "1",
-  city: "汕头市",
-  receiveBeat: 6
-}];
-
 Page({
 
   /**
@@ -112,7 +76,7 @@ Page({
   // 获取推荐结果
   getSortResult:function(data){
     let that = this;
-    api.addSave('http://127.0.0.1:7001/FilterInfo', data).then(res => {
+    api.addSave(util.pictureurl +'FilterInfo', data).then(res => {
       console.log("ffffffff",res);
       let resArr = []
       res.map((item, index) => {

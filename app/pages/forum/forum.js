@@ -32,9 +32,9 @@ Page({
   },
   getforumlist: function (data) {
     let that=this;
-    api.addSave('http://127.0.0.1:7001/getforumlist', data).then(res => {
+    api.addSave(util.pictureurl +'getforumlist', data).then(res => {
       let resArr = []
-      console.log("0000000", res.res);
+      // console.log("0000000", res.res);
       res.res.map((item, index) => {
         let itembeat = {};
         itembeat.foid = item.foid;
@@ -91,6 +91,12 @@ Page({
   },
   // 发帖
   postessay:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
       if (res[0].black == 1) {
         wx.showToast({
@@ -104,6 +110,7 @@ Page({
         })
       }
     })
+    }
   },
   // 实时监听输入框输入的内容
   searchInputAction:function(e){
@@ -128,7 +135,7 @@ Page({
 //  获取搜索结果
   getsearch: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/getforumsearchresult', data).then(res => {
+    api.addSave(util.pictureurl +'getforumsearchresult', data).then(res => {
       that.setData({
         listDataCopy: res
       })
@@ -150,7 +157,7 @@ Page({
   searchingessay:function(){
     let that = this;
     let data = { key: this.data.keyName, style: this.data.sort };
-    api.addSave('http://127.0.0.1:7001/getthesearchresult', data).then(res => {
+    api.addSave(util.pictureurl +'getthesearchresult', data).then(res => {
       console.log(res);
       let resArr = []
       res.map((item, index) => {
@@ -194,7 +201,7 @@ Page({
     let data ={};
     data.data={clicknum:clicknum};
     data.data1={foid:foid};
-    api.addSave('http://127.0.0.1:7001/updateinfo', data).then(res => {
+    api.addSave(util.pictureurl +'updateinfo', data).then(res => {
          if(res[0]==1){
                wx.navigateTo({
                 url: './fornumdetail/fornumdetail?foid='+foid,

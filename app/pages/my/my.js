@@ -19,19 +19,14 @@ Page({
     })
   }, 
   onLoad: function () {
-    let uid = wx.getStorageSync('openid');
-    let that=this
-    api.addSave('http://127.0.0.1:7001/showFansandFollownum', { uid:uid }).then(res => {
-      // console.log(res);
-      that.setData({ follow: res.fnum[0].num, fans: res.fans[0].fans, money: res.money});
-    })
- 
+
 
   },
 /**
  * 生命周期函数--监听页面显示
  */
   onShow: function () {
+    console.log("ddddddddddddd");
     let that=this;
     let userInfo = wx.getStorageSync('userInfo');
     if (!userInfo) {
@@ -41,13 +36,18 @@ Page({
     }else{
       let uid = wx.getStorageSync('openid');
       // 获取个人信息
-      api.addSave('http://127.0.0.1:7001/showMyInfo', { uid: uid }).then(res => {
+      api.addSave(util.pictureurl+'showMyInfo', { uid: uid }).then(res => {
         // console.log("0000000", res);
         that.setData({
           nickname: res.info[0].nickname,
           headimg: res.info[0].headimg,
           imgurl: res.info[0].imgurl,
         });
+      })
+      let that = this
+      api.addSave(util.pictureurl +'showFansandFollownum', { uid: uid }).then(res => {
+        // console.log(res);
+        that.setData({ follow: res.fnum[0].num, fans: res.fans[0].fans, money: res.money });
       })
     } 
   },
@@ -78,7 +78,7 @@ Page({
   },
   bindmycertification:function(){
     let uid = wx.getStorageSync('openid');
-    api.addSave('http://127.0.0.1:7001/queryverify', { uid: uid }).then(res => {
+    api.addSave(util.pictureurl +'queryverify', { uid: uid }).then(res => {
       console.log("44",res)
       if(res==null)
         wx.navigateTo({

@@ -39,7 +39,7 @@ Page({
     if (options.follow && options.fans)
     this.setData({follow:options.follow,fans:options.fans})
     else{
-      api.addSave('http://127.0.0.1:7001/showFansandFollownum', data).then(res => {
+      api.addSave(util.pictureurl +'showFansandFollownum', data).then(res => {
         that.setData({ follow: res.fnum[0].num, fans: res.fans[0].fans });
       })
     }
@@ -52,7 +52,7 @@ Page({
 // 获取个人相关信息
   getpersonInfo:function(data){
     let that=this;
-    api.addSave('http://127.0.0.1:7001/showMyInfo',data).then(res=>{
+    api.addSave(util.pictureurl +'showMyInfo',data).then(res=>{
       let itembeat = {};
       res.info.map((item, index) => {
         itembeat.city = item.address.split("#")[1];
@@ -70,7 +70,7 @@ Page({
   // 显示我的约拍
   getMyBeat: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/MyBeatList', data).then(res => {
+    api.addSave(util.pictureurl +'MyBeatList', data).then(res => {
       let resArr = []
       if (data.sort == 'beat') {
         if(res.length!=0){

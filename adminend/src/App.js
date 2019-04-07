@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {HashRouter , Route , Switch} from 'react-router-dom'
+import {HashRouter , Route , Switch,Redirect} from 'react-router-dom'
 import { createBrowserHistory } from "history";
 
 import Login from './routes/Login/index';
@@ -15,7 +15,8 @@ class App extends Component {
       <HashRouter  history={createBrowserHistory()}>
           <Switch>
                 <Route exact path="/" component={Login}/>
-                <Route path="/myhome" component={Index}/>
+                <Route exact path="/myhome" render={() => 
+                      <Redirect to='/myhome/usermanage'></Redirect>}/>
                 <PrivateRoute path="/" component={Index}/>
         </Switch>
       </HashRouter >

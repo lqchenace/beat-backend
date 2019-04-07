@@ -1,20 +1,6 @@
 // pages/my/beatAndSave/beatAndSave.js
 const api = require("../../../utils/api.js");
 const util = require("../../../utils/util.js");
-const list = [{
-  title:'处女座',
-  behavior: "约模特",
-  cost: "希望互免",
-  command: "发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-  tookimg: ['../../../images/test/test1.jpg', '../../../images/test/test2.jpg', '../../../images/test/test3.jpg'],
-},
-  {
-    title: '和盒库设计发送键of叫搜放假是否是方式方式',
-    behavior: "约模特",
-    cost: "希望互免",
-    command: "发挥司法害死大放送很舒服设计费舒服舒服积分金佛寺发挥司法死哦斐济水是否is金佛山金佛山偶是附件四姐夫金佛山积分是否搜金佛山",
-    tookimg: ['../../../images/test/test1.jpg', '../../../images/test/test2.jpg', '../../../images/test/test3.jpg'],
-  }];
 Page({
 
   /**
@@ -70,7 +56,7 @@ Page({
 //显示收藏信息
 getTheSave:function(data){
   let that = this;
-  api.addSave('http://127.0.0.1:7001/TheSaveShow', data).then(res => {
+  api.addSave(util.pictureurl +'TheSaveShow', data).then(res => {
     let resArr = []
     res.map((item, index) => {
       let itembeat = {};
@@ -90,7 +76,7 @@ getTheSave:function(data){
 // 显示我的约拍
 getMyBeat:function(data){
   let that = this;
-  api.addSave('http://127.0.0.1:7001/MyBeatList', data).then(res => {
+  api.addSave(util.pictureurl +'MyBeatList', data).then(res => {
     console.log("0000", res);
     let resArr = []
     if(data.sort=='beat'){

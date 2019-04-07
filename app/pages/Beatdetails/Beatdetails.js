@@ -141,7 +141,7 @@ Page({
   // 显示推荐信息
   getGroomList:function(data){
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showGroom', data).then(res => {
+    api.addSave(util.pictureurl +'showGroom', data).then(res => {
       let resArr = []
       res.map((item, index) => {
         let itembeat = {};
@@ -171,9 +171,16 @@ Page({
   },
   // 跳转投诉页面
   gotocomplain:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     wx.navigateTo({
       url: '../complain/complain?bid=' +bid+'&uid2='+person,
     })
+    }
   },
   // 读取收藏信息
   showmysave:function(data){
@@ -193,7 +200,7 @@ Page({
   // 读取点赞信息
   showmyfull: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showmyFull', data).then(res => {
+    api.addSave(util.pictureurl +'showmyFull', data).then(res => {
       if (res.length == 0) {
         that.setData({
           confirmfull: false
@@ -208,7 +215,7 @@ Page({
   // 读取点赞信息
   getfullnum: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/getfullnum', data).then(res => {
+    api.addSave(util.pictureurl +'getfullnum', data).then(res => {
      that.setData({fullnumber:res.fullnum[0].num});
     });
   },
@@ -220,6 +227,12 @@ Page({
   },
   // 跳转约拍界面
   beathim:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
       if (res[0].black == 1) {
         wx.showToast({
@@ -233,11 +246,12 @@ Page({
         })
       }
       })
+    }
   },
   // 获取约拍他的列表
   getArrianList(data){
     let that=this;
-    api.addSave('http://127.0.0.1:7001/showArrianbeatList', data).then(res => {
+    api.addSave(util.pictureurl +'showArrianbeatList', data).then(res => {
       let resArr = [];
       res.map((item, index) => {
         let itembeat = {};
@@ -253,10 +267,16 @@ Page({
   },
   // 收藏约拍信息
   confirmsave:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     let that=this;
     let data = { bid:bid,uid:uid };
     if (this.data.confirmsave==false){
-      api.addSave('http://127.0.0.1:7001/addSave',data).then(res=>{
+      api.addSave(util.pictureurl +'addSave',data).then(res=>{
         if(res!=null){
             that.setData({
               confirmsave:true
@@ -264,7 +284,7 @@ Page({
         }
       });
     }else{
-      api.addSave('http://127.0.0.1:7001/deleteSave', data).then(res => {
+      api.addSave(util.pictureurl +'deleteSave', data).then(res => {
         if (res ==1) {
           that.setData({
             confirmsave: false
@@ -272,13 +292,20 @@ Page({
         }
       });
     }
+    }
   },
   // 点赞或取消点赞 
   confirmfull:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     let that = this;
     let data = { bid: bid, uid: uid };
     if (this.data.confirmfull == false) {
-      api.addSave('http://127.0.0.1:7001/addFull', data).then(res => {
+      api.addSave(util.pictureurl +'addFull', data).then(res => {
         if (res != null) {
           that.setData({
             confirmfull: true
@@ -288,7 +315,7 @@ Page({
         }
       });
     } else {
-      api.addSave('http://127.0.0.1:7001/deleteFull', data).then(res => {
+      api.addSave(util.pictureurl +'deleteFull', data).then(res => {
         if (res == 1) {
           that.setData({
             confirmfull: false
@@ -298,10 +325,11 @@ Page({
       // 获取点赞数量
       this.getfullnum({ bid: bid });
     }
+    }
   },
   getCommentList:function(data){
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showBeatComment', data).then(res => {
+    api.addSave(util.pictureurl +'showBeatComment', data).then(res => {
       // console.log("pppppppppppppp",res);
       let len=0;
       if (res.result.length!=0){
@@ -351,7 +379,7 @@ Page({
   addComment:function(data){
 
     let that = this;
-    api.addSave('http://127.0.0.1:7001/addComment', data).then(res => {
+    api.addSave(util.pictureurl +'addComment', data).then(res => {
      if(res==1){
        that.setData({ commentInput: ''});
        let data = { bid: bid };
@@ -380,6 +408,12 @@ Page({
   },
   // 点击发送评论
   confirmtap:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
       if (res[0].black == 1) {
         wx.showToast({
@@ -394,9 +428,16 @@ Page({
         this.addComment(data);
       }
       })
+    }
   },
   // 发送二级评论
   confirmsecondtap:function(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
       if (res[0].black == 1) {
         wx.showToast({
@@ -415,6 +456,7 @@ Page({
         this.addComment(data);
       }
       })
+    }
   },
   // 评论一级评论
   groomuser:function(e){

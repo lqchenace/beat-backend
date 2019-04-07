@@ -12,6 +12,7 @@
         <text class="city-row">{{item.city}}</text>
       </view>
       <view class="because">约拍理由：{{item.beacuse}}</view>
+      <view class="looked" wx:if="{{item.looked}}">已查看联系方式</view>
       <view class='resource' wx:if="{{item.resource}}">来自约拍：{{item.resource}}</view>
     </view>
 

@@ -1,33 +1,6 @@
 // pages/my/myfollow/myfollow.js
 const api = require("../../../utils/api.js");
 const util = require("../../../utils/util.js");
-const list = [{
-  headimg: "../../../images/test/headimg.jpg",
-  name: "溜影",
-  role: "摄影师",
-  city: "深圳市",
-},
-  {
-    headimg: "../../../images/test/test6.jpg",
-    name: "猪猪",
-    role: "模特",
-    city: "广州市",
-  }
-];
-
-const fans = [{
-  headimg: "../../../images/test/headimg.jpg",
-  name: "方式",
-  role: "摄影师",
-  city: "广州市",
-},
-{
-  headimg: "../../../images/test/test6.jpg",
-  name: "大还不错",
-  role: "模特",
-  city: "广州市",
-}
-];
 Page({
 
   /**
@@ -68,7 +41,7 @@ Page({
   },
    getFollowList:function(data){
      let that = this
-     api.addSave('http://127.0.0.1:7001/getFollowList',data).then(res => {
+     api.addSave(util.pictureurl +'getFollowList',data).then(res => {
        console.log(res);
        let resArr = [];
        res.list.map((item, index) => {

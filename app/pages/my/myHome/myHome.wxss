@@ -3,7 +3,7 @@
   width:100%;
   height:300rpx;
   position: relative;
-  background-image: url(http://127.0.0.1:7001/public/img/bgcimages/mybgc.jpg);
+  background-image: url(http://192.168.0.106:7001/public/img/bgcimages/mybgc.jpg);
   background-size:contain;
   display: flex;
   justify-content: center;

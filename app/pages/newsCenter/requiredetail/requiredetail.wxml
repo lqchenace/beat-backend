@@ -29,17 +29,17 @@
   <view class='thethird'>
     <view class="userlist" wx:if="{{item.phone}}">
       <span class="phonetext">手机号</span>
-      <input class='inputclass' value='{{item.phone}}' disabled type='password'></input>
+      <input class='inputclass' value='{{item.phone}}' disabled type='{{looking?"text":"password"}}'></input>
     </view>
     <view class="userlist" wx:if="{{item.weixincode}}">
       <span class="phonetext">微信号</span>
-       <input class='inputclass' value=' {{item.weixincode}}' disabled type='password'></input>
+       <input class='inputclass' value=' {{item.weixincode}}' disabled type='{{looking?"text":"password"}}'></input>
       </view>
     <view class="userlist" wx:if="{{item.bolgcode}}">
       <span class="phonetext">微博号</span>
-       <input class='inputclass' value='{{item.bolgcode}}' disabled type='password'></input>
+       <input class='inputclass' value='{{item.bolgcode}}' disabled type='{{looking?"text":"password"}}'></input>
       </view>
   </view>
-  <view class="form-button" bindtap='commitbeatinfo'>查看联系方式</view>
+  <view class="form-button" bindtap='commitbeatinfo' data-aid='{{item.aid}}'>{{looking?'已查看':'查看联系方式'}}</view>
   </view>
   

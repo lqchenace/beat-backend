@@ -1,5 +1,5 @@
 // pages/wantBeathim/wantBeathim.js
-
+const util = require("../../utils/util.js");
 const api = require("../../utils/api.js");
 Page({
 
@@ -24,7 +24,7 @@ Page({
   },
   getOneperson:function(data){
     let that = this;
-    api.addSave('http://127.0.0.1:7001/getperson', data).then(res => {
+    api.addSave(util.pictureurl+'getperson', data).then(res => {
       console.log(res);
       let list={};
       list.phone=res.phone;
@@ -56,7 +56,7 @@ Page({
         } else if (res.confirm) {
           let data = { uid: that.data.uid, bid: that.data.bid, require: that.data.commentInput };
           console.log(data);
-          api.addSave('http://127.0.0.1:7001/addmyBeat', data).then(res => {
+          api.addSave(util.pictureurl +'addmyBeat', data).then(res => {
             if (res == 1) {
               wx: wx.navigateTo({
                 url: './addSuccess/addSuccess',

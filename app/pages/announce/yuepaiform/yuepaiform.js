@@ -113,7 +113,7 @@ Page({
     }else{
       // 上传图片
         wx.uploadFile({
-          url: 'http://127.0.0.1:7001/api/uploads',                  //服务器接口地址
+          url: util.pictureurl +'api/uploads',                  //服务器接口地址
           filePath: that.data.upimgarr[i],
           name: uid+"#"+that.data.bid+"#"+i,
           success: function (res) {
@@ -126,7 +126,7 @@ Page({
               let dd = JSON.parse(complete.data);
               data.imgurl = dd.data.imgurl;
               util.showSuccess('上传图片成功')
-              api.addSave('http://127.0.0.1:7001/addBeat',data).then(res => {
+              api.addSave(util.pictureurl +'addBeat',data).then(res => {
                 if(res==1)
                 wx.navigateTo({
                   url: '../../wantBeathim/addSuccess/addSuccess',
@@ -168,7 +168,7 @@ Page({
     } else {
       // 上传图片
       wx.uploadFile({
-        url: 'http://127.0.0.1:7001/api/uploads',                  //服务器接口地址
+        url: util.pictureurl +'api/uploads',                  //服务器接口地址
         filePath: that.data.upimgarr[i],
         name: uid + "#" + that.data.bid + "#" + i,
         success: function (res) {
@@ -181,7 +181,7 @@ Page({
             let dd = JSON.parse(complete.data);
             data.imgurl = dd.data.imgurl;
             util.showSuccess('上传图片成功')
-            api.addSave('http://127.0.0.1:7001/addBeat', data).then(res => {
+            api.addSave(util.pictureurl +'addBeat', data).then(res => {
               if (res == 1)
                 wx.navigateTo({
                   url: '../../wantBeathim/addSuccess/addSuccess',
@@ -274,7 +274,7 @@ Page({
   // 获取主题分类
   getStyle: function () {
     let that = this;
-    api.getTheStyle('http://127.0.0.1:7001/ShowTheStyle').then(res => {
+    api.getTheStyle(util.pictureurl +'ShowTheStyle').then(res => {
       // console.log(res);
       let resArr = []
       res.map((item, index) => {

@@ -24,7 +24,7 @@ Page({
     let that = this;
     let uid = wx.getStorageSync('openid');
     // 获取个人信息
-    api.addSave('http://127.0.0.1:7001/showMyInfo', { uid: uid }).then(res => {
+    api.addSave(util.pictureurl +'showMyInfo', { uid: uid }).then(res => {
       console.log("0000000", res);
       that.setData({
         nickname: res.info[0].nickname,

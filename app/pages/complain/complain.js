@@ -85,7 +85,7 @@ Page({
     data.complaintime = util.formatTime(new Date());
     console.log(data);
     if (this.data.upimgarr.length == 0) {
-      api.addSave('http://127.0.0.1:7001/addCertification', data).then(res => {
+      api.addSave(util.pictureurl +'addCertification', data).then(res => {
         if (res == 1)
           wx.navigateTo({
             url: '../wantBeathim/addSuccess/addSuccess?con=您的投诉已经发送成功，本平台会对该用户进行跟踪调查',
@@ -96,7 +96,7 @@ Page({
     else {
       // 上传图片
       wx.uploadFile({
-        url: 'http://127.0.0.1:7001/api/uploadidImg',                  //服务器接口地址
+        url: util.pictureurl +'api/uploadidImg',                  //服务器接口地址
         filePath: that.data.upimgarr[i],
         name: 'complain',
         success: function (res) {
@@ -108,7 +108,7 @@ Page({
           // 当图片都上传成功的时候就可以提交表单
           if (i == that.data.upimgarr.length) {
             data.coimg = cerarr.join("#");
-            api.addSave('http://127.0.0.1:7001/addCertification', data).then(res => {
+            api.addSave(util.pictureurl +'addCertification', data).then(res => {
               if (res == 1)
                 util.showSuccess('投诉成功')
               wx.navigateTo({

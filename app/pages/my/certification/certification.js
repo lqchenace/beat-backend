@@ -134,7 +134,7 @@ Page({
     data.role = this.data.role;
       // 上传图片
       wx.uploadFile({
-        url: 'http://127.0.0.1:7001/api/uploadidImg',                  //服务器接口地址
+        url: util.pictureurl +'api/uploadidImg',                  //服务器接口地址
         filePath: upimgarr[i],
         name: 'certification',
         success: function (res) {
@@ -146,7 +146,7 @@ Page({
           // 当图片都上传成功的时候就可以提交表单
           if (i == upimgarr.length) {
             data.imgurl=cerarr.join("#");
-            api.addSave('http://127.0.0.1:7001/addCertification', data).then(res => {
+            api.addSave(util.pictureurl +'addCertification', data).then(res => {
               if (res == 1)
                 util.showSuccess('认证申请成功')
                 wx.navigateTo({

@@ -5,7 +5,6 @@ const bmap = require("../../../utils/bmap-wx.min.js");
 const util = require("../../../utils/util.js");
 var wxMarkerData = [];
 var reg = /.+?(省|市|自治区|自治州|县|区)/g;
-let uid = wx.getStorageSync('openid');
 Page({
   data: {
     publicurl: util.pictureurl,
@@ -27,10 +26,10 @@ Page({
     sort:sort
   },
   onLoad: function () {
-    console.log("1111", this.data.publicurl);
+    let uid = wx.getStorageSync('openid');
     var that = this;
     // 获取个人信息
-    api.addSave('http://127.0.0.1:7001/showMyInfo',{uid:uid}).then(res => {
+    api.addSave(util.pictureurl +'showMyInfo',{uid:uid}).then(res => {
       let resArr = []
       console.log("0000000", res);
       that.setData({
@@ -96,7 +95,7 @@ Page({
    console.log("ll",data);
 
     if (this.data.upimgarr == '') {
-      api.addSave('http://127.0.0.1:7001/updateuserinfo', data).then(res => {
+      api.addSave(util.pictureurl +'updateuserinfo', data).then(res => {
         util.showSuccess('保存成功')
         if (res[0] == 1){
           wx.switchTab({
@@ -108,7 +107,7 @@ Page({
     else {
       // 上传图片
       wx.uploadFile({
-        url: 'http://127.0.0.1:7001/api/uploadheadImg',                  //服务器接口地址
+        url: util.pictureurl +'api/uploadheadImg',                  //服务器接口地址
         filePath: that.data.upimgarr,
         name: uid,
         success: function (res) {
@@ -118,7 +117,7 @@ Page({
           // 当图片都上传成功的时候就可以提交表单
           let dd = JSON.parse(complete.data);
           data.data.headimg = dd.data.imgurl;
-          api.addSave('http://127.0.0.1:7001/updateuserinfo', data).then(res => {
+          api.addSave(util.pictureurl +'updateuserinfo', data).then(res => {
             util.showSuccess('保存成功')
             console.log("88888",res);
             if (res[0] == 1)

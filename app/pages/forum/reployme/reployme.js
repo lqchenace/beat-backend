@@ -22,7 +22,7 @@ Page({
     let that = this;
     let brr = [];
     let i = 0;
-    api.addSave('http://127.0.0.1:7001/showforumreployComment', data).then(res => {
+    api.addSave(util.pictureurl +'showforumreployComment', data).then(res => {
       // console.log("v", res);
       res.result.map(item => {
         res.res.map(dev => {
@@ -37,7 +37,7 @@ Page({
       console.log("aaaaaaaaaa",brr);
       brr.map(item => {
         //  取得评论我的人的详细信息系
-        api.addSave('http://127.0.0.1:7001/showforumreploydetail', item).then(res => {
+        api.addSave(util.pictureurl +'showforumreploydetail', item).then(res => {
           // console.log("d0", res);
           res.map((item, index) => {
             let itembeat = {};

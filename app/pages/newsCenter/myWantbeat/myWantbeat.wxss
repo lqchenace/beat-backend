@@ -60,4 +60,8 @@ margin-top:8rpx;
   white-space: nowrap;
   color:rgb(101, 101, 101);
 }
-
+.looked{
+  font-size: 28rpx;
+  color:rgb(84, 142, 204);
+  text-align: right;
+}

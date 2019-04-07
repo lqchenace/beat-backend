@@ -2,6 +2,7 @@
 const util = require("../../../utils/util.js");
 const api = require("../../../utils/api.js");
 let uid = wx.getStorageSync('openid');
+// console.log("uid",uid);
 let foid;
 Page({
 
@@ -32,8 +33,8 @@ Page({
   },
   getforumlist: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/getforumlist', data).then(res => {
-      console.log("sfsfsfsfsfsd", res);
+    api.addSave(util.pictureurl +'getforumlist', data).then(res => {
+      // console.log("sfsfsfsfsfsd", res);
       let resArr = []
       res.res.map((item, index) => {
         let itembeat = {};
@@ -60,8 +61,8 @@ Page({
 
   getCommentList: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showforumComment', data).then(res => {
-      console.log("pppppppppppppp", res);
+    api.addSave(util.pictureurl +'showforumComment', data).then(res => {
+      // console.log("pppppppppppppp", res);
       let len = 0;
       if (res.result.length != 0) {
         let resArr = [];
@@ -93,7 +94,7 @@ Page({
   // 添加评论
   addComment: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/addforumComment', data).then(res => {
+    api.addSave(util.pictureurl +'addforumComment', data).then(res => {
       if (res == 1) {
         that.setData({ commentInput: '' });
         let data = { foid: foid };
@@ -104,7 +105,14 @@ Page({
   },
   // 点击发送评论
   confirmtap: function () {
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
+      // console.log("44444",res);
       if (res[0].black == 1) {
         wx.showToast({
           title: '您好，您目前没有权限执行此操作',
@@ -118,7 +126,7 @@ Page({
         this.addComment(data);
       }
     })
-
+    }
   },
   // 监听评论的输入
   listenerSearchInput: function (e) {
@@ -137,6 +145,12 @@ Page({
   },
   // 发送二级评论
   confirmsecondtap: function () {
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/authorize/authorize"
+      })
+    } else {
     api.getBlack().then(res => {
       if (res[0].black == 1) {
         wx.showToast({
@@ -155,6 +169,7 @@ Page({
         this.addComment(data);
       }
       })
+    }
   },
   // 评论二级评论
   reployoneperson: function (e) {

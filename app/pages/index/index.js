@@ -47,6 +47,7 @@ Page({
   },
   // 初始化
   onLoad: function () {
+    // wx.clearStorageSync('userInfo');
   var that=this;
   tcity.init(that);
   var cityData = that.data.cityData;
@@ -151,7 +152,7 @@ Page({
       })
       let i=0;
       resArr.map(item=>{
-        api.addSave('http://127.0.0.1:7001/getsortnum', {bid:item.bid}).then(res => {
+        api.addSave(util.pictureurl+'getsortnum', {bid:item.bid}).then(res => {
           item.full=res.full;
           item.comnum=res.comnum;
           item.arrian=res.arrian;

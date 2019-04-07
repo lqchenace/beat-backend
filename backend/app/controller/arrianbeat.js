@@ -2,9 +2,31 @@ const Controller = require('egg').Controller;
 //文件存储
 const fs=require('fs');
 
-const random = require('../util/random');
-
 class ArrianbeatController extends Controller {
+
+    async updatearrianbeat(){
+        let ctx = this.ctx;
+        let {data}=ctx.request.body;
+        console.log("eeee",data);
+        let res;
+        let user=await ctx.model.User.findOne({where:{uid:data.uid}}).then(us =>us.toJSON());
+        let money=user.money-1;
+        let info =await ctx.model.User.update({money:money}, {
+            where:{uid: data.uid}
+        })
+        console.log("aaaaa",info);
+        if(info[0]==1)
+        res =await ctx.model.Arrianbeat.update({looked:1}, {
+                    where:{aid: data.aid}
+                })
+        else
+        res=0;
+        console.log("bbbbbb",res);
+        ctx.body = {
+            code:200,
+            data:res
+        }; 
+    }
     async showArrianbeatList(){
         const ctx = this.ctx;
         const {data}=ctx.request.body;
@@ -53,7 +75,7 @@ class ArrianbeatController extends Controller {
     async showrequirebeatList(){
         const ctx = this.ctx;
         const {data}=ctx.request.body;
-        console.log("vvv",data);
+        // console.log("vvv",data);
         let result;
         if(data.sort=='mybeat'){
         result = await ctx.app.model.Arrianbeat.findAll({
@@ -77,7 +99,7 @@ class ArrianbeatController extends Controller {
                 include: [{model: ctx.app.model.Arrianbeat,
                             include:[{model: ctx.app.model.User}] }]
             }).then(us =>us.map(u => u.toJSON()));
-            console.log("11111",result);
+            // console.log("11111",result);
             result=result.filter((item)=>{
                 return item.arrianbeat!=null
             })
@@ -90,7 +112,7 @@ class ArrianbeatController extends Controller {
                 }
             })
         }
-        console.log("vvv",result);
+        // console.log("vvv",result);
         ctx.body = {
             code:200,
             data:result

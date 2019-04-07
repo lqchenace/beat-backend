@@ -93,7 +93,7 @@ Page({
     if (this.data.pname == '' || this.data.command == '' || this.data.style == '') {
       this.setData({ code: true, rewalk: '标题和内容、分类不能为空' });
     } else if (this.data.upimgarr.length==0){
-      api.addSave('http://127.0.0.1:7001/addForum', data).then(res => {
+      api.addSave(util.pictureurl +'addForum', data).then(res => {
         if (res == 1)
           wx.navigateTo({
             url: '../../wantBeathim/addSuccess/addSuccess',
@@ -103,7 +103,7 @@ Page({
      else {
       // 上传图片
       wx.uploadFile({
-        url: 'http://127.0.0.1:7001/api/uploads',                  //服务器接口地址
+        url: util.pictureurl +'api/uploads',                  //服务器接口地址
         filePath: that.data.upimgarr[i],
         name: uid + "#" + that.data.foid + "#" + i,
         success: function (res) {
@@ -116,7 +116,7 @@ Page({
             let dd = JSON.parse(complete.data);
             data.imgurl = dd.data.imgurl;
             util.showSuccess('上传图片成功')
-            api.addSave('http://127.0.0.1:7001/addForum', data).then(res => {
+            api.addSave(util.pictureurl +'addForum', data).then(res => {
               if (res == 1)
                 wx.navigateTo({
                   url: '../../wantBeathim/addSuccess/addSuccess',

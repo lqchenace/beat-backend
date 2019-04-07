@@ -8,7 +8,8 @@ Page({
    */
   data: {
     itemList:[],
-    publicurl: util.pictureurl
+    publicurl: util.pictureurl,
+    looking:false,
   },
 
   /**
@@ -22,11 +23,12 @@ Page({
   },
   getrequireDetailt: function (data) {
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showrequiredetail', data).then(res => {
-      console.log(res);
+    api.addSave(util.pictureurl +'showrequiredetail', data).then(res => {
+      console.log(res); 
       let resArr = []
       res.map((item, index) => {
         let itembeat = {};
+        itembeat.aid = item.aid;
         itembeat.bid = item.bid;
         itembeat.city = item.User.address.split("#")[1];
         itembeat.name = item.User.nickname;
@@ -39,12 +41,53 @@ Page({
         itembeat.bolgcode = item.User.bolgcode;
         itembeat.beacuse = item.require;
         itembeat.resource = item.Beat.command;
+        if(item.looked)
+        that.setData({looking:true})
           resArr.push(itembeat);
       });
       that.setData({
         itemList: resArr
       });
     })
+  },
+  commitbeatinfo:function(e){
+    let uid = wx.getStorageSync('openid');
+    let aid = e.currentTarget.dataset.aid;
+    let that = this;
+    if(this.data.looking){
+      wx.showToast({
+        title: '已查看',
+        icon: 'none',
+        duration: 1000
+      })
+    }else{
+    wx.showModal({
+      title: '温馨提示',
+      content: '发送约拍请求消耗1个约豆，确定发送吗？',
+      success: function (res) {
+        if (res.cancel) {
+          wx.showToast({
+            title: '您已经取消查看联系方式',
+            icon: 'none',
+            duration: 1000
+          })
+        } else if (res.confirm) {
+          let data = {aid:aid,uid:uid};
+          console.log(data);
+          api.addSave(util.pictureurl + 'updatearrianbeat', data).then(res => {
+            if (res == 1) {
+              wx.showToast({
+                title: '您已成功查看联系方式',
+                icon: 'none',
+                duration: 1000
+              })
+              that.setData({looking:true})
+            }
+          })
+        }
+      }
+    })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

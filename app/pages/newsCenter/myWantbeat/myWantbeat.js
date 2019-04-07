@@ -1,6 +1,7 @@
 // pages/newsCenter/myWantbeat/myWantbeat.js
 const api = require("../../../utils/api.js");
 const util = require("../../../utils/util.js");
+let data = {};
 Page({
 
   /**
@@ -15,7 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let data = {};
     let uid = wx.getStorageSync('openid');
     data.uid = uid;
     data.sort = options.sort;
@@ -33,7 +33,7 @@ Page({
   },
   getMywantbeat:function(data){
     let that = this;
-    api.addSave('http://127.0.0.1:7001/showrequirebeatList', data).then(res => {
+    api.addSave(util.pictureurl +'showrequirebeatList', data).then(res => {
       console.log(res);
       let resArr = [];
       res.map((item, index) => {
@@ -47,7 +47,7 @@ Page({
         itembeat.imgurl = item.Beat.User.headimg;
         itembeat.sex = item.Beat.User.sex;
         itembeat.beacuse = item.require;
-        itembeat.resource=item.Beat.command;
+        itembeat.resource=item.Beat.command; 
         }
         else{
           itembeat.aid= item.arrianbeat.aid;
@@ -58,12 +58,14 @@ Page({
           itembeat.imgurl =item.arrianbeat.User.headimg;
           itembeat.sex = item.arrianbeat.User.sex;
           itembeat.beacuse = item.arrianbeat.require;
+          itembeat.looked = item.arrianbeat.looked;
         }
         resArr.push(itembeat);
       })
       that.setData({
         mybeat: resArr
       });
+      console.log(resArr);
     });
   },
   gotodetail:function(e){
@@ -92,7 +94,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getMywantbeat(data);
   },
 
   /**

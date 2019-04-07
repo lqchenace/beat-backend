@@ -13,7 +13,7 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-const pictureurl ='http://127.0.0.1:7001/';
+const pictureurl ='http://192.168.0.106:7001/';
 
 // 显示繁忙提示
 var showBusy=text=>wx.showToast({

@@ -113,7 +113,7 @@ Page({
   // 获取主题分类
   getStyle:function(){
    let that=this;
-    api.getTheStyle('http://127.0.0.1:7001/ShowTheStyle').then(res=>{
+    api.getTheStyle(util.pictureurl +'ShowTheStyle').then(res=>{
       let resArr = []
       res.map((item, index) => {
         resArr.push(item.style);
@@ -130,7 +130,7 @@ Page({
       area:area,
       sex:gender
     }
-    api.addSave('http://127.0.0.1:7001/getProductlist', param).then(res => {
+    api.addSave(util.pictureurl +'getProductlist', param).then(res => {
       console.log("666666666666",res);
       let resArr = []
       res.map((item, index) => {
@@ -166,7 +166,7 @@ Page({
       let i = 0;
       resArr.map(item => {
         console.log(item);
-        api.addSave('http://127.0.0.1:7001/getsortnum', { bid: item.bid||item.pid }).then(res => {
+        api.addSave(util.pictureurl +'getsortnum', { bid: item.bid||item.pid }).then(res => {
           console.log(res);
           item.full = res.full;
           item.comnum = res.comnum;

@@ -22,7 +22,7 @@ Page({
      let that = this;
      let arr = [];
      let i = 0;
-     api.addSave('http://127.0.0.1:7001/showreployComment', data).then(res => {
+     api.addSave(util.pictureurl +'showreployComment', data).then(res => {
        console.log("v",res);
        res.result.map(item=>{
          res.res.map(dev=>{
@@ -37,7 +37,7 @@ Page({
        console.log(arr);
        arr.map(item=>{
         //  取得评论我的人的详细信息系
-         api.addSave('http://127.0.0.1:7001/showreploydetail',  item ).then(res => {
+         api.addSave(util.pictureurl +'showreploydetail',  item ).then(res => {
            console.log("d0",res);
            res.map((item, index) => {
              let itembeat = {};

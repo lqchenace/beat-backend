@@ -107,12 +107,12 @@
       <view wx:else class="qiangshafa">快来抢沙发呀~ ~</view>
       <!-- 发表一级评论 -->
       <view class="anouncecom" wx:if="{{firstcommment}}">
-        <input class="inputclass" placeholder="来说点什么吧~~" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+        <input class="inputclass" placeholder="来说点什么吧~~" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" confirm-type='send' cursor-spacing='15' bindconfirm='confirmtap'/>
         <view class='fasong' bindtap='confirmtap'>发送</view>
       </view>
        <!-- 发表二级评论 -->
       <view class="anouncecom" wx:else>
-        <input class="inputclass" placeholder="回复{{reployperson}}" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" />
+        <input class="inputclass" placeholder="回复{{reployperson}}" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" confirm-type='send' cursor-spacing='15' bindconfirm='confirmsecondtap'/>
         <view class='fasong' bindtap='confirmsecondtap'>发送</view>
       </view>
     </view>
