@@ -50,11 +50,11 @@ async index() {
 async updateuserinfo(){
     let ctx = this.ctx;
     let {data}=ctx.request.body;
-    console.log("ccccccc",data);
+    // console.log("ccccccc",data);
     let info =await ctx.model.User.update(data.data, {
                 where:{uid: data.uid}
             })
-        console.log("bbbbbbb",info);
+        // console.log("bbbbbbb",info);
 
     ctx.body = {
         code:200,
@@ -117,15 +117,17 @@ async getFollowList(){
     let ctx = this.ctx;
     let {data}=ctx.request.body;
 
-    let model;
-    if(data.type=='follow') model=ctx.model.Follow;
-    else model=ctx.model.Fans;
-    let list=await model.findAll({
-        where:data.uid,
+    let model,paramlist={};
+    if(data.type=='follow') paramlist.uid=data.uid.uid;
+    else paramlist.personid=data.uid.uid;
+    // console.log("zzzzzzzzzzz",paramlist);
+    let list=await ctx.model.Follow.findAll({
+        where:paramlist,
         include: [{model: ctx.app.model.User}]
     }).then(us =>us.map(u => u.toJSON()));
+    // console.log("sdsds",list);
     list.map((item)=>{
-        if(item.headimg.indexOf("https")==-1)
+        if(item.User.headimg.indexOf("https")==-1)
         item.User.imgurl=fs.readdirSync('app/'+item.User.headimg);
         else
         item.User.imgurl=''
@@ -135,11 +137,37 @@ async getFollowList(){
         data:{list}
     };
 }
+// 取消关注
+async deleteFollow(){
+    let ctx = this.ctx;
+    let {data}=ctx.request.body;
+    let users=await ctx.model.Follow.destroy({where:data});
+    ctx.body ={
+        code:200,
+        data:{users}
+    };
+}
+// 添加关注
+async addFollow(){
+    let ctx = this.ctx;
+    let {data}=ctx.request.body;
+    var followid=random.getRandomString(8);
+    var res=await ctx.model.Follow.create({
+    followid:followid,
+    uid:data.uid,
+    personid:data.personid
+    })
+    ctx.body ={
+        code:200,
+        data:res
+    };
+}
 // 推荐模特或推荐摄影师
 async FilterInfo(){
     const ctx = this.ctx;
     let Op = this.app.Sequelize.Op;
     let {data}=ctx.request.body;
+    console.log("data",data);
     let data1={};
     if(data.area){
         if(data.area!='地区')
@@ -161,6 +189,7 @@ async FilterInfo(){
             }
         }
     }
+
     const filterresult=await ctx.model.User.findAll
     ({where:data1}).then(us =>us.map(u => u.toJSON()));
     filterresult.map((item)=>{

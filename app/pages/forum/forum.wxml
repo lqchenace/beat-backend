@@ -24,6 +24,7 @@
   </view>
   <swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
     <swiper-item>
+    <scroll-view scroll-y style="height: 600px;">
       <view class='swiper_con' wx:for="{{forumlist}}" wx:key="unique" bindtap='getforumdetail' data-foid='{{item.foid}}' data-clicknum='{{item.clicknum}}'>
         <view wx:if="{{!searchlogo}}">{{item.title}}</view>
         <view wx:else>
@@ -46,8 +47,10 @@
           </view>
         </view>
       </view>
+      </scroll-view>
     </swiper-item>
     <swiper-item>
+    <scroll-view scroll-y style="height: 600px;">
       <view class='swiper_con' wx:for="{{forumlist1}}" wx:key="unique" bindtap='getforumdetail' data-foid='{{item.foid}}' data-clicknum='{{item.clicknum}}'>
         <view>{{item.title}}</view>
         <view class='command'>{{item.command}}</view>
@@ -67,6 +70,7 @@
           </view>
         </view>
       </view>
+      </scroll-view>
     </swiper-item>
   </swiper>
 

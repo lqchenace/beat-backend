@@ -13,9 +13,9 @@
     <image src="{{publicurl}}{{item.beatUrl}}/{{beatimage}}" class="yuepaithird-image" mode='aspectFill' wx:for="{{item.tookimg}}" wx:key="unique" wx:for-item="beatimage" />
   </scroll-view>
   <!-- </view> -->
-  <image wx:if="{{showSetting}}" src='../../../images/icon/setting.png' mode='aspectFill' class='setting' bindtap='showhide'></image>
+  <!-- <image wx:if="{{showSetting}}" src='../../../images/icon/setting.png' mode='aspectFill' class='setting' bindtap='showhide'></image> -->
     <!-- 删除约拍 -->
-  <view class="delete-hide" wx:if="{{showDeletebeat}}" bindtap='returndelete'>
+  <!-- <view class="delete-hide" wx:if="{{showDeletebeat}}" bindtap='returndelete'>
     <view class="delete-button">{{operate}}</view>
-  </view>
+  </view> -->
 </view>

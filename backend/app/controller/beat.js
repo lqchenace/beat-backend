@@ -149,11 +149,13 @@ async showBeat(){
         }
         result = await ctx.app.model.Beat.findAll({
             where:data1,
+            order:[['bid','DESC']],
             include: [{model: ctx.app.model.User,
                         where:data2   }]
         }).then(us =>us.map(u => u.toJSON()));
 }else{
             result = await ctx.app.model.Beat.findAll({
+                order:[['bid','DESC']],
                 include: [{model: ctx.app.model.User}]
             }).then(us =>us.map(u => u.toJSON()));
 }

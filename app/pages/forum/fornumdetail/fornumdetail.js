@@ -1,11 +1,10 @@
 // pages/forum/fornumdetail/fornumdetail.js
 const util = require("../../../utils/util.js");
 const api = require("../../../utils/api.js");
-let uid = wx.getStorageSync('openid');
 // console.log("uid",uid);
 let foid;
 Page({
-
+  
   /**
    * 页面的初始数据
    */
@@ -21,6 +20,7 @@ Page({
     parentid: '0',
     uid2: '0',
     conuid2: false,
+    isShow:false,
   },
 
   /**
@@ -120,6 +120,7 @@ Page({
           duration: 2000
         })
       } else {
+        let uid = wx.getStorageSync('openid');
         let comment = this.data.commentInput;
         let time = util.formatTime(new Date());
         let data = { foid: foid, uid: uid, comment: comment, comtime: time, parentid: '0', uid2: '0' };
@@ -137,6 +138,7 @@ Page({
   },
   // 评论一级评论
   groomuser: function (e) {
+    let uid = wx.getStorageSync('openid');
     let parentid = e.currentTarget.dataset.parentid;
     let nickname = e.currentTarget.dataset.nickname;
     let person = e.currentTarget.dataset.uid;
@@ -159,6 +161,7 @@ Page({
           duration: 2000
         })
       } else {
+        let uid = wx.getStorageSync('openid');
         let comment = this.data.commentInput;
         let time = util.formatTime(new Date());
         let data = {};

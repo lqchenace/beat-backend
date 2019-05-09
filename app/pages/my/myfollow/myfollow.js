@@ -10,6 +10,8 @@ Page({
   followlist:[],
   confollow:true,
   publicurl: util.pictureurl,
+  uid:'',
+  title:''
   },
 
   /**
@@ -25,8 +27,7 @@ Page({
          title: '我的关注'
        })
        data.type='follow';
-       this.getFollowList(data);
-       this.setData({confollow:true,followlist:list})
+       this.setData({confollow:true,uid:uid,title:'follow'})
 
      }
        else{
@@ -34,19 +35,20 @@ Page({
          title: '我的粉丝'
        })
        data.type = 'fans';
-       this.getFollowList(data);
-       this.setData({ confollow: false, followlist: fans })
+       this.setData({ confollow: false, uid: uid, title: 'fans'})
        }
+     this.getFollowList(data);
    }
   },
    getFollowList:function(data){
      let that = this
      api.addSave(util.pictureurl +'getFollowList',data).then(res => {
-       console.log(res);
+      //  console.log(res);
        let resArr = [];
        res.list.map((item, index) => {
          let itembeat = {};
-         itembeat.id=item.followid||item.fid;
+         itembeat.id=item.followid;
+         itembeat.uid = item.uid;
          itembeat.city = item.User.address.split("#")[1];
          itembeat.name = item.User.nickname;
          itembeat.role = item.User.role;
@@ -61,7 +63,24 @@ Page({
   },
   deleteandfollow:function(e){
     let id = e.currentTarget.dataset.id;
-    console.log(id);
+    let data={followid:id}
+    let that=this;
+    api.addSave(util.pictureurl + 'deleteFollow', data).then(res => {
+       console.log("sfsfs",res);
+      let param = { uid:{uid: that.data.uid}, type: that.data.title};
+      console.log("param",param);
+      that.getFollowList(param);
+    })
+  },
+  addfollow: function (e) {
+    let id = e.currentTarget.dataset.id;
+    let data = { uid: this.data.uid, personid: id }
+    console.log("11111111", data);
+    let that = this;
+    api.addSave(util.pictureurl + 'addFollow', data).then(res => {
+      console.log("sfsfs", res);
+      that.setData({ confollow: true})
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

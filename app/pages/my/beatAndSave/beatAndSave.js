@@ -13,7 +13,8 @@ Page({
   operate:null,
   hide_firstline:true,
   publicurl: util.pictureurl,
-  logo:'约拍'
+  logo:'约拍',
+  refresh: false
   },
 
   /**
@@ -111,6 +112,9 @@ getMyBeat:function(data){
     let b = e.currentTarget.dataset.id;
     let logo = this.data.logo;
     let u = wx.getStorageSync('openid');
+    this.setData({
+      refresh: true
+    })
     wx.navigateTo({
       url: '../../Beatdetails/Beatdetails?id=' + b + '&uid=' + u + '&logo=' + logo,
     })
@@ -140,7 +144,13 @@ getMyBeat:function(data){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // if (this.data.refresh) {
+    //   this.setData({
+    //     beatList: [],
+    //     refresh: false
+    //   })
+    //   this.onLoad();
+    // }
   },
 
   /**

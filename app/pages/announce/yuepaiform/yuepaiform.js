@@ -310,7 +310,7 @@ Page({
         // util.showBusy('正在上传')
         var filePath = res.tempFilePaths;
         that.setData({ upimgarr: filePath});
-        console.log(res);            //获取图片路径
+        console.log("上传图片",res);            //获取图片路径
       },
       fail: function (e) {
         console.error(e)

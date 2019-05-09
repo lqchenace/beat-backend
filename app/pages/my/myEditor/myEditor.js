@@ -5,6 +5,7 @@ const bmap = require("../../../utils/bmap-wx.min.js");
 const util = require("../../../utils/util.js");
 var wxMarkerData = [];
 var reg = /.+?(省|市|自治区|自治州|县|区)/g;
+let uid;
 Page({
   data: {
     publicurl: util.pictureurl,
@@ -26,7 +27,7 @@ Page({
     sort:sort
   },
   onLoad: function () {
-    let uid = wx.getStorageSync('openid');
+     uid = wx.getStorageSync('openid');
     var that = this;
     // 获取个人信息
     api.addSave(util.pictureurl +'showMyInfo',{uid:uid}).then(res => {
@@ -39,8 +40,8 @@ Page({
         weixincode: res.info[0].weixincode != null && res.info[0].weixincode != '' ? res.info[0].weixincode : that.data.weixincode,
         phone: res.info[0].phone != null && res.info[0].phone != '' ? res.info[0].phone : that.data.phone,
         blogcode: res.info[0].bolgcode != null && res.info[0].bolgcode!=''? res.info[0].bolgcode : that.data.blogcode,
-        role: res.info[0].role,
-        rgcData: res.info[0].address.split("#").join("")
+        role: res.info[0].role != null ? res.info[0].role :'请选择身份',
+        rgcData: res.info[0].address != null ? res.info[0].address.split("#").join("") :'是否获取你的位置信息'
       });
     })
     // 新建百度地图对象 

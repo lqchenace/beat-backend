@@ -75,3 +75,14 @@
   <input class="inputclass" placeholder="回复{{reployperson}}" placeholder-class="placeholder-class" bindinput='listenerSearchInput' value="{{commentInput}}" confirm-type='send' cursor-spacing='15' bindconfirm='confirmsecondtap'/>
   <view class='fasong' bindtap='confirmsecondtap'>发送</view>
 </view>
+
+    <!--emoji表情盒子-->
+    <view wx:if="{{isShow}}" class="emoji-box">
+      <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+        <block wx:for="{{emojis}}" wx:key="">
+          <view class="emoji-cell" catchtap="emojiChoose" data-emoji="{{item.char}}">
+            {{item.char}}
+          </view>
+        </block>
+      </scroll-view>
+    </view>

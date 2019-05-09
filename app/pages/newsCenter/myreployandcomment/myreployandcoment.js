@@ -23,7 +23,7 @@ Page({
      let arr = [];
      let i = 0;
      api.addSave(util.pictureurl +'showreployComment', data).then(res => {
-       console.log("v",res);
+      //  console.log("v",res);
        res.result.map(item=>{
          res.res.map(dev=>{
           //  筛选出评论我的人
@@ -34,11 +34,11 @@ Page({
      })
      setTimeout(function(){
        let resarr=[];
-       console.log(arr);
+      //  console.log(arr);
        arr.map(item=>{
         //  取得评论我的人的详细信息系
          api.addSave(util.pictureurl +'showreploydetail',  item ).then(res => {
-           console.log("d0",res);
+          //  console.log("d0",res);
            res.map((item, index) => {
              let itembeat = {};
              itembeat.bid = item.bid;

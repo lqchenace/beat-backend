@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/forum/forum",
+    "pages/forum/fornumdetail/fornumdetail",
     "pages/my/my",
     "pages/my/certification/verified/verified",
     "pages/my/certification/certification",
     "pages/complain/complain",
     "pages/my/myEditor/myEditor",
-    "pages/forum/forum",
     "pages/my/certification/verify/verify",
     "pages/filterInfo/StyleandWorks/StyleandWorks",
     "pages/filterInfo/filterInfo",
@@ -26,7 +27,6 @@
     "pages/newsCenter/requiredetail/requiredetail",
     "pages/newsCenter/myreployandcomment/myreployandcoment",
     "pages/forum/post/post",
-    "pages/forum/fornumdetail/fornumdetail",
     "pages/forum/reployme/reployme"
   ],
   "permission": {
@@ -77,5 +77,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -146,6 +146,7 @@ Page({
           // 当图片都上传成功的时候就可以提交表单
           if (i == upimgarr.length) {
             data.imgurl=cerarr.join("#");
+            console.log("data1111111111111", data)
             api.addSave(util.pictureurl +'addCertification', data).then(res => {
               if (res == 1)
                 util.showSuccess('认证申请成功')

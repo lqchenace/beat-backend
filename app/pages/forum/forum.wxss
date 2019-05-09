@@ -185,3 +185,8 @@ border-bottom:1rpx solid rgb(241, 241, 241);
   left: 16.5%;
   z-index: 2000;
 }
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}

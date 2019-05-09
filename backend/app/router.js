@@ -41,6 +41,8 @@ module.exports = app => {
   router.post('/FilterInfo',controller.user.FilterInfo);
   router.post('/showMyInfo',controller.user.showMyInfo);
   router.post('/getFollowList',controller.user.getFollowList);
+  router.post('/deleteFollow',controller.user.deleteFollow);
+  router.post('/addFollow',controller.user.addFollow);
   router.post('/updateuserinfo',controller.user.updateuserinfo);
   router.post('/showFansandFollownum',controller.user.getfollownum);
   router.post('/getperson',controller.user.getperson);

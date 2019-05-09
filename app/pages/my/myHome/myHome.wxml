@@ -7,7 +7,7 @@
       <image  wx:else  class="userinfo-avatar" mode='aspectFill' src='{{publicurl}}{{userInfo.imgurl}}/{{userInfo.avatarUrl[0]}}'></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </view>
-  </view>
+  </view> 
 
   <!-- 第一行 -->
   <view class='home-first'>

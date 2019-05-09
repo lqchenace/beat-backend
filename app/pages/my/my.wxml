@@ -8,7 +8,7 @@
       <text class="blockclass">编辑资料</text>
       <image class='editorimg' src='../../images/icon/editor.png' mode='aspectFit'></image>
     </view>
-    <text class='sign-in'>签到</text>
+    <!-- <text class='sign-in'>签到</text> -->
 
     <view class='user-bottom'>
       <view class='user-col'>

@@ -9,6 +9,6 @@
     </view>
     <text class="city-row">{{item.city}}</text>
     <text wx:if="{{confollow}}" class="cancel-follow" data-id='{{item.id}}' bindtap='deleteandfollow'>取消关注</text>
-    <text wx:else class="else-follow" data-id='{{item.id}}' bindtap='deleteandfollow'>+关注</text>
+    <!-- <text wx:else class="else-follow" data-id='{{item.uid}}' bindtap='addfollow'>+关注</text> -->
   </view>
 </view>

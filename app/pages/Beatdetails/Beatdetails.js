@@ -330,7 +330,7 @@ Page({
   getCommentList:function(data){
     let that = this;
     api.addSave(util.pictureurl +'showBeatComment', data).then(res => {
-      // console.log("pppppppppppppp",res);
+      console.log("pppppppppppppp",res);
       let len=0;
       if (res.result.length!=0){
       let resArr = [];
