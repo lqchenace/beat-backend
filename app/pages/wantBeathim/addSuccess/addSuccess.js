@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    content:'您的约拍请求发送成功，等待对方联系你~'
+    content:'您的约拍请求发送成功，等待对方联系你~',
+    show:false
   },
 
   /**
@@ -14,12 +15,21 @@ Page({
   onLoad: function (options) {
     if(options.con)
     this.setData({content:options.con});
+    if(options.post){
+      this.setData({ content: options.con,show:true });
+    }
   },
   //  返回首页
  gotoindex:function() {
-   wx.switchTab({
-     url: '../../index/index',
-   })
+   if(this.data.show){
+     wx.switchTab({
+       url: '../../forum/forum',
+     })
+   }else{
+     wx.switchTab({
+       url: '../../index/index',
+     })
+   }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

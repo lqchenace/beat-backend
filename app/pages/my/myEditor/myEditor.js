@@ -121,7 +121,7 @@ Page({
           api.addSave(util.pictureurl +'updateuserinfo', data).then(res => {
             util.showSuccess('保存成功')
             console.log("88888",res);
-            if (res[0] == 1)
+            if (res[0] == 0)
               wx.switchTab({
                 url: '../my',
               })

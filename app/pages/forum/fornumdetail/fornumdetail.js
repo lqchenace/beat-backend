@@ -176,6 +176,7 @@ Page({
   },
   // 评论二级评论
   reployoneperson: function (e) {
+    let uid = wx.getStorageSync('openid');
     let pid = e.currentTarget.dataset.parentid;
     let pname = e.currentTarget.dataset.pname;
     let id = e.currentTarget.dataset.id;

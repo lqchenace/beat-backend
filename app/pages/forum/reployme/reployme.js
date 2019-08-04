@@ -60,8 +60,8 @@ Page({
           that.setData({
             itemList: resarr
           });
-      }, 500);
-    }, 300)
+      }, 1000);
+    }, 700)
 
   },
   gotobeatdetail: function (e) {

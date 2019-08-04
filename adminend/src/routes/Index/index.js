@@ -65,7 +65,7 @@ class Index extends React.Component {
                             <ContainMain/>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>
-                            约拍小程序管理端 ©2019 Created by LiQin chen
+                            约拍小程序管理端 ©2019 Created by LiQin
                         </Footer>
                         </Layout>
                     </Layout>

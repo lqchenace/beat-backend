@@ -47,6 +47,8 @@ Page({
   },
   // 初始化
   onLoad: function () {
+    // 测试用户
+    // wx.setStorageSync('openid','2b88f37ff358da15');
     // wx.clearStorageSync('userInfo');
   var that=this;
   tcity.init(that);
@@ -150,21 +152,24 @@ Page({
         itembeat.beatUrl = item.beatUrl;
         resArr.push(itembeat);
       })
-      let i=0;
-      resArr.map(item=>{
-        api.addSave(util.pictureurl+'getsortnum', {bid:item.bid}).then(res => {
-          item.full=res.full;
-          item.comnum=res.comnum;
-          item.arrian=res.arrian;
-          i++;
-        })
-      })
-      setTimeout(function(){
-        if (i >= resArr.length)
           that.setData({
             itemList: resArr
           });
-      },700)
+      // let i=0;
+      // resArr.map(item=>{
+      //   api.addSave(util.pictureurl+'getsortnum', {bid:item.bid}).then(res => {
+      //     item.full=res.full;
+      //     item.comnum=res.comnum;
+      //     item.arrian=res.arrian;
+      //     i++;
+      //   })
+      // })
+      // setTimeout(function(){
+      //   if (i >= resArr.length)
+      //     that.setData({
+      //       itemList: resArr
+      //     });
+      // },800)
     })   
     
   },
@@ -172,6 +177,10 @@ Page({
  * 生命周期函数--监听页面显示
  */
   onShow: function () {
+    this.setData({
+      local: '地区',
+      beatrole: '类别',
+      gender: '性别',});
     this.showBeat({});
   },
   //点击某条约拍信息，跳转到详情页

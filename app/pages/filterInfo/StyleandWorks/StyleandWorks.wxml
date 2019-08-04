@@ -56,7 +56,7 @@
       <view class="sortyuepai">
         <span class="yuepaithird-sort" wx:for="{{item.sortlabel}}" wx:key="unique">{{item}}</span>
       </view>
-      <view class="yuepai-bottom">
+      <!-- <view class="yuepai-bottom">
         <view class='theone' wx:if="{{item.bid}}">
           <image src='../../../images/icon/arrianum.png' mode='aspectFit' class='localimg1'></image>
           <span class="numstyle">{{item.arrian}}</span>
@@ -69,7 +69,7 @@
           <image src='../../../images/icon/comnum.png' mode='aspectFit' class='localimg3'></image>
           <span class="numstyle">{{item.comnum}}</span>
         </view>
-      </view>
+      </view> -->
   
   </view>
 

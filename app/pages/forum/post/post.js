@@ -96,7 +96,7 @@ Page({
       api.addSave(util.pictureurl +'addForum', data).then(res => {
         if (res == 1)
           wx.navigateTo({
-            url: '../../wantBeathim/addSuccess/addSuccess',
+            url: '../../wantBeathim/addSuccess/addSuccess?post=postone&con=你的话题发布成功！！！',
           })
       })
     }

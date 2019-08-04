@@ -166,10 +166,11 @@ Page({
     if (this.data.pname == '' || this.data.command == '' || style.length == 0 ) {
       this.setData({ code: true, rewalk: '作品相册名称和描述、风格不能为空' });
     } else {
+      console.log(" that.d", that.data.upimgarr[i]);
       // 上传图片
       wx.uploadFile({
         url: util.pictureurl +'api/uploads',                  //服务器接口地址
-        filePath: that.data.upimgarr[i],
+        filePath: that.data.upimgarr[i]+'',
         name: uid + "#" + that.data.bid + "#" + i,
         success: function (res) {
           // util.showSuccess('上传图片成功')
@@ -310,7 +311,7 @@ Page({
         // util.showBusy('正在上传')
         var filePath = res.tempFilePaths;
         that.setData({ upimgarr: filePath});
-        console.log("上传图片",res);            //获取图片路径
+        console.log("上传图片", filePath);            //获取图片路径
       },
       fail: function (e) {
         console.error(e)
