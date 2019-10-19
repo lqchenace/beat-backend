@@ -3,6 +3,7 @@ import { Icon, Badge, Dropdown, Menu, Modal } from 'antd'
 import screenfull from 'screenfull'
 import { Link, withRouter } from 'react-router-dom'
 
+import { connect } from 'react-redux';
 
 class HeaderBar extends React.Component {
         state = {
@@ -73,5 +74,10 @@ class HeaderBar extends React.Component {
                 )
             }      
     }
+    const mapStateToProps = (state) => {
+        return {
+            
+            }
+        };
 
-    export default withRouter(HeaderBar)
+    export default withRouter(connect(mapStateToProps)(HeaderBar))

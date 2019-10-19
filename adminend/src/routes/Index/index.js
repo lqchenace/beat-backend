@@ -1,11 +1,15 @@
 import React from 'react';
-import {Layout, Menu, Icon } from 'antd';
+import {Layout, Menu, Icon ,Breadcrumb } from 'antd';
 import HeaderBar from '../../components/HeaderBar'
-import ContainMain from '../../components/ContainMain'
+import ContainMain from '../../components/ContainMain';
+import menuConfig from '../../config/menuConfig'
 import './index.css'
-import { withRouter,Link} from 'react-router-dom'
+import { withRouter,Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { switchMenu  } from '../../redux/action'
 
 const {Sider, Header, Content, Footer} = Layout;
+const { SubMenu }= Menu;
 class Index extends React.Component {
     state = {
         collapsed: false,
@@ -17,8 +21,22 @@ class Index extends React.Component {
             });
     }
     handleClick=(e)=> {
-        console.log("33333",e.key);
+        let pathArr=[];
         this.setState({current: e.key});
+        let path= e.key.split("/")[0];
+        menuConfig.map((item,index)=>{
+            if(item.key === path){
+                pathArr.push(item.title);
+            }
+            if(item.children){
+                item.children.map((children,dev)=>{
+                    if(children.key === e.key){
+                        pathArr.push(children.title);
+                    }
+                })
+            }
+        })
+        this.props.handleClick(pathArr);
     }
     render(){
         return(
@@ -33,24 +51,41 @@ class Index extends React.Component {
                             <div className="logo" />
                             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
                             selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>
-                                <Menu.Item key="1">
-                                <Link to='/myhome/usermanage'>
-                                <Icon type="user" />
-                                <span>用户管理</span>
-                                </Link>
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                <Link to='/myhome/complain'>
-                                <Icon type="mail" />
-                                <span>投诉管理</span>
-                                </Link>
-                                </Menu.Item>
-                                <Menu.Item key="3">
-                                <Link to='/myhome/idmanagement'>
-                                <Icon type="schedule" />
-                                <span>身份认证管理</span>
-                                </Link>
-                                </Menu.Item>
+                                {
+                                    menuConfig.map((item,index)=>{
+                                        return(
+                                            item.children?(
+                                                <SubMenu key={item.key}
+                                                title={
+                                                    <span>
+                                                        <Icon type={item.icon} />
+                                                        <span>{item.title}</span>
+                                                    </span>
+                                                }>
+                                                    {
+                                                        item.children.map((children,dev)=>{
+                                                            return(
+                                                                <Menu.Item key={children.key}>
+                                                                <Link to={children.url}>
+                                                                { children.icon && <Icon type={ children.icon }/> }
+                                                                <span>{children.title}</span>
+                                                                </Link>
+                                                                </Menu.Item>
+                                                            )
+                                                        })
+                                                    }
+                                                </SubMenu>
+                                            ):(
+                                                <Menu.Item key={item.key}>
+                                                <Link to={item.url}>
+                                                <Icon type={item.icon} />
+                                                <span>{item.title}</span>
+                                                </Link>
+                                                </Menu.Item>
+                                            )
+                                        )
+                                    })
+                                }
                             </Menu>
                         </div>
                         </Sider>
@@ -58,10 +93,16 @@ class Index extends React.Component {
                         <Header style={{ background: '#fff', padding: 0 }}>
                             <HeaderBar collapsed={this.state.collapsed} onToggle={this.toggle}/>
                         </Header>
-                        <Content style={{
-                            margin: '24px 0', padding: 24, background: '#fff', minHeight: 280,
-                        }}
-                        >
+                        <Content style={{margin: '0 16px'}}>
+                            <Breadcrumb style={{ margin: '16px 0' }}>
+                            {
+                                this.props.menuName.map((item,index)=>{
+                                    return(
+                                        <Breadcrumb.Item key={ index }>{ item }</Breadcrumb.Item>
+                                    )
+                                })
+                            }
+                            </Breadcrumb>
                             <ContainMain/>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>
@@ -73,6 +114,18 @@ class Index extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        menuName: state.menuName
+    }
+};
 
+const mapDispatchToProps = (dispatch) => {
+return {
+    handleClick(titleArray) {
+    dispatch(switchMenu(titleArray));
+    }
+}
+};
 
-export default withRouter(Index);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Index));

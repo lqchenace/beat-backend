@@ -15,7 +15,9 @@
     "react": "^16.8.5",
     "react-app-rewired": "^2.1.1",
     "react-dom": "^16.8.5",
+    "react-redux": "^7.1.1",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.4",
     "screenfull": "^4.1.0"
   },
   "scripts": {
